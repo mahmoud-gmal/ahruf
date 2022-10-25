@@ -1,0 +1,54 @@
+
+/* bootstrap */
+/* @import url(bootstrap/dist/css/bootstrap-reboot.rtl.min.css); */
+@import url(bootstrap/dist/css/bootstrap-grid.rtl.min.css);
+/* @import url(vendor/owl.carousel.css); */
+
+body{
+    text-align: right;
+    direction: rtl;
+}
+
+
+
+/* RESETTING */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+a{text-decoration: none;}
+
+a:hover {
+  color: unset;
+  text-decoration: none;
+}
+
+button:focus {
+  outline: 0;
+  border: 0 !important;
+}
+
+p{line-height: 1.5;}
+
+/* Global */
+.special_btn{
+  font: normal normal bold 18px/30px Bahij Helvetica Neue;
+  color: #2E386B;
+  padding: 10px 20px;
+  border-color: #2E386B;
+  border: 0;
+  background: #FFD983 0% 0% no-repeat padding-box;
+  box-shadow: 0px 12px 32px #ffc64552;
+  border-radius: 30px;
+}

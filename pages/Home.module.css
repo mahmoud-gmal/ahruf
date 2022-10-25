@@ -1,0 +1,199 @@
+/* Banner */
+.banner_txt h2{
+    font: normal normal bold 42px/67px Bahij Helvetica Neue;
+    color: #2E386B;
+    line-height: 1.5em;
+    margin-bottom: 25px;
+}
+.banner_txt p{
+    font: normal normal normal 32px/51px Bahij Helvetica Neue;
+    color: #2E386BB3;
+    margin-bottom: 35px;
+}
+
+/* .banner_txt .special_btn{
+    margin: 0;
+} */
+
+/*================ our programs =================*/
+
+.our_programs{min-height: 600px;background: #F8FBFF 0% 0% no-repeat padding-box;}
+.our_programs .items{
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 120px);
+    grid-row-gap: 3em;
+    grid-column-gap: 1em;
+    text-align: center;
+
+}
+
+.our_programs .items .item h4{
+
+    font: normal normal normal 24px/39px Bahij Helvetica Neue;
+    color: #2E386B;
+}
+
+.our_programs .items .item .icon{
+    margin-inline-start: 30px;
+    margin-inline-end: 30px;
+}
+/* .our_programs .items .item .icon{
+    width: 50px;
+    height: 50px;
+} */
+/* .our_programs .info{margin-inline-end: 20px;} */
+.our_programs .info h2{
+    font: normal normal bold 42px/67px Bahij Helvetica Neue;
+    color: #2E386B;
+}
+.our_programs .info p{
+    font: normal normal normal 24px/38px Bahij Helvetica Neue;
+    color: #2E386BB3;
+    margin-bottom: 30px;
+}
+
+/* ==================  Achivements ===================== */
+.achivements{
+    background: var(--unnamed-color-80aeff) 0% 0% no-repeat padding-box;
+    background: #80AEFF 0% 0% no-repeat padding-box;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+
+}
+.achivements .items{
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 120px);
+    grid-row-gap: 3em;
+    /* grid-column-gap: 1em; */
+    text-align: center;
+    align-items: center;
+    color: #FFFFFF;
+}
+.achivements  .items .item:not(:last-child){
+    border-left: 1px solid #DDD;
+    }
+.achivements .items .item span{
+    font: normal normal 900 36px/48px Roboto;
+}
+.achivements .items h4{
+    font: normal normal normal 24px/39px Bahij Helvetica Neue;
+
+}
+
+/* Subscription */
+.subscription{    padding: 80px 0;}
+.subscription .info{
+background: var(---2e386b) 0% 0% no-repeat padding-box;
+background: #2E386B 0% 0% no-repeat padding-box;
+border-radius: 10px 0px 0px 10px;
+color: #FFFFFF;
+padding: 50px 20px;
+}
+.subscription .info h2{
+    font: normal normal bold 42px/67px Bahij Helvetica Neue;
+}
+.subscription .info p{
+    font: normal normal bold 16px/30px Bahij Helvetica Neue;
+}
+.subscription .items{
+    justify-content: space-around;
+}
+.subscription .items .item{
+    background: transparent linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 8px 32px #30386814;
+    border-radius: 10px;
+    /* min-height: 518px;
+     */
+     min-width: 315px;
+    padding-right: 30px;
+    padding-top: 45px;
+    padding-bottom: 20px;
+    /* text-align: center; */
+}
+
+.subscription .items .item .price_wrap{
+    color: #2E386B;
+    margin-bottom: 17px;
+}
+.subscription .items .item .price_wrap .price{
+font: normal normal 900 36px/48px Roboto;
+}
+.subscription .items .item .price_wrap .currency{
+font: normal normal normal 18px/29px Bahij Helvetica Neue;
+
+}
+.subscription .items .item .details{
+    margin: 13px 0 14px;
+}
+.subscription .items .item .details ul li{
+font: normal normal normal 16px/26px Bahij Helvetica Neue;
+color: #2E386B;
+margin-bottom: 12px;
+}
+
+.subscription .items .item .details a{display: inline-block;}
+
+
+/* =====================  What They Say  ======================== */
+.what_say{
+    background: #F8FBFF 0% 0% no-repeat padding-box;
+    padding: 80px 0;
+}
+.what_say .heading{
+    text-align: center;
+    margin-bottom: 50px;
+}
+.what_say .heading h2{
+    font: normal normal bold 42px/67px Bahij Helvetica Neue;
+    color: #2E386B;
+}
+.what_say .what_say_slider .item{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 8px 32px #30386814;
+    border-radius: 10px;
+padding: 40px 25px;
+}
+.what_say .what_say_slider p{
+font: normal normal normal 16px/30px Bahij Helvetica Neue;
+color: #2E386BBF;
+}
+.what_say .what_say_slider h3{
+    font: normal normal normal 18px/29px Bahij Helvetica Neue;
+    color: #2E386B;
+}
+
+
+/* =====================  Common Questions  ======================== */
+
+.common_ques{
+    background: #F8FBFF 0% 0% no-repeat padding-box;
+    padding: 80px 0;
+}
+.common_ques .heading{
+    text-align: center;
+    margin-bottom: 50px;
+}
+.common_ques .ques{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.common_ques .ques .que{
+    margin-bottom: 20px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 0px #D3D5E2;
+    border: 1px solid #D3D5E2;
+    border-radius: 10px;
+    padding: 20px;
+    width: 700px;
+}
+
+.common_ques .ques .que h2{
+    font: normal normal bold 16px/27px Bahij Helvetica Neue;
+    color: #2E386B;
+}
+.common_ques .ques .que p{
+    font: normal normal normal 16px/30px Bahij Helvetica Neue;
+    color: #2E386BBF;
+}

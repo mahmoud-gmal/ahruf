@@ -1,0 +1,70 @@
+/* logo  */
+/* .logo a span{
+    width: 500px !important;
+    height: 100px !important;
+} */
+
+/* navbar */
+/* .main_navbar ul{
+    display: flex;
+} */
+.main_navbar ul li{margin-inline-start: 20px;}
+
+/* lang */
+.lang{
+    display: flex;
+    align-items: center;
+}
+.lang svg{
+    color: #2f3769;
+    width: 28px;
+    height: 28px;
+}
+.lang span{
+    padding-inline-start: 6px;
+}
+
+/* Menu dropdown */
+.main_navbar .menu_dropdown{
+    background: #ddd;
+    height: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    transition: all .5s ease;
+    top: 35px;
+    width: 100%;
+}
+.main_navbar .menu{position: relative;}
+.main_navbar .menu:hover ul{
+    height: 100px;
+    opacity: 1;
+    transform: translateY(0);
+}
+  
+
+/* Left side */
+
+.btn_special{
+    font: normal normal bold 18px/30px Bahij Helvetica Neue;
+    color: #2E386B;
+    padding: 10px 20px;
+    border-color: #2E386B;
+    border: 0;
+    margin-inline-start: 8px;
+    background: #FFD983 0% 0% no-repeat padding-box;
+    box-shadow: 0px 12px 32px #ffc64552;
+    border-radius: 30px;
+}
+
+.btn_log{
+    color: #2E386B;
+    background: transparent;
+    padding: 10px 20px;
+    border-color: #2E386B;
+    border: 1.7px solid;
+    margin-inline-end: 8px;
+    margin-inline-start: 20px;
+    box-shadow:none;
+    
+}

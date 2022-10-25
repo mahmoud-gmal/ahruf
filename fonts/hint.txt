@@ -1,0 +1,21 @@
+/styles/global.css
+@font-face {
+  font-family: "Rubik";
+  src: url('../fonts/rubik/Rubik-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+  
+@font-face {
+  font-family: "Rubik";
+  src: url('../fonts/rubik/Rubik-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+  
+@font-face {
+  font-family: "Rubik";
+  src: url('../fonts/rubik/Rubik-Italic.ttf');
+  font-weight: normal;
+  font-style: italic;
+}
