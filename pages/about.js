@@ -12,7 +12,7 @@ const about = () => {
               alt="image"
               layout="fill"
               objectFit="cover"
-              src="/slider.png"
+              src="/assets/slider.png"
             />
           </div>
           <div className="container">
@@ -64,7 +64,7 @@ const about = () => {
                       width="100%"
                       height="100%"
                       layout="responsive"
-                      src="/p3.png"
+                      src="/assets/p3.png"
                     />
                   </div>
                 </div>
@@ -107,7 +107,7 @@ const about = () => {
                       alt="image"
                       layout="fill"
                       objectFit="cover"
-                      src="/p1.png"
+                      src="/assets/p1.png"
                     />
                   </div>
                 </div>

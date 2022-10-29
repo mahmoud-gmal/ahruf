@@ -13,7 +13,7 @@ const contact = () => {
               alt="image"
               layout="fill"
               objectFit="cover"
-              src="/slider.png"
+              src="/assets/slider.png"
             />
           </div>
           <div className="container">

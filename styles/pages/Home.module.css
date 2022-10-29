@@ -1,0 +1,288 @@
+/*======================= Banner ============================*/
+.banner{
+  position: relative;
+  padding: 70px 0;
+  min-height: 665px;
+}
+
+
+
+.banner::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 18%;
+  width: 169px;
+  height: 141px;
+  background-image: url(/assets/banner_shape.svg);
+}
+.banner::after{
+  content: '';
+  position: absolute;
+  left: 26px;
+  bottom: 18%;
+  width: 72.12px;
+  height: 13.2px;
+  background-image: url(/assets/zigzag_line.svg);
+}
+
+.banner_2shape{position: relative;}
+.banner_2shape::before{
+  content: '';
+  position: absolute;
+  right: -33px;
+  bottom: -47px;
+  width: 72px;
+  height: 108px;
+  background-image: url(/assets/2shape.svg);
+}
+.banner_2shape::after{
+  content: '';
+  position: absolute;
+  left: 25%;
+  bottom: -100px;
+  width: 67px;
+  height: 68px;
+  background-image: url(/assets/flower.svg);
+}
+
+.banner_txt h2 {
+  font: normal normal bold 42px/67px "bahij_Helvetica_bold";
+  color: var(--main-color);;
+  line-height: 1.5em;
+  margin-bottom: 25px;
+}
+.banner_txt p {
+  font: normal normal normal 32px/51px "bahij_Helvetica_roman";
+  color: #2E386BB3;
+  margin-bottom: 35px;
+}
+
+
+
+/* .banner_txt .special_btn{
+    margin: 0;
+} */
+
+/*================ our programs =================*/
+
+.our_programs {
+  min-height: 600px;
+  background: #f8fbff 0% 0% no-repeat padding-box;
+}
+.our_programs .items {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 120px);
+  grid-row-gap: 3em;
+  grid-column-gap: 1em;
+  text-align: center;
+}
+
+.our_programs .items .item h4 {
+  font: normal normal normal 24px/39px "bahij_Helvetica_roman";
+  color: var(--main-color);;
+}
+
+.our_programs .items .item .icon {
+  margin-inline-start: 30px;
+  margin-inline-end: 30px;
+}
+/* .our_programs .items .item .icon{
+    width: 50px;
+    height: 50px;
+} */
+/* .our_programs .info{margin-inline-end: 20px;} */
+.our_programs .info h2 {
+  font: normal normal bold 42px/67px "bahij_Helvetica_bold";
+  color: var(--main-color);;
+}
+.our_programs .info p {
+  font: normal normal normal 24px/38px "bahij_Helvetica_roman";
+  color: var(--main-color);
+  margin-bottom: 30px;
+}
+
+/* ==================  Achivements ===================== */
+.achivements {
+  background: var(--unnamed-color-80aeff) 0% 0% no-repeat padding-box;
+  background: #80aeff 0% 0% no-repeat padding-box;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+}
+.achivements .items {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 120px);
+  grid-row-gap: 3em;
+  /* grid-column-gap: 1em; */
+  text-align: center;
+  align-items: center;
+  color: #ffffff;
+}
+.achivements .items .item:not(:last-child) {
+  border-left: 1px solid #ddd;
+}
+.achivements .items .item span {
+  font: normal normal 900 36px/48px Roboto;
+}
+.achivements .items h4 {
+  font: normal normal normal 24px/39px "bahij_Helvetica_roman";
+}
+
+/*====================== Subscription =======================*/
+.subscription {
+  padding: 80px 0;
+}
+.subscription .info {
+  background: var(--main-color) 0% 0% no-repeat padding-box;
+  border-radius: 10px 0px 0px 10px;
+  color: #ffffff;
+  padding: 50px 20px;
+}
+.subscription .info h2 {
+  font: normal normal bold 42px/67px "bahij_Helvetica_bold";
+}
+.subscription .info p {
+  font: normal normal bold 16px/30px "bahij_Helvetica_bold";
+}
+.subscription .items {
+  justify-content: space-around;
+}
+.subscription .items .item {
+  background: transparent linear-gradient(180deg, #ffffff 0%, #ffffff 100%) 0%
+    0% no-repeat padding-box;
+  box-shadow: 0px 8px 32px #30386814;
+  border-radius: 10px;
+  /* min-height: 518px;
+     */
+  min-width: 315px;
+  padding-right: 30px;
+  padding-top: 45px;
+  padding-bottom: 20px;
+  /* text-align: center; */
+}
+
+.subscription .items .item .price_wrap {
+  color: var(--main-color);;
+  margin-bottom: 17px;
+}
+.subscription .items .item .price_wrap .price {
+  font: normal normal 900 36px/48px Roboto;
+}
+.subscription .items .item .price_wrap .currency {
+  font: normal normal normal 18px/29px "bahij_Helvetica_roman";
+}
+.subscription .items .item .details {
+  margin: 13px 0 14px;
+}
+.subscription .items .item .details ul li {
+  font: normal normal normal 16px/26px "bahij_Helvetica_roman";
+  color: var(--main-color);;
+  margin-bottom: 12px;
+}
+
+.subscription .items .item .details a {
+  display: inline-block;
+}
+
+/* =====================  What They Say  ======================== */
+.what_say {
+  background: #f8fbff 0% 0% no-repeat padding-box;
+  padding: 80px 0;
+}
+.what_say .heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.what_say .heading h2 {
+  font: normal normal bold 42px/67px "bahij_Helvetica_bold";
+  color: var(--main-color);;
+}
+.what_say .what_say_slider .item {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 8px 32px #30386814;
+  border-radius: 10px;
+  padding: 40px 25px;
+}
+.what_say .what_say_slider p {
+  font: normal normal normal 16px/30px "bahij_Helvetica_roman";
+  color: var(--main-color);
+}
+.what_say .what_say_slider h3 {
+  font: normal normal normal 18px/29px "bahij_Helvetica_roman";
+  color: var(--main-color);;
+}
+
+/* =====================  Common Questions  ======================== */
+
+.common_ques {
+  background: #f8fbff 0% 0% no-repeat padding-box;
+  padding: 80px 0;
+}
+.common_ques .heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.common_ques .ques {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.common_ques .ques .que {
+  margin-bottom: 20px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 0px #d3d5e2;
+  border: 1px solid #d3d5e2;
+  border-radius: 10px;
+  padding: 20px;
+  width: 700px;
+}
+
+.common_ques .ques .que h2 {
+  font: normal normal bold 16px/27px "bahij_Helvetica_bold";
+  color: var(--main-color);;
+}
+.common_ques .ques .que p {
+  font: normal normal normal 16px/30px "bahij_Helvetica_roman";
+  color: var(--main-color);
+}
+
+.common_ques .start {
+  text-align: center;
+  margin-top: 50px;
+}
+.common_ques .start h3 {
+  font: normal normal normal 36px/58px "bahij_Helvetica_roman";
+  color: var(--main-color);;
+}
+.common_ques .start a {
+  padding: 16px 58px;
+  margin-top: 12px;
+  display: inline-block;
+}
+
+/* =====================  Student activities  ======================== */
+
+.student_activites {
+  padding: 60px 0;
+}
+.student_activites .heading {
+  text-align: center;
+}
+.student_activites .heading h2 {
+  font: normal normal bold 42px/67px "bahij_Helvetica_bold";
+  color: var(--main-color);;
+}
+.student_activites .heading a {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 0px #d3d5e2;
+  border: 1px solid #d3d5e2;
+  border-radius: 10px;
+  font: normal normal normal 16px/67px "bahij_Helvetica_roman";
+  color: var(--main-color);;
+  margin-bottom: 40px;
+  padding: 8px 8px;
+}
+.student_activites .student_activites_slider {
+  margin-top: 30px;
+}

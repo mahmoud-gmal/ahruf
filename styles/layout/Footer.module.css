@@ -1,0 +1,34 @@
+.footer {
+  padding: 80px 0;
+}
+
+.footer .logo_footer {
+}
+
+.footer .contact_info li {
+  margin-bottom: 18px;
+}
+
+.footer .contact_info li a {
+  font: normal normal normal 16px/21px Roboto;
+  color: #303868;
+}
+.footer .contact_info li,
+.footer .contact_info li a {
+  display: flex;
+  align-items: center;
+}
+
+.footer .links li {
+  margin-bottom: 14px;
+}
+.footer svg {
+  color: #303868;
+  margin-inline-end: 10px;
+  width: 22px;
+}
+
+.footer .links li a {
+  font: normal normal normal 18px/29px "bahij_Helvetica_roman";
+  color: var(--main-color);
+}

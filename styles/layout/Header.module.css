@@ -1,0 +1,94 @@
+/* logo  */
+/* .logo a span{
+    width: 500px !important;
+    height: 100px !important;
+} */
+
+/* navbar */
+/* .main_navbar ul{
+    display: flex;
+} */
+
+.header {
+  padding: 35px 0;
+}
+
+.main_navbar ul li {
+  margin-inline-end: 25px;
+}
+
+.main_navbar ul li a {
+  font: normal normal normal 18px/0px "bahij_Helvetica_roman";
+  color: var(--main-color);
+}
+
+/* lang */
+.lang a{
+  display: flex;
+  align-items: center;
+}
+.lang svg {
+  color: #2f3769;
+  width: 28px;
+  height: 28px;
+}
+.lang span {
+  padding-inline-start: 6px;
+}
+
+/* Menu dropdown */
+.main_navbar .menu_dropdown {
+  background: var(--main-color);
+  height: 0;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  transition: all 0.5s ease;
+  top: 30px;
+  width: 100%;
+  padding: 10px 15px 0 0;
+}
+.menu_dropdown li a{color: #FFF !important}
+.menu_dropdown li{margin-bottom: 10px;}
+.main_navbar .drop {
+  position: relative;
+}
+.main_navbar .drop:hover ul {
+  height: 100px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menu svg {
+  color: #303868;
+  width: 8px;
+  margin-inline-start: 4px;
+}
+
+.lang span {
+  font: normal normal normal 14px/0px "roboto_regular";
+}
+
+/* Left side */
+.btn_special {
+  font: normal normal bold 18px/30px "bahij_Helvetica_bold";
+  color: var(--main-color);
+  padding: 10px 20px;
+  border-color: var(--main-color);
+  border: 0;
+  margin-inline-start: 8px;
+  background: #ffd983 0% 0% no-repeat padding-box;
+  box-shadow: 0px 12px 32px #ffc64552;
+  border-radius: 30px;
+}
+
+.btn_log {
+  color: var(--main-color);
+  background: transparent;
+  padding: 6px 36px;
+  border-color: var(--main-color);
+  border: 2px solid;
+  margin-inline-end: 16px;
+  margin-inline-start: 16px;
+  box-shadow: none;
+}
