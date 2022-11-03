@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/Link";
 import Meta from "../src/components/Meta";
-
+import Accordion from "../src/components/Accordion";
 // styles
 import styles from "./../styles/pages/Home.module.css";
 
 // SWIPER
+// import "swiper/components/navigation/navigation.min.css";
+import "swiper/components/pagination/pagination.min.css";
 import "swiper/swiper.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Navigation } from "swiper/core";
 SwiperCore.use([Navigation, Pagination]);
+
+import ReactWOW from "react-wow";
 
 // fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -66,7 +70,7 @@ export default function Home({ data, products, cats }) {
                                 alt="logo"
                                 width="650"
                                 height="450"
-                                // layout="responsive"
+                                layout="responsive"
                                 objectFit="contain"
                                 priority
                             />
@@ -78,9 +82,10 @@ export default function Home({ data, products, cats }) {
         </div>
 
         {/*================ our programs =============*/}
-        <div className={`${styles.our_programs} d-flex align-items-center`}>
+        <ReactWOW>
+        <div className={`${styles.our_programs} d-flex align-items-center wow fadeInUp`}>
           <Container>
-            <Row>
+            <Row className="justify-content-center">
               <Col md={4}>
                 <div className={styles.info}>
                   <h2> مختارات من برامجنا </h2>
@@ -95,9 +100,9 @@ export default function Home({ data, products, cats }) {
                 </div>
               </Col>
 
-              <Col md={8}>
+              <Col md={7}>
                 <div className={`d-grid ${styles.items}`}>
-                  <div className={styles.item}>
+                  <div className={`d-flex align-items-center ${styles.item}`}>
                     <div className={styles.icon}>
                       <Image
                         src="/assets/image-1.png"
@@ -108,7 +113,7 @@ export default function Home({ data, products, cats }) {
                     </div>
                     <h4>برنامج الروضة</h4>
                   </div>
-                  <div className={styles.item}>
+                  <div className={`d-flex align-items-center ${styles.item}`}>
                     <div className={styles.icon}>
                       <Image
                         src="/assets/image-2.png"
@@ -119,7 +124,7 @@ export default function Home({ data, products, cats }) {
                     </div>
                     <h4>برنامج الروضة</h4>
                   </div>
-                  <div className={styles.item}>
+                  <div className={`d-flex align-items-center ${styles.item}`}>
                     <div className={styles.icon}>
                       <Image
                         src="/assets/Image-3.png"
@@ -130,7 +135,7 @@ export default function Home({ data, products, cats }) {
                     </div>
                     <h4>برنامج الروضة</h4>
                   </div>
-                  <div className={styles.item}>
+                  <div className={`d-flex align-items-center ${styles.item}`}>
                     <div className={styles.icon}>
                       <Image
                         src="/assets/image-4.png"
@@ -143,28 +148,30 @@ export default function Home({ data, products, cats }) {
                   </div>
                 </div>
               </Col>
+              {/* <Col md={1}></Col> */}
             </Row>
           </Container>
         </div>
-
+        </ReactWOW>
         {/*============== Achivements ==========*/}
-        <div className={styles.achivements}>
+        <ReactWOW>
+        <div className={`${styles.achivements}`}>
           <Container>
-            <div className={`${styles.items} d-grid`}>
+            <div className={`${styles.items} d-grid wow fadeInUp`}>
               <div className={styles.item}>
                 <span>14’500+</span>
                 <h4>طالب متخرج</h4>
               </div>
               <div className={styles.item}>
-                <span>14’500+</span>
+                <span>150’000+</span>
                 <h4> ساعة تعليمية </h4>
               </div>
               <div className={styles.item}>
-                <span>14’500+</span>
+                <span>99 %</span>
                 <h4> نسبة الإنجاز </h4>
               </div>
               <div className={styles.item}>
-                <span>14’500+</span>
+                <span>100+</span>
                 <h4> معلم ومعلمة </h4>
               </div>
             </div>
@@ -172,9 +179,9 @@ export default function Home({ data, products, cats }) {
         </div>
 
         {/*============= Subscription  =========*/}
-        <div className={styles.subscription}>
-          <Container>
-            <Row className="align-items-center">
+        <div className={`${styles.subscription}`}>
+
+            <Row className="align-items-center m-0">
               <Col md={4}>
                 <div className={styles.info}>
                   <h2>باقات الاشتراك</h2>
@@ -187,7 +194,7 @@ export default function Home({ data, products, cats }) {
                 </div>
               </Col>
               <Col md={8}>
-                <div className={`${styles.items} d-flex`}>
+                <div className={`${styles.items} d-grid`}>
                   <div className={styles.item}>
                     <div className={styles.price_wrap}>
                       <span className={styles.price}>150</span>
@@ -214,7 +221,7 @@ export default function Home({ data, products, cats }) {
                     <h4>الباقة الاساسية</h4>
                     <div className={styles.details}>
                       <ul>
-                        <li>10 طلاب لكل مجموعة</li>
+                        <li>طالب واحد فقط داخل المجموعة</li>
                         <li>10 طلاب لكل مجموعة</li>
                         <li>10 طلاب لكل مجموعة</li>
                         <li>10 طلاب لكل مجموعة</li>
@@ -227,143 +234,117 @@ export default function Home({ data, products, cats }) {
                 </div>
               </Col>
             </Row>
-          </Container>
         </div>
-
+        </ReactWOW>
         {/* ========== What They Say ================ */}
-        <div className={styles.what_say}>
-          <Container>
+        <div className={`${styles.what_say}`}>
             <div className={styles.heading}>
               <h2>ماذا قالو عنا</h2>
             </div>
 
             <Swiper
-              className={styles.what_say_slider}
-              pagination={{ clickable: true }}
-              // navigation
-              spaceBetween={20}
-              slidesPerView={3}
+              className={`cus_what_say ${styles.what_say_slider}`}
+              spaceBetween={15}
+              // slidesPerView={4.2}
+              centeredSlides
+              centeredSlidesBounds
+              speed={1200}
+              navigation={true}
+              freeMode
+              loop
+              breakpoints={{
+                0: {
+                  // width: 0,
+                  slidesPerView: 1,
+                },
+                500: {
+                  // width: 600,
+                  slidesPerView: 2.2,
+                },
+                900: {
+                  // width: 1000,
+                  slidesPerView: 4.2,
+                },
+              }}
             >
               <SwiperSlide className={styles.item}>
                 <div className="test-block">
                   <p>
-                    لاحظت التطور السريع الواضح على ابني منذ الاسبوع الاول له في
-                    الكورسات ، والسبب في العدد الاقصى للطلاب في كل مجموعة وهو 10
-                    فقط .
+                  اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ، والافضل انه كل الدورات اونلاين .
                   </p>
                   <h3> سمية الشهري </h3>
                 </div>
               </SwiperSlide>
               <SwiperSlide className={styles.item}>
                 <div className="test-block">
-                  <p>
-                    لاحظت التطور السريع الواضح على ابني منذ الاسبوع الاول له في
-                    الكورسات ، والسبب في العدد الاقصى للطلاب في كل مجموعة وهو 10
-                    فقط .
+                <p>
+                  اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ، والافضل انه كل الدورات اونلاين .
                   </p>
                   <h3> سمية الشهري </h3>
                 </div>
               </SwiperSlide>
               <SwiperSlide className={styles.item}>
                 <div className="test-block">
-                  <p>
-                    لاحظت التطور السريع الواضح على ابني منذ الاسبوع الاول له في
-                    الكورسات ، والسبب في العدد الاقصى للطلاب في كل مجموعة وهو 10
-                    فقط .
+                <p>
+                  اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ، والافضل انه كل الدورات اونلاين .
                   </p>
                   <h3> سمية الشهري </h3>
                 </div>
               </SwiperSlide>
             </Swiper>
-          </Container>
         </div>
 
-        {/* https://github.com/obrm/Accordion/tree/master/src */}
         {/*============ Common Questions ===========*/}
-        <div className={styles.common_ques}>
+
+
+        <div className={`${styles.common_ques}`}>
           <Container>
             <div className={styles.heading}>
               <h2> الاسئلة الشائعة </h2>
             </div>
             <div className="ques_wrapper">
+
+
               <div className={styles.ques}>
-                <div className={styles.que}>
-                  <a
-                    className="que_heading"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setExpanded(!expanded)}
-                  >
-                    <h2>كم مدة البرنامج التدريبي</h2>
-                  </a>
-                  {expanded && (
-                    <div className="que_description">
-                      <p>
-                        اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                        قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                        والافضل انه كل الدورات اونلاين .
-                      </p>
-                    </div>
-                  )}
-                </div>
-                <div className={styles.que}>
-                  <a
-                    className="que_heading"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setExpanded(!expanded)}
-                  >
-                    <h2>كم مدة البرنامج التدريبي</h2>
-                  </a>
-                  {expanded && (
-                    <div className="que_description">
-                      <p>
-                        اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                        قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                        والافضل انه كل الدورات اونلاين .
-                      </p>
-                    </div>
-                  )}
-                </div>
-                <div className={styles.que}>
-                  <a
-                    className="que_heading"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setExpanded(!expanded)}
-                  >
-                    <h2>كم مدة البرنامج التدريبي</h2>
-                  </a>
-                  {expanded && (
-                    <div className="que_description">
-                      <p>
-                        اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                        قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                        والافضل انه كل الدورات اونلاين .
-                      </p>
-                    </div>
-                  )}
-                </div>
-                <div className={styles.que}>
-                  <a
-                    className="que_heading"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setExpanded(!expanded)}
-                  >
-                    <h2>كم مدة البرنامج التدريبي</h2>
-                  </a>
-                  {expanded && (
-                    <div className="que_description">
-                      <p>
-                        اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                        قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                        والافضل انه كل الدورات اونلاين .
-                      </p>
-                    </div>
-                  )}
-                </div>
+
+              <Accordion
+                title="كم مدة البرنامج التدريبي"
+                className={styles.que}
+                content='<p>
+                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
+                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
+                والافضل انه كل الدورات اونلاين . </p>'
+                />               
+              <Accordion
+                title="كم مدة البرنامج التدريبي"
+                className={styles.que}
+                content='<p>
+                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
+                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
+                والافضل انه كل الدورات اونلاين . </p>'
+                />               
+              <Accordion
+                title="كم مدة البرنامج التدريبي"
+                className={styles.que}
+                content='<p>
+                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
+                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
+                والافضل انه كل الدورات اونلاين . </p>'
+                />               
+              <Accordion
+                title="كم مدة البرنامج التدريبي"
+                className={styles.que}
+                content='<p>
+                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
+                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
+                والافضل انه كل الدورات اونلاين . </p>'
+                />               
+
 
                 <Link href="/">
                   <a
-                    className="more_btn_link d-flex align-items-center justify-content-end"
-                    style={{ width: "700px" }}
+                    className={`${styles.more_btn_link}  d-flex align-items-center justify-content-end `}
+                    style={{ maxWidth: "700px" }}
                   >
                     {" "}
                     لديك المزيد من الاستفسارات ! تواصل معنا{" "}
@@ -385,7 +366,7 @@ export default function Home({ data, products, cats }) {
         </div>
 
         {/*=========== Student activities ================*/}
-        <div className={styles.student_activites}>
+        <div className={`${styles.student_activites} student_activites`}>
           <div className={styles.heading}>
             <h2> مشاركات الطلاب </h2>
             <Link href="/">
@@ -396,13 +377,30 @@ export default function Home({ data, products, cats }) {
             className={styles.student_activites_slider}
             pagination={{
               dynamicBullets: true,
+              clickable: true
             }}
-            spaceBetween={15}
-            slidesPerView={4.2}
+            // spaceBetween={15}
+            // slidesPerView={4.2}
             centeredSlides
             centeredSlidesBounds
+            navigation={true}
+            speed={1200}
             freeMode
             loop
+            breakpoints={{
+              0: {
+                // width: 0,
+                slidesPerView: 1,
+              },
+              500: {
+                // width: 600,
+                slidesPerView: 2.2,
+              },
+              900: {
+                // width: 1000,
+                slidesPerView: 4.2,
+              },
+            }}            
           >
             <SwiperSlide className="item">
               <Image
@@ -411,7 +409,7 @@ export default function Home({ data, products, cats }) {
                 width="272"
                 height="260"
                 layout="responsive"
-                objectFit="cover"
+                objectFit="contain"
               />
             </SwiperSlide>
             <SwiperSlide className="item">
@@ -421,7 +419,7 @@ export default function Home({ data, products, cats }) {
                 width="272"
                 height="260"
                 layout="responsive"
-                objectFit="cover"
+                objectFit="contain"
               />
             </SwiperSlide>
             <SwiperSlide className="item">
@@ -431,7 +429,7 @@ export default function Home({ data, products, cats }) {
                 width="272"
                 height="260"
                 layout="responsive"
-                objectFit="cover"
+                objectFit="contain"
               />
             </SwiperSlide>
             <SwiperSlide className="item">
@@ -441,7 +439,7 @@ export default function Home({ data, products, cats }) {
                 width="272"
                 height="260"
                 layout="responsive"
-                objectFit="cover"
+                objectFit="contain"
               />
             </SwiperSlide>
             <SwiperSlide className="item">
@@ -451,7 +449,7 @@ export default function Home({ data, products, cats }) {
                 width="272"
                 height="260"
                 layout="responsive"
-                objectFit="cover"
+                objectFit="contain"
               />
             </SwiperSlide>
           </Swiper>

@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }) {
       <AuthProvider>
         <Header />
           <Component {...pageProps} />
-        <Footer />
+        {/* <Footer /> */}
       </AuthProvider>
     </>
   );

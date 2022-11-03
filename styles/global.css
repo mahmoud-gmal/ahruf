@@ -1,12 +1,14 @@
 /* bootstrap */
 /* @import url(bootstrap/dist/css/bootstrap-reboot.rtl.min.css); */
 @import url(bootstrap/dist/css/bootstrap-grid.rtl.min.css);
-/* @import url(vendor/owl.carousel.css); */
+@import url(animate.css/animate.min.css);
 
 body {
   text-align: right;
   direction: rtl;
 }
+
+
 
 /* Colors */
 
@@ -142,4 +144,152 @@ p {
     color: #fff;
     position: relative;
     z-index: 2;
+}
+
+
+/* what say */
+.cus_what_say .swiper-slide-duplicate-prev,
+.cus_what_say .swiper-slide-duplicate-next{opacity:0.5}
+
+.cus_what_say .swiper-button-next, .cus_what_say .swiper-button-prev {
+  cursor: pointer;
+  border-radius: 100%;
+  background: #80AEFF 0% 0% no-repeat padding-box;
+  color: #FFF;
+  opacity: .4;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.cus_what_say  .swiper-button-prev{
+  right: 194px !important;
+  left: auto;
+}
+.cus_what_say  .swiper-button-next{
+  left: 194px !important;
+  right: auto 
+}
+
+.cus_what_say  .swiper-button-next:after{
+  background-image: url(/assets/arrow-left.svg);
+}
+
+.cus_what_say  .swiper-button-prev:after{
+  background-image: url(/assets/arrow-right.svg);
+}
+.cus_what_say  .swiper-button-next:after, .cus_what_say  .swiper-button-prev:after{
+  content: '';
+  position: absolute;
+  width: calc(100% - 24px);
+  height: calc(100% - 24px);
+  left: 50%;
+  background-repeat: no-repeat;
+  filter: invert(1);
+  top: 50%;
+  background-position: center center;
+  transform: translate(-50%, -50%);
+}
+
+/* mobile */
+@media (max-width: 767.9px) {
+
+  .cus_what_say  .swiper-button-prev{
+    right: 10% !important;
+    left: auto;
+  }
+  .cus_what_say  .swiper-button-next{
+    left: 10% !important;
+    right: auto 
+  }
+}
+
+
+/* Student activities */
+/* .student_activites .swiper-slide{opacity:0.7} */
+.student_activites .swiper-button-next, .student_activites .swiper-button-prev {
+  border-radius: 100%;
+  /* background: #80AEFF 0% 0% no-repeat padding-box; */
+  color: #FFF;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.student_activites  .swiper-button-prev{
+  right: 215px !important;
+  left: auto;
+}
+.student_activites  .swiper-button-next{
+  left: 194px !important;
+  right: auto 
+}
+
+.student_activites  .swiper-button-next:after{
+  background-image: url(/assets/angle-left.svg);
+}
+
+.student_activites  .swiper-button-prev:after{
+  background-image: url(/assets/angle-right.svg);
+}
+.student_activites  .swiper-button-next:after, .swiper-button-prev:after{
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 40px;
+  left: 50%;
+  background-repeat: no-repeat;
+  filter: invert(1);
+  top: 50%;
+  background-position: center center;
+  transform: translate(-50%, -50%);
+}
+
+/* .student_activites  .swiper-pagination{
+  position: relative;
+}
+.student_activites  .swiper-pagination .swiper-pagination-bullet{
+
+} */
+
+
+.student_activites .swiper-container-horizontal>.swiper-pagination-bullets,
+.student_activites .swiper-pagination-custom,
+.student_activites .swiper-pagination-fraction{bottom: 20px;}
+
+.student_activites .swiper-pagination-bullet {
+  opacity: .9;
+  background: #FFFFFFA3 0% 0% no-repeat padding-box;
+}
+
+@media (max-width: 767.9px) {
+
+  .student_activites  .swiper-button-prev{
+    right: 10% !important;
+    left: auto;
+  }
+  .student_activites  .swiper-button-next{
+    left: 10% !important;
+    right: auto 
+  }
+  
+}
+
+
+/*----------------------- Mobile -------------------*/
+
+@media (max-width: 500px) {
+/* h2{font-size: 30px !important;}
+p{font-size: 20px !important;} */
 }

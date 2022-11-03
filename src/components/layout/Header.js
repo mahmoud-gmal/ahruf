@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/Link";
+import React, {useEffect, useState} from "react";
 import { useRouter } from "next/router";
 // import { useState, useEffect } from "react";
 // fontawesome
@@ -10,9 +11,30 @@ import { Container, Row, Col } from "react-bootstrap";
 import styles from "./../../../styles/layout/Header.module.css";
 
 const Header = () => {
+
+  const [width, setWidth] = useState(typeof window !== "undefined" ? window.innerWidth : '');
+  const handleWindowSizeChange = () => {
+          setWidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+        window.removeEventListener('resize', handleWindowSizeChange);
+    }
+}, []);
+
+if(width <= 992){
+console.log("width <= 768");
+}
+
+
+
+
   return (
+
     <>
-      <div className={styles.header}>
+      <div className={`${styles.header} ${styles.desktop_mode}`}>
         <Container>
           <Row className="align-items-center">
             {/* LOGO */}
@@ -25,7 +47,7 @@ const Header = () => {
                       src="/assets/Logo.png"
                       width="200"
                       height="66"
-                      layout="responsive"
+                      // layout="responsive"
                     />
                   </a>
                 </Link>
@@ -89,6 +111,73 @@ const Header = () => {
           </Row>
         </Container>
       </div>
+
+
+
+
+      {/*----------- Start Mobile mode -----------------*/}
+      <div className={`${styles.header} ${styles.mobile_mode}`}>
+        <Container>
+          <Row className="align-items-center">
+            {/* LOGO */}
+            <Col md={6}>
+              <div className={styles.logo}>
+                <Link href="/">
+                  <a>
+                    <Image
+                      alt="logo"
+                      src="/assets/Logo.png"
+                      width="200"
+                      height="66"
+                      // layout="responsive"
+                    />
+                  </a>
+                </Link>
+              </div>
+            </Col>
+            
+            {/* Navbar */}
+            <Col md={6}>
+              <div className={styles.main_navbar}>
+                <ul className={`d-flex flex-direction-column`}>
+                  <li>
+                    <Link href="/">من نحن</Link>
+                  </li>
+                  <li className={styles.drop}>
+                    <Link href="/">
+                      <a className={styles.menu}>
+                        البرامج المتاحة <FontAwesomeIcon icon={faCaretDown} />
+                      </a>
+                    </Link>
+                    <ul className={styles.menu_dropdown}>
+                      <li>
+                        <Link href="/">من نحن</Link>
+                      </li>
+                      <li>
+                        <Link href="/">من نحن</Link>
+                      </li>
+                      <li>
+                        <Link href="/">من نحن</Link>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <Link href="/">باقات الاشتراك</Link>
+                  </li>
+                  <li>
+                    <Link href="/">اتصل بنا</Link>
+                  </li>
+                </ul>
+              </div>
+            </Col>
+
+          </Row>
+        </Container>
+      </div>      
+      {/*----------- End Mobile mode -----------------*/}
+
+
     </>
   );
 };
