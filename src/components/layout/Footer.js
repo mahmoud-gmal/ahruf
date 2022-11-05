@@ -6,13 +6,8 @@ import { Col, Container, Row } from "react-bootstrap";
 
 // fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faPhone,} from "@fortawesome/free-solid-svg-icons";
 import {
-  faCoffee,
-  faArrowLeft,
-  faPhone,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebook,
   faInstagram,
   faTwitter,
   faWhatsapp,
@@ -27,7 +22,7 @@ const Footer = () => {
       <div className={styles.footer}>
         <Container>
           <Row>
-            <Col md={4}>
+            <Col className={styles.item} md={6} lg={4}>
               <div className={styles.logo_footer}>
                 <Link href="/">
                   <>
@@ -42,7 +37,7 @@ const Footer = () => {
                 </Link>
               </div>
             </Col>
-            <Col md={3}>
+            <Col className={styles.item} md={6} lg={3}>
               <ul className={styles.contact_info}>
                 <li>
                   <a href="tel:9660548762583">
@@ -64,23 +59,23 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link href="/">
-                    <>
+                    <a>
                       <FontAwesomeIcon icon={faTwitter} />
                       <span>@ahrufedu1</span>
-                    </>
+                    </a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/">
-                    <>
+                    <a>
                       <FontAwesomeIcon icon={faInstagram} />
                       <span>@ahruf_edu</span>
-                    </>
+                    </a>
                   </Link>
                 </li>
               </ul>
             </Col>
-            <Col md={3}>
+            <Col className={styles.item} md={6} lg={3}>
               <ul className={styles.links}>
                 <li>
                   <Link href="/">من نحن</Link>
@@ -99,7 +94,7 @@ const Footer = () => {
                 </li>
               </ul>
             </Col>
-            <Col md={2}>
+            <Col className={styles.item} md={6} lg={2}>
               <ul className={styles.links}>
                 <li>
                   <Link href="/">الشروط والاحكام</Link>

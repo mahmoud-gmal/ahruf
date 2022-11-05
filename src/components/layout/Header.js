@@ -5,30 +5,34 @@ import { useRouter } from "next/router";
 // import { useState, useEffect } from "react";
 // fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLanguage, faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faLanguage, faCaretDown, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "./../../../styles/layout/Header.module.css";
 
 const Header = () => {
 
-  const [width, setWidth] = useState(typeof window !== "undefined" ? window.innerWidth : '');
-  const handleWindowSizeChange = () => {
-          setWidth(window.innerWidth);
-  }
+//   const [width, setWidth] = useState(typeof window !== "undefined" ? window.innerWidth : '');
+//   const handleWindowSizeChange = () => {
+//           setWidth(window.innerWidth);
+//   }
 
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowSizeChange);
-    return () => {
-        window.removeEventListener('resize', handleWindowSizeChange);
-    }
-}, []);
+//   useEffect(() => {
+//     window.addEventListener('resize', handleWindowSizeChange);
+//     return () => {
+//         window.removeEventListener('resize', handleWindowSizeChange);
+//     }
+// }, []);
 
-if(width <= 992){
-console.log("width <= 768");
+// if(width <= 992){
+// console.log("width <= 768");
+// }
+
+const [status, setStatus] = useState(false);
+
+const handleClick = () =>{
+  setStatus(!status)
 }
-
-
 
 
   return (
@@ -120,7 +124,7 @@ console.log("width <= 768");
         <Container>
           <Row className="align-items-center">
             {/* LOGO */}
-            <Col md={6}>
+            <Col xs={6}>
               <div className={styles.logo}>
                 <Link href="/">
                   <a>
@@ -137,9 +141,28 @@ console.log("width <= 768");
             </Col>
             
             {/* Navbar */}
-            <Col md={6}>
+            <Col xs={6}>
               <div className={styles.main_navbar}>
-                <ul className={`d-flex flex-direction-column`}>
+                <div className={styles.menu_toggle}><FontAwesomeIcon icon={faBars} onClick={handleClick}/></div>
+                {status && (
+                <ul className={`d-flex flex-direction-column ${styles.mobile_list_nav}`}>
+                <div className={styles.logo_wraper}>
+                <Link href="/">
+                  <a className={styles.mobile_logo}>
+                    <Image
+                      alt="logo"
+                      src="/assets/Logo.png"
+                      width="265"
+                      height="88"
+                      objectFit="contain"
+                      // layout="fill"
+                      
+                    />
+                  </a>
+                </Link>
+                 <div className={styles.close_icon} onClick={handleClick}><FontAwesomeIcon icon={faTimes} /></div>
+              </div>
+
                   <li>
                     <Link href="/">من نحن</Link>
                   </li>
@@ -169,6 +192,7 @@ console.log("width <= 768");
                     <Link href="/">اتصل بنا</Link>
                   </li>
                 </ul>
+                )}
               </div>
             </Col>
 

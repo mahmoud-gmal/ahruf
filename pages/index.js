@@ -14,7 +14,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Navigation } from "swiper/core";
 SwiperCore.use([Navigation, Pagination]);
 
-import ReactWOW from "react-wow";
+// import ReactWOW from "react-wow";
 
 // fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -82,7 +82,7 @@ export default function Home({ data, products, cats }) {
         </div>
 
         {/*================ our programs =============*/}
-        <ReactWOW>
+        {/* <ReactWOW> */}
         <div className={`${styles.our_programs} d-flex align-items-center wow fadeInUp`}>
           <Container>
             <Row className="justify-content-center">
@@ -152,9 +152,9 @@ export default function Home({ data, products, cats }) {
             </Row>
           </Container>
         </div>
-        </ReactWOW>
+        {/* </ReactWOW> */}
         {/*============== Achivements ==========*/}
-        <ReactWOW>
+        {/* <ReactWOW> */}
         <div className={`${styles.achivements}`}>
           <Container>
             <div className={`${styles.items} d-grid wow fadeInUp`}>
@@ -235,7 +235,7 @@ export default function Home({ data, products, cats }) {
               </Col>
             </Row>
         </div>
-        </ReactWOW>
+        {/* </ReactWOW> */}
         {/* ========== What They Say ================ */}
         <div className={`${styles.what_say}`}>
             <div className={styles.heading}>

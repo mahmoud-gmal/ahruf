@@ -2,9 +2,6 @@
   padding: 80px 0;
 }
 
-.footer .logo_footer {
-}
-
 .footer .contact_info li {
   margin-bottom: 18px;
 }
@@ -20,7 +17,7 @@
 }
 
 .footer .links li {
-  margin-bottom: 14px;
+  margin-bottom: 9px;
 }
 .footer svg {
   color: #303868;
@@ -31,4 +28,13 @@
 .footer .links li a {
   font: normal normal normal 18px/29px "bahij_Helvetica_roman";
   color: var(--main-color);
+}
+
+
+/* mobile */
+
+@media (max-width: 991.9px) {
+  .footer .item {
+    margin-bottom: 20px;
+}
 }

@@ -1,7 +1,7 @@
 /* bootstrap */
 /* @import url(bootstrap/dist/css/bootstrap-reboot.rtl.min.css); */
 @import url(bootstrap/dist/css/bootstrap-grid.rtl.min.css);
-@import url(animate.css/animate.min.css);
+/* @import url(animate.css/animate.min.css); */
 
 body {
   text-align: right;
@@ -293,3 +293,5 @@ p {
 /* h2{font-size: 30px !important;}
 p{font-size: 20px !important;} */
 }
+
+
