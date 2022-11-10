@@ -1,7 +1,7 @@
 import Router from 'next/router'
 import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "next/Link";
 import Meta from "../src/components/Meta";
 import { useAuth } from "../src/context/AuthContext";
 import { toast } from "react-toastify";

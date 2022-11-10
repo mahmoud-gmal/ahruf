@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import Meta from "../src/components/Meta";
-import Link from "next/link";
+import Link from "next/Link";
 import { useState } from "react";
 
 

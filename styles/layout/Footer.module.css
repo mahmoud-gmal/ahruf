@@ -9,7 +9,12 @@
 .footer .contact_info li a {
   font: normal normal normal 16px/21px Roboto;
   color: #303868;
+  transition: all .5s linear;
 }
+.footer .contact_info li a:hover{
+  color: #d8b361;
+}
+
 .footer .contact_info li,
 .footer .contact_info li a {
   display: flex;
@@ -28,8 +33,11 @@
 .footer .links li a {
   font: normal normal normal 18px/29px "bahij_Helvetica_roman";
   color: var(--main-color);
+  transition: all .5s linear;
 }
-
+.footer .links li a:hover {
+  color: #d8b361;
+}
 
 /* mobile */
 

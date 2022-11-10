@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+// react core
+import React, { useEffect, useRef } from "react";
+import { useRouter } from "next/router";
+// nextjs components
 import Image from "next/image";
 import Link from "next/Link";
+
+
+// custom components
 import Meta from "../src/components/Meta";
 import Accordion from "../src/components/Accordion";
+
 // styles
 import styles from "./../styles/pages/Home.module.css";
+
+// bootstrap
+import { Col, Container, Row } from "react-bootstrap";
 
 // SWIPER
 // import "swiper/components/navigation/navigation.min.css";
@@ -14,36 +24,110 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Navigation } from "swiper/core";
 SwiperCore.use([Navigation, Pagination]);
 
-// import ReactWOW from "react-wow";
-
 // fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 // import { faArrowleft } from "@fortawesome/free-regular-svg-icons";
 
-// bootstrap
-import { Col, Container, Row } from "react-bootstrap";
+// animation
+import { animate, motion, useAnimation, useAnimationControls } from "framer-motion";
+import { useInView } from 'react-intersection-observer';
 
-// Home componets
-// import { ACF_ENDPOINT, GET_PRODUCTS_ENDPOINT, GET_PRODUCT_CATS_ENDPOINT } from '../src/utils/constants/endpoints';
-// import { DEFAULT_IMG_URL } from '../src/utils/constants/images';y";
-// import { getProductsData } from '../src/utils/products';
 
-export default function Home({ data, products, cats }) {
-  const [expanded, setExpanded] = useState(false);
+
+
+
+
+export default function Home({ data}) {
+// lang
+  const { locale, locales, asPath } = useRouter();
+
+
+  // const [expanded, setExpanded] = useState(false);
+
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold:0,
+  });
+
+  const animationPrograms = useAnimation();
+
+  // useEffect(() => {
+    console.log("use effect hook, inView = ", inView);
+    // if (inView) {
+      animationPrograms.start({
+        opacity: 1,
+        transition:{
+           duration:2, 
+           type: 'spring',
+          // bounce: 0.3
+        }
+      });
+    // } 
+    // else {
+    //   animationPrograms.start({opacity: 0});
+    // }
+  // }, [inView]);
+
+
+
+
+
+// Counter Animation
+  function Counter({ from, to }) {
+    const nodeRef = useRef();
+
+      useEffect(() => {
+        const node = nodeRef.current;
+        const controls = animate(from, to, {
+          duration: 1,
+          onUpdate(value) {
+            // node.textContent = value;
+            node.textContent = value.toFixed(0);
+          }
+        });
+
+        return () => controls.stop();
+      }, [from, to]);
+
+    return <span ref={nodeRef} />;
+  }
+
+
+  // animation in view test
+  // const control = useAnimationControls();
+  // const boxVariant = {
+  //   visible: { opacity: 1, transition: { duration: 3 } },
+  //   hidden: { opacity: 0 }
+  // };
+
+  // useEffect(() => {
+  //   if (inView) {
+  //     control.start("visible");
+  //     console.log("visible")
+  //   } 
+  //   // else {
+  //   //   control.start("hidden");
+  //   // }
+  // }, [control, inView]);
+
+
+
 
   return (
     <>
       <Meta />
-
-      {/*}
-      <Projects work_cats={work_cats} works={works}/>
-      <WhatTheySay whatSay={data.acf}/> */}
+      
+      {/*} <Projects work_cats={work_cats} works={works}/> */}
 
       <main className="main-content">
         {/*================= ٍBanner ==========*/}
-        <div className={styles.banner}>
+        <motion.div className={styles.banner}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 3 }}
+        >
             <div className={styles.banner_2shape}>
                 <Container>
                     <Row className="align-items-center">
@@ -59,7 +143,8 @@ export default function Home({ data, products, cats }) {
                                 تعليمٌيةٌ لتخر يجٌ جيلٌ متمكن للغة القرآن كتابة وتحدثا
                             </p>
                             <Link href="/">
-                                <a className="special_btn"><span>انضم الينا </span> </a>
+                    
+                                <a className="special_btn"><span>  {locale == "en" ? "Join us" : "انضم الينا"}</span> </a>
                             </Link>
                             </div>
                         </Col>
@@ -79,11 +164,17 @@ export default function Home({ data, products, cats }) {
                     </Row>
                 </Container>
             </div>
-        </div>
+          </motion.div>
 
         {/*================ our programs =============*/}
-        {/* <ReactWOW> */}
-        <div className={`${styles.our_programs} d-flex align-items-center wow fadeInUp`}>
+        <motion.div className={`${styles.our_programs} d-flex align-items-center`}
+                      // initial={{ opacity: 0 }}
+                      // animate={{ opacity: 1 }}
+                      animate={inView ? { opacity: 0 } : { opacity: 1 }}
+                      // exit={{ opacity: 0 }}
+                      transition={{ duration: 3 }}
+        ref={ref}
+        >
           <Container>
             <Row className="justify-content-center">
               <Col md={4}>
@@ -102,7 +193,13 @@ export default function Home({ data, products, cats }) {
 
               <Col md={7}>
                 <div className={`d-grid ${styles.items}`}>
-                  <div className={`d-flex align-items-center ${styles.item}`}>
+                  <motion.div className={`d-flex align-items-center ${styles.item}`}
+                    whileHover={{ 
+                      left: 10
+                     }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    // transition={{type: "spring", ease: "easeIn", duration: .4 }}
+                  >
                     <div className={styles.icon}>
                       <Image
                         src="/assets/image-1.png"
@@ -112,8 +209,15 @@ export default function Home({ data, products, cats }) {
                       />
                     </div>
                     <h4>برنامج الروضة</h4>
-                  </div>
-                  <div className={`d-flex align-items-center ${styles.item}`}>
+                  </motion.div>
+                  <motion.div className={`d-flex align-items-center ${styles.item}`}
+                      whileHover={{ 
+                        left: 10
+                        }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      // transition={{type: "spring", ease: "easeIn", duration: .4 }}
+                                    
+                  >
                     <div className={styles.icon}>
                       <Image
                         src="/assets/image-2.png"
@@ -123,8 +227,15 @@ export default function Home({ data, products, cats }) {
                       />
                     </div>
                     <h4>برنامج الروضة</h4>
-                  </div>
-                  <div className={`d-flex align-items-center ${styles.item}`}>
+                  </motion.div>
+                  <motion.div className={`d-flex align-items-center ${styles.item}`}
+                        whileHover={{ 
+                          left: 10
+                          }}
+                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                        // transition={{type: "spring", ease: "easeIn", duration: .4 }}
+                                    
+                  >
                     <div className={styles.icon}>
                       <Image
                         src="/assets/Image-3.png"
@@ -134,8 +245,15 @@ export default function Home({ data, products, cats }) {
                       />
                     </div>
                     <h4>برنامج الروضة</h4>
-                  </div>
-                  <div className={`d-flex align-items-center ${styles.item}`}>
+                  </motion.div>
+                  <motion.div className={`d-flex align-items-center ${styles.item}`}
+                      whileHover={{ 
+                        left: 10
+                        }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      // transition={{type: "spring", ease: "easeIn", duration: .4 }}
+                                    
+                  >
                     <div className={styles.icon}>
                       <Image
                         src="/assets/image-4.png"
@@ -145,41 +263,52 @@ export default function Home({ data, products, cats }) {
                       />
                     </div>
                     <h4>برنامج الروضة</h4>
-                  </div>
+                  </motion.div>
                 </div>
               </Col>
               {/* <Col md={1}></Col> */}
             </Row>
           </Container>
-        </div>
-        {/* </ReactWOW> */}
+        </motion.div>
+
+
         {/*============== Achivements ==========*/}
-        {/* <ReactWOW> */}
-        <div className={`${styles.achivements}`}>
+        <div className={`${styles.achivements} `}>
           <Container>
-            <div className={`${styles.items} d-grid wow fadeInUp`}>
+            <div className={`${styles.items} d-grid`}>
               <div className={styles.item}>
-                <span>14’500+</span>
+              <span ref={ref}> {inView && <Counter from={0} to={14500} />}+</span>
                 <h4>طالب متخرج</h4>
               </div>
               <div className={styles.item}>
-                <span>150’000+</span>
+                <span><Counter from={0} to={150000} />+</span>
                 <h4> ساعة تعليمية </h4>
               </div>
               <div className={styles.item}>
-                <span>99 %</span>
+                <span><Counter from={0} to={99} /> %</span>
                 <h4> نسبة الإنجاز </h4>
               </div>
               <div className={styles.item}>
-                <span>100+</span>
+                <span><Counter from={0} to={100} />+</span>
                 <h4> معلم ومعلمة </h4>
               </div>
             </div>
           </Container>
         </div>
 
+        {/* <motion.div animate={controls}><h2>ggggggggggggggggggggg</h2></motion.div> */}
+
+      {/* <div ref={ref}>
+      <h2>{`Header inside viewport ${inView}.`}</h2>
+    </div>
+
+        <Counter from={0} to={100} /> */}
+
+
+
+
         {/*============= Subscription  =========*/}
-        <div className={`${styles.subscription}`}>
+        <div ref={ref} className={`${styles.subscription } `}>
 
             <Row className="align-items-center m-0">
               <Col md={4}>
@@ -195,7 +324,11 @@ export default function Home({ data, products, cats }) {
               </Col>
               <Col md={8}>
                 <div className={`${styles.items} d-grid`}>
-                  <div className={styles.item}>
+                  <motion.div className={styles.item}
+                        whileHover={{ translateZ: 15, translateX: 15 }}
+                        // transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                        transition={{type: "spring", ease: "easeIn", duration: .4 }}
+                  >
                     <div className={styles.price_wrap}>
                       <span className={styles.price}>150</span>
                       <span className={styles.currency}>ريال / شهريا</span>
@@ -212,8 +345,12 @@ export default function Home({ data, products, cats }) {
                         <a className="special_btn"><span> الاشتراك في هذه الباقة</span></a>
                       </Link>
                     </div>
-                  </div>
-                  <div className={styles.item}>
+                  </motion.div>
+                  <motion.div className={styles.item}
+                        whileHover={{ translateZ: -15, translateX: -15 }}
+                        // transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                        transition={{type: "spring", ease: "easeIn", duration: .4 }}
+                  >
                     <div className={styles.price_wrap}>
                       <span className={styles.price}>150</span>
                       <span className={styles.currency}>ريال / شهريا</span>
@@ -230,14 +367,18 @@ export default function Home({ data, products, cats }) {
                       <a className="special_btn"><span> الاشتراك في هذه الباقة</span></a>
                       </Link>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               </Col>
             </Row>
         </div>
-        {/* </ReactWOW> */}
         {/* ========== What They Say ================ */}
-        <div className={`${styles.what_say}`}>
+        <div className={`${styles.what_say} `}
+                  // ref={ref}
+                  // variants={boxVariant}
+                  // initial="hidden"
+                  // animate={control}
+        >
             <div className={styles.heading}>
               <h2>ماذا قالو عنا</h2>
             </div>
@@ -245,13 +386,13 @@ export default function Home({ data, products, cats }) {
             <Swiper
               className={`cus_what_say ${styles.what_say_slider}`}
               spaceBetween={15}
-              // slidesPerView={4.2}
+              slidesPerView={4.2}
+              loop
               centeredSlides
               centeredSlidesBounds
               speed={1200}
-              navigation={true}
+              navigation
               freeMode
-              loop
               breakpoints={{
                 0: {
                   // width: 0,
@@ -297,7 +438,7 @@ export default function Home({ data, products, cats }) {
         {/*============ Common Questions ===========*/}
 
 
-        <div className={`${styles.common_ques}`}>
+        <div className={`${styles.common_ques} `}>
           <Container>
             <div className={styles.heading}>
               <h2> الاسئلة الشائعة </h2>
@@ -366,7 +507,7 @@ export default function Home({ data, products, cats }) {
         </div>
 
         {/*=========== Student activities ================*/}
-        <div className={`${styles.student_activites} student_activites`}>
+        <div className={`${styles.student_activites} student_activites `}>
           <div className={styles.heading}>
             <h2> مشاركات الطلاب </h2>
             <Link href="/">
@@ -380,7 +521,7 @@ export default function Home({ data, products, cats }) {
               clickable: true
             }}
             // spaceBetween={15}
-            // slidesPerView={4.2}
+            slidesPerView={4.2}
             centeredSlides
             centeredSlidesBounds
             navigation={true}
@@ -420,6 +561,7 @@ export default function Home({ data, products, cats }) {
                 height="260"
                 layout="responsive"
                 objectFit="contain"
+                priority
               />
             </SwiperSlide>
             <SwiperSlide className="item">
@@ -458,3 +600,4 @@ export default function Home({ data, products, cats }) {
     </>
   );
 }
+
