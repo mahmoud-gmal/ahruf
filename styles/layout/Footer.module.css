@@ -1,5 +1,5 @@
 .footer {
-  padding: 80px 0;
+  padding: 80px 0 0;
 }
 
 .footer .contact_info li {
@@ -19,6 +19,7 @@
 .footer .contact_info li a {
   display: flex;
   align-items: center;
+
 }
 
 .footer .links li {
@@ -38,6 +39,21 @@
 .footer .links li a:hover {
   color: #d8b361;
 }
+
+
+
+.company_logo{display: flex;align-items: center;  justify-content: end;}
+.company_logo h4{margin-right: 10px;}
+.copyrights p{
+  font: normal normal normal 14px/22px "bahij_Helvetica_roman";
+color: #2E386B80;
+}
+
+.company_logo h4{
+  font: normal normal normal 14px/22px "bahij_Helvetica_roman";
+color: #2E386B;
+}
+
 
 /* mobile */
 

@@ -104,6 +104,22 @@ const Footer = () => {
                 </li>
               </ul>
             </Col>
+            {/* copyrights */}
+            <hr className="mt-4" style={{  border: '0.8px solid #F3f3f3'}}/>
+
+            <Col md={6} className="pt-4 pb-4">
+              <div className={styles.copyrights}>
+                <p>جميع الحقوق محفوظة لدى اكاديمية منصة احرف</p>
+              </div>
+            </Col>
+            <Col md={6} className="pt-4 pb-4">
+              <div className={styles.company_logo}>
+               <Image alt=".." src="/assets/elryad.png"width="18" height="18"
+                      // layout="responsive"
+                  />
+                  <h4>تصميم شركة الرياض</h4>
+              </div>
+            </Col>
           </Row>
         </Container>
       </div>

@@ -109,7 +109,7 @@ useEffect(() => {
               <div className={styles.main_navbar}>
                 <ul className={`d-flex justify-content-center`}>
                   <li>
-                    <Link href="/">من نحن</Link>
+                    <Link href="/about">من نحن</Link>
                   </li>
                   <li className={styles.drop}>
                     <Link href="/">
@@ -134,7 +134,7 @@ useEffect(() => {
                     <Link href="/">باقات الاشتراك</Link>
                   </li>
                   <li>
-                    <Link href="/">اتصل بنا</Link>
+                    <Link href="/contact">اتصل بنا</Link>
                   </li>
                 </ul>
               </div>
@@ -147,7 +147,8 @@ useEffect(() => {
                 {locales.map((l, i) => {
                   if(l !== locale)
                 return (
-                  <Link href={`${l == "en" ? "/en": "/"}`} locale={l} key={i}><a><FontAwesomeIcon icon={faLanguage} /><span>{l == "en" ? "English" : "Arabic"}</span></a></Link>
+                  <Link href={asPath} locale={l} key={i}><a><FontAwesomeIcon icon={faLanguage} /><span>{l == "en" ? "English" : "Arabic"}</span></a></Link>
+                  // <Link href={`${l == "en" ? "/en": "/"}`} locale={l} key={i}><a><FontAwesomeIcon icon={faLanguage} /><span>{l == "en" ? "English" : "Arabic"}</span></a></Link>
                 );
               })}
 

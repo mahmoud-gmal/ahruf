@@ -1,7 +1,6 @@
 /* bootstrap */
 /* @import url(bootstrap/dist/css/bootstrap-reboot.rtl.min.css); */
 @import url(bootstrap/dist/css/bootstrap-grid.rtl.min.css);
-/* @import url(animate.css/animate.min.css); */
 
 body {
   text-align: right;
@@ -145,7 +144,9 @@ p {
     position: relative;
     z-index: 2;
 }
-
+.special_btn:hover{
+  box-shadow: none;
+}
 
 /* what say */
 .cus_what_say .swiper-slide-duplicate-prev,
@@ -287,11 +288,65 @@ p {
 }
 
 
+
+/* =========================== FULL APP  ==================*/
+.wrap_app{
+  background: transparent url('/assets/background.png') 0% 0% no-repeat padding-box;
+  position: relative;
+  overflow: hidden;
+}
+.wrap_app.memb main{
+  padding: 80px 0 120px;
+  position: relative;
+  min-height: 85vh;
+}
+
+.wrap_app::after, .wrap_app::before{
+  content: '';
+  position: absolute;
+}
+
+.wrap_app.memb::before{
+  right: -33px;
+  bottom: -5px;
+  width: 72px;
+  height: 108px;
+  background-image: url(/assets/2shape.svg);
+}
+.wrap_app.memb::after{
+  left: -80px;
+  bottom: 14px;
+  width: 169px;
+  height: 141px;
+  background-image: url(/assets/banner_shape.svg);
+}
+
+
+.wrap_app.memb main::before{
+  content: '';
+  position: absolute;
+  right: 28%;
+  bottom: 6px;
+  width: 67px;
+  height: 68px;
+  background-image: url(/assets/flower.svg);
+}
+
+.wrap_app .agree_condtion{
+  display: inline-block; margin-right: 9px;
+}
+.wrap_app .agree_condtion a{
+font: normal normal normal 16px/26px "bahij_Helvetica_roman";
+color: #80AEFF;
+margin: 0 2px;
+}
 /*----------------------- Mobile -------------------*/
 
 @media (max-width: 500px) {
 /* h2{font-size: 30px !important;}
 p{font-size: 20px !important;} */
 }
+
+
 
 

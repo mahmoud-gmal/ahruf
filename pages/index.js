@@ -168,12 +168,12 @@ export default function Home({ data}) {
 
         {/*================ our programs =============*/}
         <motion.div className={`${styles.our_programs} d-flex align-items-center`}
-                      // initial={{ opacity: 0 }}
-                      // animate={{ opacity: 1 }}
-                      animate={inView ? { opacity: 0 } : { opacity: 1 }}
-                      // exit={{ opacity: 0 }}
-                      transition={{ duration: 3 }}
-        ref={ref}
+        //               // initial={{ opacity: 0 }}
+        //               // animate={{ opacity: 1 }}
+        //               animate={inView ? { opacity: 0 } : { opacity: 1 }}
+        //               // exit={{ opacity: 0 }}
+        //               transition={{ duration: 3 }}
+        // ref={ref}
         >
           <Container>
             <Row className="justify-content-center">
@@ -372,6 +372,8 @@ export default function Home({ data}) {
               </Col>
             </Row>
         </div>
+
+        
         {/* ========== What They Say ================ */}
         <div className={`${styles.what_say} `}
                   // ref={ref}
@@ -505,6 +507,8 @@ export default function Home({ data}) {
             </div>
           </Container>
         </div>
+
+
 
         {/*=========== Student activities ================*/}
         <div className={`${styles.student_activites} student_activites `}>

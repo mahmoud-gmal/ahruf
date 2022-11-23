@@ -1,0 +1,426 @@
+/* ==================  About ===================== */
+.about{
+  position: relative;
+  padding: 76px 0 62px;
+}
+.about::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 169px;
+  height: 141px;
+  background-image: url(/assets/banner_shape.svg);
+}
+.about::after{
+  content: '';
+  position: absolute;
+  right: -33px;
+  bottom: 0px;
+  width: 72px;
+  height: 108px;
+  background-image: url(/assets/2shape.svg);
+}
+
+.about .text_wrapp > span{
+  font: normal normal bold 22px/67px "bahij_Helvetica_bold";
+  color: #2E386B;
+}
+.about .text_wrapp h2{
+  font: normal normal bold 42px/67px "bahij_Helvetica_bold";
+  color: var(--main-color);
+  line-height: 1.5em;
+  margin-bottom: 30px;
+  text-decoration: underline;
+  text-decoration-color: #FDF2CC;
+  text-decoration-skip-ink: none;
+  text-decoration-style: solid;
+  text-decoration-thickness: 12px;
+}
+.about .text_wrapp .item{
+  margin-bottom: 25px;
+}
+.about .text_wrapp .item  p{
+  font: normal normal normal 18px/28px "bahij_Helvetica_roman";
+  color: #2E386B;
+  max-width: 370px;
+}
+.about .text_wrapp .item .icon_head{
+  display: flex;
+  align-items: center;
+  /* margin-bottom: 17px; */
+}
+
+.about .text_wrapp .item .icon_head h3{ 
+  margin-right: 18px;
+  font: normal normal bold 20px/50px "bahij_Helvetica_bold";
+  color: #2E386B;
+}
+
+.about .img_wrapper{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.about .img_wrapper .img_1,.about .img_wrapper .img_2, .about .img_wrapper .img_3{
+  position: absolute;
+  content: "";
+  width: 215px;
+  height: 289px;
+  
+  /* right: 0;
+  left: 0; */
+
+
+}
+.about .img_wrapper .img_1{
+  background: transparent url('/assets/smiling-students-looking-globe.png') 0% 0% no-repeat padding-box;
+  border-radius: 80px 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0;
+  margin: 0;
+  z-index: 2;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.about .img_wrapper .img_2{
+  background: transparent url('/assets/actity_1.png') 0% 0% no-repeat padding-box;
+  border-radius: 80px 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 2;
+  left: 28%;
+  top: 50px;
+}
+.about .img_wrapper .img_3{
+  width: 98px;
+  height: 98px;
+  background: transparent url('/assets/zoom.png') 0% 0% no-repeat padding-box;
+  z-index: 2;
+  right: 43px;
+  bottom: 50px;
+  background-size: cover;
+
+}
+/* ==================  About vision/goals ===================== */
+.about_vision{
+  background: #F8FBFF 0% 0% no-repeat padding-box;
+  padding: 120px 0;
+}
+.about_vision .vision{
+  max-width: 764px;
+  margin: 0 auto;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 5px 30px #0000000d;
+  border-radius: 12px;
+  text-align: center;
+  padding: 45px 0;
+  position: relative;
+  margin-bottom: 150px;
+}
+
+.about_vision .vision::after{
+  position: absolute;
+  content: "";
+  background: #FFF2CC;
+  width: 60px;
+  height: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  top: 58px;
+}
+.about_vision .vision h2::before{
+  position: absolute;
+  content: "";
+  background: transparent url(/assets/Group711.svg) 0% 0% no-repeat padding-box;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 305px;
+  height: 257px;
+  right: -70px;
+  z-index: 1;
+  top: -20px;
+}
+/* .about_vision .vision h2::after{
+  position: absolute;
+  content: "";
+  background-color: #EEE;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 305px;
+  height: 257px;
+  right: -70px;
+  z-index: 1;
+  top: -20px;
+} */
+
+.about_vision .vision h2{
+  font: normal normal bold 32px/53px "bahij_Helvetica_bold";
+  color: #303868;
+  position: relative;
+  z-index: 2;
+}
+.about_vision .vision p{
+  font: normal normal normal 22px/64px "bahij_Helvetica_roman";
+  color: #303868;
+}
+
+.about_vision .image_wrapper{
+  background: #FFFFFF00 0% 0% no-repeat padding-box;
+    border: 2px solid #FFD98391;
+    border-radius: 50%;
+}
+.about_vision .image_wrapper > span{
+    border-radius: 50%;
+}
+.about_vision .image_wrapper{
+  margin-right: 40px;
+}
+.about_vision .text_wrapper h2{
+  font: normal normal bold 32px/67px "bahij_Helvetica_bold";
+  color: #2E386B;
+  margin-bottom: 37px;
+}
+
+.about_vision .goals_list li{
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 5px 22px #30386821;
+  border-radius: 8px;
+  padding: 10px 70px 10px 10px;
+  position: relative;
+  font: normal normal normal 24px/54px "bahij_Helvetica_roman";
+  color: #515151;
+  margin-bottom: 18px;
+  max-width: 574px;;
+}
+.about_vision .goals_list li::after{
+  position: absolute;
+  content: "";
+  background: transparent url(/assets/icons8-done-30.png) 0% 0% no-repeat padding-box;
+  width: 32px;
+  height: 32px;
+  right: 26px;
+  transform: translateY(-50%);
+  z-index: 1;
+  top: 50%;
+}
+/* ==================  Achivements ===================== */
+.achivements {
+    background: #80aeff 0% 0% no-repeat padding-box;
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+  }
+  .achivements .items {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 120px);
+    text-align: center;
+    align-items: center;
+    color: #ffffff;
+  }
+  .achivements .items .item{
+    position: relative;
+  }
+  .achivements .items .item:not(:last-child)::after {
+    /* border-left: 1px solid #FFFFFF52; */
+    content: '';
+    height: 54px;
+    width: 1px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    background-color: #FFFFFF52;
+    transform: translateY(-50%);
+  }
+  .achivements .items .item span {
+    font: normal normal 900 36px/48px "roboto_black";
+    margin-bottom: 10px;
+  }
+  .achivements .items h4 {
+    font: normal normal normal 24px/39px "bahij_Helvetica_roman";
+  }
+  
+  @media (max-width: 991.9px) {
+    .achivements .items {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(1, 120px);
+      grid-row-gap:1rem;
+      
+    }
+    .achivements .items .item:nth-child(3):after{
+      content: none !important;
+    } 
+  
+  }
+  
+  @media (max-width: 767.9px) {
+    .achivements .items {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(1, 120px);
+      grid-row-gap:1rem;
+      
+    }
+    .achivements .items .item:nth-child(3):after{
+      content: "" !important;
+    } 
+    .achivements .items .item:nth-child(2):after{
+      content: none !important;
+    } 
+  
+  }
+  
+  @media (max-width: 575.9px) {
+    .achivements .items {
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-rows: repeat(1, 120px);
+      grid-row-gap:1rem;
+    }
+  
+    .achivements .items .item:after{
+      content: none !important;
+    } 
+  
+    .achivements .items .item:nth-child(3):after{
+      content: none !important;
+    } 
+  }
+
+
+
+
+
+  /* =====================  Features of our programs ======================== */
+
+  .features{
+    background: #F8FBFF 0% 0% no-repeat padding-box;
+    padding: 90px 0 50px;
+  }
+  .features h2{
+    font: normal normal bold 42px/67px "bahij_Helvetica_bold";
+    color: #2E386B;
+    text-align: center;
+    margin-bottom: 110px;
+  }
+  .features .item{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 8px 21px #3038680F;
+    border-radius: 12px;
+    padding:30px ;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    margin-bottom: 35px;
+    max-width: 337px;;
+  }
+  .features .item h3{
+    font: normal normal bold 18px/67px "bahij_Helvetica_bold";
+    color: #2E386B;
+    padding-right: 22px;
+  }
+  /* .features .item {} */
+
+
+
+
+
+
+
+
+
+
+  /* =====================  Student activities  ======================== */
+
+.student_activites {
+    padding: 60px 0;
+  }
+  .student_activites .heading {
+    text-align: center;
+  }
+  .student_activites .heading h2 {
+    font: normal normal bold 42px/67px "bahij_Helvetica_bold";
+    color: var(--main-color);;
+  }
+  .student_activites .heading a {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 0px #d3d5e2;
+    border: 1px solid #d3d5e2;
+    border-radius: 10px;
+    font: normal normal normal 16px/67px "bahij_Helvetica_roman";
+    color: var(--main-color);;
+    margin-bottom: 40px;
+    padding: 8px 8px;
+  }
+  .student_activites .student_activites_slider {
+    margin-top: 30px;
+  }
+  
+
+ 
+
+/* =====================  Common Questions  ======================== */
+
+.common_ques {
+    background: #f8fbff 0% 0% no-repeat padding-box;
+    padding: 80px 0 50px
+  }
+  .common_ques .heading {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .common_ques .heading h2{
+    font: normal normal bold 42px/67px 'bahij_Helvetica_bold';
+    color: var(--main-color);;
+  }
+  .common_ques .ques {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .common_ques .ques .que {
+    margin-bottom: 20px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 0px #d3d5e2;
+    border: 1px solid #d3d5e2;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 700px;
+  }
+  
+  .common_ques .ques .que h2 {
+    font: normal normal bold 16px/27px "bahij_Helvetica_bold";
+    color: var(--main-color);;
+  }
+  .common_ques .ques .que p {
+    font: normal normal normal 16px/30px "bahij_Helvetica_roman";
+    color: #2E386BBF;
+    margin-top: 14px;
+  }
+  
+  .common_ques .start {
+    text-align: center;
+    margin-top: 50px;
+  }
+  .common_ques .start h3 {
+    font: normal normal normal 36px/58px "bahij_Helvetica_roman";
+    color: var(--main-color);;
+  }
+  
+  .more_btn_link{
+    font: normal normal bold 16px/27px "bahij_Helvetica_bold";
+    color: #80AEFF;
+  }
+  .common_ques .start a {
+    font: normal normal bold 16px/27px "bahij_Helvetica_bold";
+    padding: 16px 58px;
+    margin-top: 14px;
+    display: inline-block;
+  }
+  
+  /* mobile */
+  @media (max-width: 575.9px) {
+  
+  } 
+

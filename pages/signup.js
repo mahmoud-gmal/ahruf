@@ -1,55 +1,107 @@
+import Router from 'next/router'
 import Image from "next/image";
 import Link from "next/Link";
 import Meta from "../src/components/Meta";
-const signup = () => {
+import { toast } from "react-toastify";
+import { Button, Container, Form } from 'react-bootstrap';
+// styles
+import styles from "./../styles/pages/signup.module.css";
+const Signup = () => {
+
+
+
   return (
     <>
-      <Meta title="Fino | Signup" />
+      <Meta title="ahruf | Signup" />
       <main className="main-content">
-        <section className="contact-page body-inner login-page">
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-md-7">
-                <div className="contact-inner">
-                  <div className="contact-form">
-                    <h3>Create an account. </h3>
-                    <form action="#">
-                      <div className="form-group">
-                        <label>Username</label>
-                        <input type="text" name="username" className="form-control" />
-                      </div>
-                      <div className="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" className="form-control" />
-                      </div>
-                      <div className="form-group">
-                        <label>Password</label>
-                        <input type="password" name="password" className="form-control" />
-                      </div>
+          <Container>
+          <div className={styles.form_wrapper}>
+            <h2>
+            إنشاء حساب
+            </h2>
+            <Form>
 
-                      <div className="form-group wrap-btn">
-                        <button type="submit" className="btn btn-form" style={{minWidth: '100%',marginBottom: '18px'}}>
-                          <span>Create Account</span>
-                        </button>
-                      </div>
+              <Form.Group controlId="nameID">
+                <Form.Label> الاسم </Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="الاسم" />
+                <Form.Control.Feedback></Form.Control.Feedback>
+              </Form.Group>
 
-                      <div className="form-group text-center">
-                        <p className="text-muted" style={{fontSize:'16px'}}>Already have an account?</p>
-                        <Link href="/login"> Login</Link>
-                      </div>
+              <Form.Group controlId="emailID">
+                <Form.Label> البريد الإلكترونى </Form.Label>
+                <Form.Control
+                  required
+                  type="email"
+                  placeholder="example@test.com" />
+                <Form.Control.Feedback></Form.Control.Feedback>
+              </Form.Group>
 
-                    </form>
-                  </div>
-                </div>
+              <Form.Group controlId="emailID">
+                <Form.Label>  رقم الجوال </Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="رقم الجوال " />
+                <Form.Control.Feedback></Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group controlId="passID">
+                <Form.Label> كلمة المرور </Form.Label>
+                <Form.Control
+                  required
+                  type="password"
+                  placeholder="كلمة المرور"/>
+                <Form.Control.Feedback></Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group controlId="remeberID" style={{marginTop: '17px'}}>
+              <Form.Check
+                className={styles.form_check}
+                style={{ display: 'inline-flex', alignItems: 'center'}}
+              />
+              <Form.Label className="agree_condtion"> اوافق على  <Link href="/conditions"><a> شروط واحكام </a></Link>اكاديمية منصة احرف</Form.Label>
+            </Form.Group>
+            
+
+      <div className='d-flex justify-content-center' style={{marginTop: '25px'}}>
+        <Button type="submit" className='special_btn' style={{display: 'block',width: '100%'}}> <span> إنشاء حساب </span> </Button>     
+      </div>
+
+            </Form>
+             <div className={styles.form_under_text}>
+              <span className={styles.or_dashed}>او</span>
+              <div className={styles.google_signin}>
+              <Link href="/">
+                  <a>
+                    <Image
+                      alt="logo"
+                      src="/assets/icons8-google.svg"
+                      width="24"
+                      height="24"
+                      // layout="responsive"
+                    />
+                    <span>تابع بإستخدام ايميل جوجل</span>
+
+                  </a>
+                </Link>
               </div>
 
-
+             </div>
             </div>
-          </div>
-        </section>
+
+            <div className={styles.form_info}>
+            <span>ليس لديك حساب</span>
+            <Link href="/login"><a> سجل دخول الان</a></Link>
+            </div>
+
+          </Container>
       </main>
     </>
   );
 };
 
-export default signup;
+export default Signup;
+

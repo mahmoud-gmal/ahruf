@@ -2,134 +2,143 @@ import Meta from "../src/components/Meta";
 import Image from "next/image";
 import Link from "next/Link";
 
-const contact = () => {
+// styles
+import styles from "./../styles/pages/contact.module.css";
+// bootstrap
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+// fontawesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faPhone,} from "@fortawesome/free-solid-svg-icons";
+import {
+  faInstagram,
+  faTwitter,
+  faWhatsapp,
+} from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
+
+
+const Contact = () => {
   return (
     <>
-      <Meta title="Fino | Contact" />
-      <main className="main-content">
-        <section className="breadcrumb">
-          <div className="img-overlay">
-            <Image
-              alt="image"
-              layout="fill"
-              objectFit="cover"
-              src="/assets/slider.png"
-            />
-          </div>
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="text-bread">
-                  <h3>CONTACT US</h3>
-                  <ul>
-                    <li>
-                      <Link href="/">Home</Link>
-                    </li>
-                    <li>
-                      <span>CONTACT US</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      <Meta title="Ahruf | Contact" />
 
-        <section className="contact-page body-inner">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-8">
-                <div className="contact-inner">
-                  <div className="contact-form">
-                    <h3>SEND MESSAGE</h3>
-                    <form action="#">
-                      <div className="form-group">
-                        <label>Name</label>
-                        <input type="text" className="form-control" />
-                      </div>
-                      <div className="form-group">
-                        <label>Mail</label>
-                        <input type="email" className="form-control" />
-                      </div>
-                      <div className="form-group">
-                        <label>Phone</label>
-                        <input type="text" className="form-control" />
-                      </div>
-                      <div className="form-group">
-                        <label>Message</label>
-                        <textareLink className="form-control"></textareLink>
-                      </div>
-                      <div className="form-group">
-                        <button type="submit" className="btn btn-form">
-                          <span>SEND</span>
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
+
+      <main className={styles.main_content}>
+        <h2> تواصل معنا </h2>
+
+
+          <Container>
+            <Row>
+
+            <Col md={6}>
+              <div className={styles.info}>
+                <p>تأكد من أنك لم تحصل على إجابة أسئلتك قبل التواصل معنا من هلال زيارة</p>
+                <Link href="/"> الأسئلة الشائعة </Link>
               </div>
 
-              <div className="col-md-4 col-sm-12">
-                <div className="info-contact">
-                  <h3>CONTACT INFORMATION</h3>
-                  <ul>
-                    <li>
-                      <Link href="tel:96612345678">
-                        <a>
-                          <i className="la la-phone"></i>
-                          <span>
-                            Phone : <u>+966 12345678</u>
-                          </span>
-                        </a>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="mailto:Info@lifepulse.com">
-                        <a>
-                          <i className="la la-phone"></i>
-                          <span>
-                            Email : <u>Info@lifepulse.com</u>
-                          </span>
-                        </a>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#">
-                        <a>
-                          <i className="la la-map-marker"></i>
-                          <span>
-                            Location : 77 E 4th St, New York, NY 10003, United
-                            States
-                          </span>
-                        </a>
-                      </Link>
-                    </li>
-                  </ul>
-                  <div className="social-c">
-                    <Link href="#" target="_balnk">
-                      <a>
-                        <i className="fab fa-instagram"></i>
-                      </a>
-                    </Link>
-                    <Link href="#" target="_balnk">
-                      <a>
-                        <i className="fab fa-twitter"></i>
-                      </a>
-                    </Link>
-                    <Link href="#" target="_balnk">
-                      <a>
-                        <i className="fab fa-facebook-f"></i>
-                      </a>
-                    </Link>
-                  </div>
+                <div className={styles.info_contact}>
+                  <h3>بيانات التواصل</h3>
+                  <ul className={styles.contact_info}>
+                <li>
+                  <a href="tel:9660548762583">
+                    <FontAwesomeIcon icon={faPhone} />
+                    <span>9660548762583</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://api.whatsapp.com/send?phone=966200545862672">
+                    <FontAwesomeIcon icon={faWhatsapp} />
+                    <span>(+966) 0545862672</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:info@ahrufedu.com">
+                    <FontAwesomeIcon icon={faEnvelope} />
+                    <span>info@ahrufedu.com</span>
+                  </a>
+                </li>
+                <li>
+                  <Link href="/">
+                    <a>
+                      <FontAwesomeIcon icon={faTwitter} />
+                      <span>@ahrufedu1</span>
+                    </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/">
+                    <a>
+                      <FontAwesomeIcon icon={faInstagram} />
+                      <span>@ahruf_edu</span>
+                    </a>
+                  </Link>
+                </li>
+              </ul>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
+              </Col>
+
+              <Col md={6}>
+                  <div className={styles.form_wrapper}>
+                    <h3>راسلنا الان</h3>
+                    <Form>
+
+                    <Form.Group controlId="nameID">
+                      <Form.Label> الاسم </Form.Label>
+                      <Form.Control
+                        required
+                        type="text"
+                        placeholder="الاسم" />
+                      <Form.Control.Feedback></Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group controlId="emailID">
+                      <Form.Label> البريد الإلكترونى </Form.Label>
+                      <Form.Control
+                        required
+                        type="email"
+                        placeholder="example@test.com" />
+                      <Form.Control.Feedback></Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group controlId="reasonID">
+                      <Form.Label>  سبب التواصل </Form.Label>
+                      <Form.Control as="select" name="reason">
+                        <option>  أختر السبب  </option>
+                        <option value="1">سبب اول </option>
+                        <option value="2">سبب اول </option>
+                        <option value="3">سبب اول </option>
+                    </Form.Control>
+                      <Form.Control.Feedback></Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group controlId="meesageID">
+                      <Form.Label>  الرسالة </Form.Label>
+                      <Form.Control
+                        required
+                        as="textarea"
+                        rows={6}
+                        placeholder="اكتب هنا" />
+                      <Form.Control.Feedback></Form.Control.Feedback>
+                    </Form.Group>
+
+
+
+                    <div className='d-flex justify-content-center' style={{marginTop: '25px'}}>
+                    <Button type="submit" className='special_btn' style={{display: 'block',width: '100%'}}> <span> إرسال </span> </Button>     
+                    </div>
+
+                    </Form>
+                  </div>
+                
+              </Col>
+
+
+            </Row>
+          </Container>
+      
       </main>
     </>
   );
 };
 
-export default contact;
+export default Contact;
