@@ -206,6 +206,3 @@ color: #80AEFF;
     border: 1px solid #F0F0F0;
     border-radius: 12px;
 }
-.form_wrapper input:focus-visible , .form_wrapper select:focus-visible , .form_wrapper textarea:focus-visible {
-outline-color: #2E386B;
-}

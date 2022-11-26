@@ -16,8 +16,55 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
+//hook-form & yup
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+
+
+
+const validationSchema = Yup.object().shape({
+  name: Yup.string()
+    .required(".الاسم مطلوب")
+    .min(3, "يجب ألا يقل عن 3 أحرف"),
+  email: Yup.string()
+    .required(".البريد الالكتروني مطلوب")
+    .email(".البريد إلكتروني غير صالح"),
+  contactReason: Yup.string()
+    .required(".برجاء تحديد سبب التواصل")
+    .oneOf(["reason_1", "reason_2"]),
+  message: Yup.string()
+    .required(". الرسالة مطلوبة")
+
+
+});
+
+
 
 const Contact = () => {
+
+
+
+  const { register,handleSubmit, formState: { errors }} = useForm({
+    resolver: yupResolver(validationSchema)
+  });
+
+
+  const onSubmit = (data) =>{
+    console.log(data);
+  //   let url = "http://localhost:4000/things/register";
+  //   fetch(url, {
+  //     method: "POST",
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: JSON.stringify(formData)
+  //   })
+  //     .then((response) => response.json())
+  //     .then((result) => console.log(result));
+  //  };
+
+  }  
+
+
   return (
     <>
       <Meta title="Ahruf | Contact" />
@@ -80,35 +127,34 @@ const Contact = () => {
               <Col md={6}>
                   <div className={styles.form_wrapper}>
                     <h3>راسلنا الان</h3>
-                    <Form>
+                    <Form noValidate onSubmit={handleSubmit(onSubmit)}>
 
                     <Form.Group controlId="nameID">
-                      <Form.Label> الاسم </Form.Label>
-                      <Form.Control
-                        required
-                        type="text"
-                        placeholder="الاسم" />
-                      <Form.Control.Feedback></Form.Control.Feedback>
-                    </Form.Group>
+                    <Form.Label> الاسم </Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="الاسم" 
+                      {...register("name")} isInvalid={!!errors.name}/>
+                    {errors.name?.message && (<Form.Control.Feedback type="invalid">{errors.name?.message}</Form.Control.Feedback>)}
+                  </Form.Group>
 
-                    <Form.Group controlId="emailID">
-                      <Form.Label> البريد الإلكترونى </Form.Label>
-                      <Form.Control
-                        required
-                        type="email"
-                        placeholder="example@test.com" />
-                      <Form.Control.Feedback></Form.Control.Feedback>
-                    </Form.Group>
+                  <Form.Group controlId="emailID">
+                  <Form.Label> البريد الإلكترونى </Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="example@test.com" 
+                    {...register("email")} isInvalid={!!errors.email}/>
+                  {errors.email?.message && (<Form.Control.Feedback type="invalid">{errors.email?.message}</Form.Control.Feedback>)}
+                </Form.Group>
 
                     <Form.Group controlId="reasonID">
                       <Form.Label>  سبب التواصل </Form.Label>
-                      <Form.Control as="select" name="reason">
-                        <option>  أختر السبب  </option>
-                        <option value="1">سبب اول </option>
-                        <option value="2">سبب اول </option>
-                        <option value="3">سبب اول </option>
+                      <Form.Control as="select" name="reason" {...register("contactReason")} isInvalid={!!errors.contactReason}>
+                        <option> أختر السبب </option>
+                        <option value="reason_1">سبب اول </option>
+                        <option value="reason_2">سبب ثانى </option>
                     </Form.Control>
-                      <Form.Control.Feedback></Form.Control.Feedback>
+                    {errors.contactReason?.message && (<Form.Control.Feedback type="invalid">{errors.contactReason?.message}</Form.Control.Feedback>)}
                     </Form.Group>
 
                     <Form.Group controlId="meesageID">
@@ -117,8 +163,9 @@ const Contact = () => {
                         required
                         as="textarea"
                         rows={6}
-                        placeholder="اكتب هنا" />
-                      <Form.Control.Feedback></Form.Control.Feedback>
+                        placeholder="اكتب هنا" 
+                        {...register("message")} isInvalid={!!errors.message}/>
+                      {errors.message?.message && (<Form.Control.Feedback type="invalid">{errors.message?.message}</Form.Control.Feedback>)}
                     </Form.Group>
 
 

@@ -112,7 +112,7 @@ useEffect(() => {
                     <Link href="/about">من نحن</Link>
                   </li>
                   <li className={styles.drop}>
-                    <Link href="/">
+                    <Link href="/programs">
                       <a className={styles.menu}>
                         البرامج المتاحة <FontAwesomeIcon icon={faCaretDown} />
                       </a>

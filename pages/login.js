@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Router from 'next/router'
 import Image from "next/image";
 import Link from "next/Link";
@@ -6,9 +7,54 @@ import { toast } from "react-toastify";
 import { Button, Col, Container, Form, FormGroup } from 'react-bootstrap';
 // styles
 import styles from "./../styles/pages/login.module.css";
+//hook-form & yup
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string()
+    .required(".البريد الالكتروني مطلوب")
+    .email(".البريد إلكتروني غير صالح"),
+  password: Yup.string()
+    .required(".كلمة المرور مطلوبة")
+    .min(8, 'كلمة المرور قصيرة جدًا - يجب ألا تقل عن 8 أحرف.')
+    .matches(/[a-zA-Z]/, 'يمكن أن تحتوي كلمة المرور على أحرف لاتينية فقط.'),
+});
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+const eye = <FontAwesomeIcon icon={faEye} />;
+const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />
 
 
 const Login = () => {
+
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
+
+  const { register,handleSubmit, formState: { errors }} = useForm({
+    resolver: yupResolver(validationSchema)
+  });
+
+
+  const onSubmit = (data) =>{
+    console.log(data);
+  //   let url = "http://localhost:4000/things/register";
+  //   fetch(url, {
+  //     method: "POST",
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: JSON.stringify(formData)
+  //   })
+  //     .then((response) => response.json())
+  //     .then((result) => console.log(result));
+  //  };
+
+  }
+
 
 
 
@@ -23,31 +69,41 @@ const Login = () => {
             <h2>
             تسجيل الدخول
             </h2>
-            <Form>
+      <Form noValidate onSubmit={handleSubmit(onSubmit)}>
 
         <Form.Group controlId="emailID">
           <Form.Label> البريد الإلكترونى </Form.Label>
           <Form.Control
-            required
             type="email"
-            placeholder="example@test.com" />
-          <Form.Control.Feedback></Form.Control.Feedback>
+            placeholder="example@test.com" 
+            {...register("email")} isInvalid={!!errors.email}/>
+
+{errors.email?.message && (<Form.Control.Feedback type="invalid">{errors.email?.message}</Form.Control.Feedback>)}
         </Form.Group>
 
-        <Form.Group controlId="passID">
+
+        <Form.Group className="password_wrap"  controlId="passID">
           <Form.Label> كلمة المرور </Form.Label>
           <Form.Control
-            required
-            type="password"
-            placeholder="كلمة المرور"/>
-          <Form.Control.Feedback></Form.Control.Feedback>
+            type={passwordShown ? "text" : "password"}
+            placeholder="كلمة المرور"
+            {...register("password")} isInvalid={!!errors.password}/>
+          <i onClick={togglePasswordVisiblity}>{passwordShown ? eye : eye_slash}</i>
+          {errors.password?.message && (<Form.Control.Feedback type="invalid">{errors.password?.message}</Form.Control.Feedback>)}
         </Form.Group>
+
+
+        {/* <Form.Group className="mb-3" controlId="formGroupremember">
+          <Form.Control type="checkbox"  {...register("rememberme")}/>
+          <Form.Label> تذكرنى</Form.Label>
+        </Form.Group>    */}
 
         <Form.Group controlId="remeberID" style={{marginTop: '17px'}}>
         <Form.Check
           className={styles.form_check}
           style={{ display: 'inline-flex', alignItems: 'center'}}
           label="تذكرنى"
+          type="checkbox"  {...register("rememberme")}
           // feedback="You must agree before submitting."
           // feedbackType="invalid"
         />

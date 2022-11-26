@@ -6,8 +6,40 @@ import { toast } from "react-toastify";
 import { Button, Col, Container, Form, FormGroup } from 'react-bootstrap';
 // styles
 import styles from "./../styles/pages/forget.module.css";
+
+//hook-form & yup
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string()
+    .required(".البريد الالكتروني مطلوب")
+    .email(".البريد إلكتروني غير صالح")
+
+});
+
 const Forget = () => {
 
+
+  const { register,handleSubmit, formState: { errors }} = useForm({
+    resolver: yupResolver(validationSchema)
+  });
+
+
+  const onSubmit = (data) =>{
+    console.log(data);
+  //   let url = "http://localhost:4000/things/register";
+  //   fetch(url, {
+  //     method: "POST",
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: JSON.stringify(formData)
+  //   })
+  //     .then((response) => response.json())
+  //     .then((result) => console.log(result));
+  //  };
+
+  }
 
 
   return (
@@ -20,15 +52,17 @@ const Forget = () => {
           <div className={styles.form_wrapper}>
             <h2> نسيت كلمة المرور </h2>
             <p>ادخل البريد الإلكتروني لنقوم بإرسال طريقة استرجاع كلمة المرور من خلاله</p>
-            <Form>
+
+
+       <Form noValidate onSubmit={handleSubmit(onSubmit)}>
 
         <Form.Group controlId="emailID">
           <Form.Label> البريد الإلكترونى </Form.Label>
           <Form.Control
-            required
             type="email"
-            placeholder="example@test.com" />
-          <Form.Control.Feedback></Form.Control.Feedback>
+            placeholder="example@test.com" 
+            {...register("email")} isInvalid={!!errors.email}/>
+          {errors.email?.message && (<Form.Control.Feedback type="invalid">{errors.email?.message}</Form.Control.Feedback>)}
         </Form.Group>
 
 

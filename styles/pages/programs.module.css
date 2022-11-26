@@ -1,3 +1,180 @@
+
+
+.programs{
+  padding: 50px 0;
+    background: #F8FBFF 0% 0% no-repeat padding-box;
+}
+.programs .tab_content > h2{
+  font: normal normal bold 36px/67px "bahij_Helvetica_bold";
+  color: #2E386B;
+}
+.programs .breadcrumb{
+  display: flex;
+}
+.programs .breadcrumb li, .programs .breadcrumb li a{
+  font: normal normal normal 14px/67px "bahij_Helvetica_roman";
+  color: #707070;
+  opacity: .65;
+}
+.programs .tab_content .breadcrumb li::before{content: none;}
+.programs .breadcrumb li:last-child{opacity: 1;}
+/* color: #707070; */
+.programs .breadcrumb span{
+  margin: 0 10px;
+  font: normal normal normal 14px/67px "bahij_Helvetica_roman";
+  color: #707070;
+}
+
+.programs .programs_details{
+  background: transparent linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 8px 24px #3038680a;
+  border-radius: 10px;
+  padding: 40px 32px;
+  position: relative;
+}
+.programs .programs_details h2{
+  font: normal normal bold 24px/40px "bahij_Helvetica_bold";
+  color: #2E386B;
+  margin-bottom: 25px;
+  position: relative;
+  padding-right: 50px;
+}
+.programs .programs_details h2::before{
+  content: "";
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  right: 0;
+  top: 50%;
+  background-image: url(/assets/online-learning.png);
+  background-repeat: no-repeat;
+  transform: translateY(-50%);
+  background-size: contain;
+}
+.programs .programs_details ul li{
+  font: normal normal normal 16px/normal "bahij_Helvetica_roman";
+  color: #2E386B;
+  margin-bottom: 15px;
+  position: relative;
+  padding-right: 35px;
+}
+.programs .tab_content ul li::before{
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 25px;
+  right: -2px;
+  top: 50%;
+  background-image: url(/assets/icons8-done-30.png);
+  background-repeat: no-repeat;
+  transform: translateY(-50%);
+  background-size: contain;
+}
+
+.programs .programs_details .programs_details_list{
+margin-bottom: 40px;
+}
+.programs .programs_details .programs_details_list_2 li{
+  padding-right: 19px;
+}
+.programs .tab_content .programs_details_list_2 li::before{
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  right: -2px;
+  top: 50%;
+  background: #FFD983 0% 0% no-repeat padding-box;
+  transform: translateY(-50%);
+  border-radius: 50%;
+}
+.programs .programs_details_list_2{
+  margin-bottom: 27px;
+}
+
+
+.programs .nav_pill{
+  background: transparent linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 8px 24px #3038680a;
+  border-radius: 10px;
+  padding-top: 30px;
+  margin-top: 133px;
+  position: relative;
+}
+
+.programs .nav_pill h2{
+  font: normal normal bold 24px/40px "bahij_Helvetica_roman";
+  color: #2E386B;
+  margin-bottom: 25px;
+  position: relative;
+  padding-right: 30px;
+}
+
+
+.programs .nav_pill ul li:first-child{border-top: 1px solid #F0F0F0;}
+.programs .nav_pill ul li{
+  font: normal normal normal 16px/67px "bahij_Helvetica_roman";
+  border-bottom: 1px solid #F0F0F0;
+  color: #2E386B;
+  padding-right: 70px;
+  cursor: pointer;
+  counter-increment: my-awesome-counter;
+  position: relative;
+}
+.programs .nav_pill ul li::before{
+  content: counter(my-awesome-counter);
+  position: absolute;
+  --size: 29px;
+  right: var(--size);
+  width: var(--size);
+  height: var(--size);
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  text-align: center;
+  font: normal normal normal 16px/var(--size) "bahij_Helvetica_roman";
+  color: #FFF;
+  background: #80AEFF 0% 0% no-repeat padding-box;
+  opacity: 0.53;
+}
+.programs .nav_pill .active{
+  background: #80AEFF 0% 0% no-repeat padding-box;
+  color: #FFF;
+}
+
+.programs .nav_pill .active::before{
+  color: #303868;
+  background: #FFF;
+  opacity: 1;
+}
+
+
+
+.programs .programs_details::before, .programs .nav_pill::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /* background-repeat: no-repeat;
+  background-size: contain; */
+}
+.programs .programs_details::before{
+  right: -22%;
+  bottom: -5px;
+  width: 72px;
+  height: 108px;
+  background-image: url(/assets/2shape.svg);
+  opacity: 0.35;
+}
+.programs .nav_pill::before{
+  left: -60%;
+  bottom: 14px;
+  width: 169px;
+  height: 141px;
+  background-image: url(/assets/banner_shape.svg);
+  opacity: 0.35;
+}
+
 /* =====================  Common Questions  ======================== */
 
 .common_ques {

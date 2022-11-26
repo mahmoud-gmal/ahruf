@@ -350,3 +350,34 @@ p{font-size: 20px !important;} */
 
 
 
+/*========================== form global ======================*/
+
+.password_wrap{
+position: relative;
+}
+
+.password_wrap i{
+  width: 18px;
+  display: block;
+  height: 0;
+  cursor: pointer;
+  position: absolute;
+  left: 14px;
+  top: 41px;
+  color: #707070;
+}
+
+.invalid-feedback {
+  width: 100%;
+  color: #dc3545;
+  padding: 7px 0;
+  font: normal normal normal 14px/16px "bahij_Helvetica_roman";
+}
+
+input::placeholder, textarea::placeholder{
+  font: normal normal normal 14px/22px "bahij_Helvetica_roman";
+}
+
+input:focus-visible , select:focus-visible , textarea:focus-visible {
+  outline: 1px solid #2E386B;
+  }
