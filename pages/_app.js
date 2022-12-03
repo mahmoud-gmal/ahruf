@@ -29,9 +29,20 @@ function MyApp({ Component, pageProps, router  }) {
 
 }
   
+else if (router.pathname.startsWith('/profile')) {
+
+  return (
+    <div className="profile" style={{padding: '60px 60px 90px', background: '#F8FBFF'}}>
+    <Component {...pageProps} />
+    </div>
+  )
+
+}
+
+
   return (
     <>
-    <div className="wrap_app">
+    <div className="wrap_app1">
       <AuthProvider>
         <Header />
           <Component {...pageProps} />

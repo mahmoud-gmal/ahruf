@@ -1,0 +1,145 @@
+
+/* =================== Nav Bills  ===================== */
+.back {
+    background: #4269EF 0% 0% no-repeat padding-box;
+    border-radius: 0px 26px 0px 0px;
+    min-height: 135px;
+    padding: 20px;
+}
+.back a{
+    color: #FFF;
+    display: flex;
+    font: normal normal normal 18px/29px "bahij_Helvetica_roman";
+    color: #FFFFFF;
+}
+.back svg{margin-left: 10px}
+
+
+
+.profile_nav_list {
+    padding-top: 110px;
+}
+
+.profile_nav_list li {
+    display: flex;
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    margin-left: 10%;
+    background:#FAFAFA  0% 0% no-repeat padding-box;
+    border-radius: 34px 0px 0px 34px;
+}
+
+.profile_nav_list li.active{
+    background: #FFD983 0% 0% no-repeat padding-box;
+  }
+.profile_nav_list li .icon_wrapper{
+    background: #DBE8FF  0% 0% no-repeat padding-box;
+    border-radius: 50%;--size: 33px;width: var(--size);
+    height: var(--size);text-align: center;
+    line-height: var(--size);margin-left: 11px;
+}
+.profile_nav_list li.active .icon_wrapper{background: #FFFFFF 0% 0% no-repeat padding-box;}
+
+
+.profile_nav_list li .text{
+font: normal normal bold 20px/33px "bahij_Helvetica_bold";
+color: #4269EF;
+}
+
+.nav_content {
+    position: relative;
+    background: #FAFAFA 0% 0% no-repeat padding-box;
+    border-radius: 0px 26px 0px 0px;
+    box-shadow: 0px 5px 28px #0000000a;
+    min-height: 100vh;
+}
+
+.avatar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 83px;
+    text-align: center;
+}
+.avatar .avatar_text{
+font: normal normal bold 22px/37px "bahij_Helvetica_bold";
+color: #303868;
+}
+
+
+/* =================== Tab Content  ===================== */
+
+.tab_content{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 5px 28px #0000000a;
+    border-radius: 26px 0 0;
+    padding: 40px 45px;
+    min-height: 100vh;
+}
+
+
+
+/* ====== Class Schedule ======== */
+.class_schedule .days {
+    display: grid;
+    --rowNum: 1;
+    --colNum: 5;
+    grid-template-rows: repeat(var(--rowNum), var(--gridHeight));
+    grid-template-columns: repeat(var(--colNum), auto);
+    grid-gap: 1rem;
+    text-align: center;
+    padding-top: 93px;
+}
+
+.class_schedule .day_head {
+    background: #80AEFF 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    padding: 16px 0;
+    color: #FFF;
+    font: normal normal bold 20px/33px "bahij_Helvetica_bold";
+}
+
+.class_schedule .day_body {
+    margin-top: 11px;
+    background: rgb(255 217 131 / 34%) 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    min-height: 148px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font: normal normal bold 16px/27px "bahij_Helvetica_bold";
+}
+
+.class_schedule .day_body h4 {
+    color: #303868;
+    margin-bottom: 8px;
+    font: normal normal bold 20px/27px "bahij_Helvetica_bold";
+}
+
+.class_schedule .time {
+    color: #949497;
+    display: flex;
+    align-items: center;
+}
+
+.class_schedule .time > span {
+    margin-right: 5px;
+    font: normal normal bold 16px/27px "bahij_Helvetica_bold";
+}
+
+.class_schedule .tab_content {
+    padding-top: 39px;
+}
+
+.class_schedule h2.table_title {
+    font: normal normal bold 32px/53px "bahij_Helvetica_bold";
+    color: #4269EF;
+}
+
+.class_schedule .full_date {
+    display: flex;
+    align-items: center;
+}

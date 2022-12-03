@@ -1,98 +1,46 @@
-import Image from "next/image";
-import Link from "next/Link";
 import Meta from "../src/components/Meta";
+
+// styles
+import styles from "./../styles/pages/privacy.module.css";
+
 const privacy = () => {
   return (
     <>
-      <Meta title="Fino | Privacy" />
-      <main className="main-content">
-        <section className="breadcrumb">
-          <div className="img-overlay">
-            <Image
-              alt="image"
-              layout="fill"
-              objectFit="cover"
-              src="/assets/slider.png"
-            />
-          </div>
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="text-bread">
-                  <h3>Privacy</h3>
-                  <ul>
-                    <li>
-                      <Link href="/">Home</Link>
-                    </li>
-                    <li>
-                      <span>Privacy</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      <Meta title="Ahruf | Privacy" />
 
-        <section className="privacy-page body-inner">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="privacy-inner">
-                  <h3>Lorem Ipsum is simply</h3>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the
-                    industry&apos;s standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled
-                    it to make a type specimen book. It has survived not only
-                    five centuries, but also the leap into electronic
-                    typesetting,
-                  </p>
-                  <h3>Lorem Ipsum is simply</h3>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the
-                    industry&apos;s standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled
-                    it to make a type specimen book. It has survived not only
-                    five centuries, but also the leap into electronic
-                    typesetting,
-                  </p>
-                  <h3>Lorem Ipsum is simply</h3>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the
-                    industry&apos;s standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled
-                    it to make a type specimen book. It has survived not only
-                    five centuries, but also the leap into electronic
-                    typesetting,
-                  </p>
-                  <h3>Lorem Ipsum is simply</h3>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the
-                    industry&apos;s standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled
-                    it to make a type specimen book. It has survived not only
-                    five centuries, but also the leap into electronic
-                    typesetting,
-                  </p>
-                  <h3>Lorem Ipsum is simply</h3>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the
-                    industry&apos;s standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled
-                    it to make a type specimen book. It has survived not only
-                    five centuries, but also the leap into electronic
-                    typesetting,
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+
+      <main className={styles.main_content}>
+
+         <h2 className={styles.heading}>الشروط والأحكام</h2>
+
+
+        <section className={styles.privacy_section}>
+            <h3 className={styles.sub_heading}>شروط الإنضمام</h3>
+            <ul className={styles.list_dots}>
+              <li>لا يقل عمر الطفل عن 4 سنوات ولا يزيد عن 6 سنوات</li>
+              <li>هنا تكتب الشروط الواجب توفرها في الطالب للإنضمام</li>
+              <li>هنا تكتب الشروط الواجب توفرها في الطالب للإنضمام</li>
+              <li>هنا تكتب الشروط الواجب توفرها في الطالب للإنضمام</li>
+            </ul>
+
+            <span className={styles.dashed_line}></span>
+            <h3 className={styles.sub_heading}>شروط الموقع</h3>
+            <ul className={styles.list_dots}>
+              <li>لا يقل عمر الطفل عن 4 سنوات ولا يزيد عن 6 سنوات</li>
+              <li>هنا تكتب الشروط الواجب توفرها في الطالب للإنضمام</li>
+              <li>هنا تكتب الشروط الواجب توفرها في الطالب للإنضمام</li>
+              <li>هنا تكتب الشروط الواجب توفرها في الطالب للإنضمام</li>
+            </ul>
+
+            <span className={styles.dashed_line}></span>
+            <h3 className={styles.sub_heading}>شروط أولياء الامور</h3>
+            <ul className={styles.list_dots}>
+              <li>لا يقل عمر الطفل عن 4 سنوات ولا يزيد عن 6 سنوات</li>
+              <li>هنا تكتب الشروط الواجب توفرها في الطالب للإنضمام</li>
+              <li>هنا تكتب الشروط الواجب توفرها في الطالب للإنضمام</li>
+              <li>هنا تكتب الشروط الواجب توفرها في الطالب للإنضمام</li>
+            </ul>
+
         </section>
       </main>
     </>

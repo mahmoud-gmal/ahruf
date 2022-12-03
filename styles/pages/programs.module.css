@@ -2,7 +2,8 @@
 
 .programs{
   padding: 50px 0;
-    background: #F8FBFF 0% 0% no-repeat padding-box;
+  background: #F8FBFF 0% 0% no-repeat padding-box;
+  overflow: hidden;
 }
 .programs .tab_content > h2{
   font: normal normal bold 36px/67px "bahij_Helvetica_bold";
@@ -75,14 +76,14 @@
 margin-bottom: 40px;
 }
 .programs .programs_details .programs_details_list_2 li{
-  padding-right: 19px;
+  padding-right: 31px;
 }
 .programs .tab_content .programs_details_list_2 li::before{
   content: "";
   position: absolute;
   width: 10px;
   height: 10px;
-  right: -2px;
+  right: 10px;
   top: 50%;
   background: #FFD983 0% 0% no-repeat padding-box;
   transform: translateY(-50%);
@@ -159,7 +160,7 @@ margin-bottom: 40px;
   background-size: contain; */
 }
 .programs .programs_details::before{
-  right: -22%;
+  right: -120px;
   bottom: -5px;
   width: 72px;
   height: 108px;
