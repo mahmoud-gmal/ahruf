@@ -13,6 +13,7 @@ import '../styles/style-en.css'
 import Header from "../src/components/layout/Header";
 import Header2 from "../src/components/layout/Header-2";
 import Footer from "../src/components/layout/Footer";
+import { Suspense } from "react";
 
 
 // const { locale, locales, asPath } = useRouter();
@@ -44,9 +45,9 @@ else if (router.pathname.startsWith('/profile')) {
     <>
     <div className="wrap_app1">
       <AuthProvider>
-        <Header />
-          <Component {...pageProps} />
-        <Footer />
+            <Header />
+              <Component {...pageProps} />
+            <Footer />
       </AuthProvider>
       </div>
 

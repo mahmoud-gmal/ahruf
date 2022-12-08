@@ -77,7 +77,7 @@ function Counter({ from, to }) {
         <div className={styles.about}>
           <Container>
             <Row>
-              <Col md={6}>
+              <Col lg={6}>
                 <div className={styles.text_wrapp}>
                   <span>من نحن</span>
                   <h2>مؤسسة تعليمية إفتراضية تستهدف <br /> بناء طفل يجيد القرائة والكتابة</h2>
@@ -105,7 +105,7 @@ function Counter({ from, to }) {
                 </div>
                 
               </Col>
-              <Col md={6}>
+              <Col lg={6}>
                 <div className={styles.img_wrapper}>
                    <div className={styles.img_1}></div>
                    <div className={styles.img_2}></div>

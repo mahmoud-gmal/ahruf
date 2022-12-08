@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@bumaga/tabs": "^0.2.0",
+    "@fancyapps/ui": "^4.0.31",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-brands-svg-icons": "^6.2.0",
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
@@ -19,6 +20,7 @@
     "axios": "^0.26.1",
     "bootstrap": "^5.2.2",
     "dompurify": "^2.3.6",
+    "emoji-picker-react": "^3.5.1",
     "framer-motion": "^7.6.4",
     "next": "12.3.1",
     "next-i18next": "^12.1.0",

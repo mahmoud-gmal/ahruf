@@ -67,12 +67,8 @@
   content: "";
   width: 215px;
   height: 289px;
-  
-  /* right: 0;
-  left: 0; */
-
-
 }
+
 .about .img_wrapper .img_1{
   background: transparent url('/assets/smiling-students-looking-globe.png') 0% 0% no-repeat padding-box;
   border-radius: 80px 0px;
@@ -104,6 +100,33 @@
   background-size: cover;
 
 }
+
+  /* mobile */
+  @media (max-width: 1399.9px) {
+    .about .img_wrapper .img_2{ left: 18%; }
+  } 
+
+  @media (max-width: 1199.9px) {
+    .about .img_wrapper .img_2{ left:0%; }
+    .about .img_wrapper .img_3{ bottom: 110px; }
+  } 
+
+  @media (max-width: 991.9px) {
+    .about .img_wrapper .img_1,.about .img_wrapper .img_2, .about .img_wrapper .img_3{position: static;}
+    .about .img_wrapper .img_2{
+      margin-right: 31px;
+      margin-top: 54px;
+    }
+    .img_wrapper{
+      display: grid;
+      grid-template-columns: auto auto;
+      margin-top: 30px;
+      justify-content: right;
+    }
+  } 
+  
+
+
 /* ==================  About vision/goals ===================== */
 .about_vision{
   background: #F8FBFF 0% 0% no-repeat padding-box;
@@ -132,7 +155,7 @@
   z-index: 1;
   top: 58px;
 }
-.about_vision .vision h2::before{
+.about_vision .vision .shape_hold::before{
   position: absolute;
   content: "";
   background: transparent url(/assets/Group711.svg) 0% 0% no-repeat padding-box;
@@ -140,32 +163,36 @@
   background-repeat: no-repeat;
   width: 305px;
   height: 257px;
-  right: -70px;
+  right: -63px;
   z-index: 1;
-  top: -20px;
+  top: 0px;
 }
-/* .about_vision .vision h2::after{
+
+
+.about_vision .vision .shape_hold::after{
   position: absolute;
   content: "";
-  background-color: #EEE;
-  background-size: cover;
   background-repeat: no-repeat;
   width: 305px;
-  height: 257px;
-  right: -70px;
+  height: 100%;
+  right: 0;
   z-index: 1;
-  top: -20px;
-} */
+  top: 0;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border-radius: 12px;
+}
 
 .about_vision .vision h2{
   font: normal normal bold 32px/53px "bahij_Helvetica_bold";
   color: #303868;
   position: relative;
-  z-index: 2;
+  z-index: 4;
 }
 .about_vision .vision p{
   font: normal normal normal 22px/64px "bahij_Helvetica_roman";
   color: #303868;
+  position: relative;
+  z-index: 4;
 }
 
 .about_vision .image_wrapper{
@@ -420,7 +447,7 @@
   }
   
   /* mobile */
-  @media (max-width: 575.9px) {
+  @media (max-width: 1399.9px) {
   
   } 
 
