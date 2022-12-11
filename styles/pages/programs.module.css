@@ -176,6 +176,15 @@ margin-bottom: 40px;
   opacity: 0.35;
 }
 
+
+@media (max-width: 767.9px) {
+  .programs .row_tabs{
+    flex-direction: column-reverse;
+  }
+  .programs .nav_pill{margin-top: 0;margin-bottom: 50px;}
+}
+
+
 /* =====================  Common Questions  ======================== */
 
 .common_ques {
@@ -272,3 +281,10 @@ margin-bottom: 40px;
     padding-right: 22px;
   }
   /* .features .item {} */
+
+  @media (max-width: 767.9px) {
+    .features .item{
+    margin-right: auto;
+      margin-left: auto;
+  }
+    }

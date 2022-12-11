@@ -187,37 +187,37 @@ function Counter({ from, to }) {
           <Container>
             <h2> مميزات برامجنا </h2>
             <Row style={{ maxWidth: '1115px',margin:' 0 auto'}}>
-              <Col md={4}>
+              <Col lg={4} md={6}>
                 <div className={styles.item}>
                    <Image alt="logo" src="/assets/learning.png" width="48" height="48" />
                    <h3>مناهج تعليمية قوية</h3>
                 </div>
               </Col>
-              <Col md={4}>
+              <Col lg={4} md={6}>
                 <div className={styles.item}>
                    <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
                    <h3> التعليم بطريقة تفاعلية </h3>
                 </div>
               </Col>
-              <Col md={4}>
+              <Col lg={4} md={6}>
                 <div className={styles.item}>
                    <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
                    <h3> الدمج بين التعلم واللعب </h3>
                 </div>
               </Col>
-              <Col md={4}>
+              <Col lg={4} md={6}>
                 <div className={styles.item}>
                    <Image alt="logo" src="/assets/learning.png" width="48" height="48" />
                    <h3>مناهج تعليمية قوية</h3>
                 </div>
               </Col>
-              <Col md={4}>
+              <Col lg={4} md={6}>
                 <div className={styles.item}>
                    <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
                    <h3> التعليم بطريقة تفاعلية </h3>
                 </div>
               </Col>
-              <Col md={4}>
+              <Col lg={4} md={6}>
                 <div className={styles.item}>
                    <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
                    <h3> الدمج بين التعلم واللعب </h3>
@@ -278,11 +278,9 @@ function Counter({ from, to }) {
 
 
                 <Link href="/">
-                  <a
+                <a
                     className={`${styles.more_btn_link}  d-flex align-items-center justify-content-end `}
-                    style={{ maxWidth: "700px" }}
-                  >
-                    {" "}
+                    style={{ maxWidth: "700px", width:'100%', margin: 'auto' }} >
                     لديك المزيد من الاستفسارات ! تواصل معنا{" "}
                     <FontAwesomeIcon
                       icon={faArrowLeft}

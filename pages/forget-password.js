@@ -5,7 +5,7 @@ import Meta from "../src/components/Meta";
 import { toast } from "react-toastify";
 import { Button, Col, Container, Form, FormGroup } from 'react-bootstrap';
 // styles
-import styles from "./../styles/pages/forget.module.css";
+import styles from "./../styles/forms/forget.module.css";
 
 //hook-form & yup
 import { useForm } from "react-hook-form";

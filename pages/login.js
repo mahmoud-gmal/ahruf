@@ -6,7 +6,7 @@ import Meta from "../src/components/Meta";
 import { toast } from "react-toastify";
 import { Button, Col, Container, Form, FormGroup } from 'react-bootstrap';
 // styles
-import styles from "./../styles/pages/login.module.css";
+import styles from "./../styles/forms/login.module.css";
 //hook-form & yup
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

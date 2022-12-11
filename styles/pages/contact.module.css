@@ -206,3 +206,21 @@ color: #80AEFF;
     border: 1px solid #F0F0F0;
     border-radius: 12px;
 }
+
+@media (max-width: 991.9px) {
+    .info{padding: 30px 18px}
+
+}
+
+
+
+@media (max-width: 767.9px) {
+    .form_wrapper{
+        margin-top: 30px;
+    }
+}
+
+    @media (max-width: 480px) {
+        .info{padding: 33px 10px;}
+    }
+

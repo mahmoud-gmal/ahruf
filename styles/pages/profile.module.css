@@ -67,8 +67,10 @@ color: #4269EF;
 font: normal normal bold 22px/37px "bahij_Helvetica_bold";
 color: #303868;
 }
-
-
+/* mobile */
+@media (max-width: 991.9px) {
+    .nav_content {min-height: auto; padding-bottom: 20px;margin-bottom: 30px;}
+    }
 /* =================== Tab Content  ===================== */
 
 .tab_content{
@@ -87,14 +89,14 @@ color: #303868;
 .tab_content .full_date {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
 }
 
 .tab_content .full_date .time{
     border-radius: 50%;
     height: 75px;
     width: 75px;
-    margin-left: 12px;
+    margin-left: 35px;
     text-align: center;
     background-image: url(/assets/profile_t.png);
     background-size: cover;
@@ -144,6 +146,26 @@ color: #303868;
     align-items: center;
 }
 
+@media (max-width:991.9px) {
+    .tab_content h2.table_title{ font: normal normal bold 31px/53px "bahij_Helvetica_bold";}
+}
+
+@media (max-width: 767.9px) {
+    .tab_content .full_date {
+        justify-content: space-between;
+        padding-top: 30px;;
+    }
+
+    }
+
+    @media (max-width: 410px) {
+
+        .tab_content .full_date {
+            flex-direction: column-reverse;
+            align-items: center;
+        }
+        .tab_content .full_date .time{margin-left: 0;margin-top: 10px;}
+    }
 /* ====== Class Schedule ======== */
 .class_schedule {
     position: relative;
@@ -253,7 +275,7 @@ border-radius: 12px;
 .curricula .items .item {
     background: #E7EFFF 0% 0% no-repeat padding-box;
     border-radius: 12px;
-    padding: 10px 10px 20px;
+    padding: 15px 10px 15px;
 }
 
 
@@ -336,4 +358,18 @@ color: #515151;
     background: transparent;
     border: 0;
     cursor: pointer;
+}
+
+
+/* Chat Responsive */
+
+@media (max-width:622.9px) {
+    .chatform .item  .message_wrapper{padding: 15px;}
+}
+@media (max-width:400.9px) {
+    .chatform .item  .message_wrapper{padding: 10px;}
+}
+@media (max-width:500px) {
+    .form_chat .form_btns  {    margin-right: 15px;}
+
 }

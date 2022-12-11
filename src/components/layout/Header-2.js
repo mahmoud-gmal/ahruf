@@ -84,9 +84,9 @@ useEffect(() => {
 
     <>
 
-      <div className={`${styles.header} ${styles.desktop_mode}`}>
+      <div className={`${styles.header} ${styles.header_2}`}>
         <Container>
-          <Row className="align-items-center">
+          <Row className={`${styles.custom_row} align-items-center `}>
             {/* LOGO */}
             <Col md={2}>
               <div className={styles.logo}>

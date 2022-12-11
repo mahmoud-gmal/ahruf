@@ -485,11 +485,9 @@ export default function Home({ data}) {
 
 
                 <Link href="/">
-                  <a
+                <a
                     className={`${styles.more_btn_link}  d-flex align-items-center justify-content-end `}
-                    style={{ maxWidth: "700px" }}
-                  >
-                    {" "}
+                    style={{ maxWidth: "700px", width:'100%', margin: 'auto' }} >
                     لديك المزيد من الاستفسارات ! تواصل معنا{" "}
                     <FontAwesomeIcon
                       icon={faArrowLeft}

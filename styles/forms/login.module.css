@@ -93,3 +93,11 @@ margin-left: 12px;
 font: normal normal bold 18px/30px 'bahij_Helvetica_bold';
 color: #80AEFF;
 }
+
+
+@media (max-width: 480px) {
+    .form_info {
+        margin-bottom: 60px;
+    }
+
+}

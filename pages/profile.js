@@ -151,7 +151,7 @@ const onSubmit = (data) =>{
 
 
         {/*=============== Nav Bills =====================*/}
-      <Col md={3} className="p-0">
+      <Col lg={3} className="p-0">
         <div className={styles.nav_content}>
             <ul className={styles.back}>
                 <li><Link href="/"><a><FontAwesomeIcon icon={faArrowRight}  color={"#FFF"} width={20}/>  رجوع للرئيسية</a></Link></li>
@@ -181,7 +181,7 @@ const onSubmit = (data) =>{
 
 
     {/*=============== TAB CONTENT =====================*/}
-      <Col md={9} className="p-0">
+      <Col lg={9} className="p-0">
 
     {/*========== class schedule  ==============*/}
       <Panel>
@@ -191,8 +191,8 @@ const onSubmit = (data) =>{
             <Col md={3}>
                 <h2 className={styles.table_title}>جدول الحصص</h2>
             </Col>
-            <Col md={6}></Col>
-            <Col md={3}>
+            <Col md={4}></Col>
+            <Col md={5}>
             <div className={styles.full_date}>
                 <div className={styles.time}>
                     <span dangerouslySetInnerHTML={{__html: formatAMPM(new Date)}}></span>
@@ -263,12 +263,12 @@ const onSubmit = (data) =>{
       <Panel>
       <div className={`${styles.tab_content} ${styles.curricula}`}>
 
-        <Row>
+      <Row>
             <Col md={3}>
-                <h2 className={styles.table_title}> المناهج </h2>
+                <h2 className={styles.table_title}>جدول الحصص</h2>
             </Col>
-            <Col md={6}></Col>
-            <Col md={3}>
+            <Col md={4}></Col>
+            <Col md={5}>
             <div className={styles.full_date}>
                 <div className={styles.time}>
                     <span dangerouslySetInnerHTML={{__html: formatAMPM(new Date)}}></span>
@@ -458,10 +458,10 @@ const onSubmit = (data) =>{
 
         <Row>
             <Col md={3}>
-                <h2 className={styles.table_title}> حل الواجب </h2>
+                <h2 className={styles.table_title}>جدول الحصص</h2>
             </Col>
-            <Col md={6}></Col>
-            <Col md={3}>
+            <Col md={4}></Col>
+            <Col md={5}>
             <div className={styles.full_date}>
                 <div className={styles.time}>
                     <span dangerouslySetInnerHTML={{__html: formatAMPM(new Date)}}></span>
@@ -556,10 +556,10 @@ const onSubmit = (data) =>{
 
         <Row>
             <Col md={3}>
-                <h2 className={styles.table_title}>  شات مع الفصل </h2>
+                <h2 className={styles.table_title}>جدول الحصص</h2>
             </Col>
-            <Col md={6}></Col>
-            <Col md={3}>
+            <Col md={4}></Col>
+            <Col md={5}>
             <div className={styles.full_date}>
                 <div className={styles.time}>
                     <span dangerouslySetInnerHTML={{__html: formatAMPM(new Date)}}></span>

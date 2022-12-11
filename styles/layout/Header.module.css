@@ -180,3 +180,20 @@
   /* .mobile_mode .mobile_list_nav{display: none !important;} */
   .mobile_mode{display: block;}
 }
+
+
+
+/* HEADER 2 */
+@media (max-width: 767.9px) {
+  .header_2 .custom_row{
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    flex-wrap: unset;
+}
+.header_2 .custom_row>*{
+         flex-shrink: 1; 
+    width: 100%; 
+     max-width: 100%;
+}
+  }

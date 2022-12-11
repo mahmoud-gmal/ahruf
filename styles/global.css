@@ -384,3 +384,13 @@ input:focus-visible , select:focus-visible , textarea:focus-visible {
 
 
   /* profile */
+  .profile{
+    padding: 60px 60px 90px
+  }
+  @media (max-width:622.9px) {
+    .profile{padding: 60px 20px 90px;}
+
+}
+@media (max-width:400.9px) {
+  .profile{padding: 60px 15px 90px;}
+}

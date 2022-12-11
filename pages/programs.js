@@ -43,7 +43,8 @@ const Panel = ({ children }) => {
 };
 
 
-
+// framer notion
+import { motion, AnimatePresence } from "framer-motion";
 
 // https://codesandbox.io/s/flamboyant-lucy-sgs1ys?file=/src/App.tsx
 
@@ -69,10 +70,17 @@ export default function Programs({ data}) {
 <div className={styles.programs}>
   <Container>
   <Tabs>
-    <Row>
+    <Row className={styles.row_tabs}>
       <Col md={8}>
       <Panel>
-      <div className={styles.tab_content}>
+      <AnimatePresence exitBeforeEnter>
+      <motion.div 
+          className={styles.tab_content}
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -10, opacity: 0 }}
+          transition={{ duration: 0.2 }}
+      >
 
          <h2>برنامج الروضة</h2>
       
@@ -118,13 +126,22 @@ export default function Programs({ data}) {
 
         </div>
 
-        </div>
+        </motion.div>
 
+      </AnimatePresence>
       </Panel>
-      <Panel>
-      <div className={styles.tab_content}>
 
-         <h2>برنامج الروضة</h2>
+      <Panel>
+      <AnimatePresence exitBeforeEnter>
+      <motion.div 
+          className={styles.tab_content}
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -10, opacity: 0 }}
+          transition={{ duration: 0.2 }}
+      >
+
+         <h2>برنامج تمهيدى</h2>
       
          <ul className={styles.breadcrumb}>
           <li><Link href="/"><a>الرئيسية</a></Link></li>
@@ -167,8 +184,9 @@ export default function Programs({ data}) {
 
         </div>
 
-        </div>
+        </motion.div>
 
+      </AnimatePresence>
       </Panel>
 
       </Col>
@@ -190,82 +208,50 @@ export default function Programs({ data}) {
 </div>
 
 
-
-
-
-{/* <Tabs>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          borderBottom: "1px solid gray",
-          marginBottom: "60px"
-        }}
-      >
-        <Tab>Applied</Tab>
-        <Tab>Viewed</Tab>
-        <Tab>Preferences</Tab>
+      {/*============== Features of our programs ==========*/}
+      <div className={styles.features}>
+        <Container>
+          <h2> مميزات برامجنا </h2>
+          <Row style={{ maxWidth: '1115px',margin:' 0 auto'}}>
+            <Col lg={4} md={6}>
+              <div className={styles.item}>
+                  <Image alt="logo" src="/assets/learning.png" width="48" height="48" />
+                  <h3>مناهج تعليمية قوية</h3>
+              </div>
+            </Col>
+            <Col lg={4} md={6}>
+              <div className={styles.item}>
+                  <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
+                  <h3> التعليم بطريقة تفاعلية </h3>
+              </div>
+            </Col>
+            <Col lg={4} md={6}>
+              <div className={styles.item}>
+                  <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
+                  <h3> الدمج بين التعلم واللعب </h3>
+              </div>
+            </Col>
+            <Col lg={4} md={6}>
+              <div className={styles.item}>
+                  <Image alt="logo" src="/assets/learning.png" width="48" height="48" />
+                  <h3>مناهج تعليمية قوية</h3>
+              </div>
+            </Col>
+            <Col lg={4} md={6}>
+              <div className={styles.item}>
+                  <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
+                  <h3> التعليم بطريقة تفاعلية </h3>
+              </div>
+            </Col>
+            <Col lg={4} md={6}>
+              <div className={styles.item}>
+                  <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
+                  <h3> الدمج بين التعلم واللعب </h3>
+              </div>
+            </Col>
+          </Row>
+        </Container>
       </div>
-
-      <Panel>الروضة</Panel>
-      <Panel>تمهيدى</Panel>
-      <Panel>تمهيدى متقدم</Panel>
-    </Tabs> */}
-
-
-
-
-
-
-
-
-
-
-        {/*============== Features of our programs ==========*/}
-        <div className={styles.features}>
-          <Container>
-            <h2> مميزات برامجنا </h2>
-            <Row style={{ maxWidth: '1115px',margin:' 0 auto'}}>
-              <Col md={4}>
-                <div className={styles.item}>
-                   <Image alt="logo" src="/assets/learning.png" width="48" height="48" />
-                   <h3>مناهج تعليمية قوية</h3>
-                </div>
-              </Col>
-              <Col md={4}>
-                <div className={styles.item}>
-                   <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
-                   <h3> التعليم بطريقة تفاعلية </h3>
-                </div>
-              </Col>
-              <Col md={4}>
-                <div className={styles.item}>
-                   <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
-                   <h3> الدمج بين التعلم واللعب </h3>
-                </div>
-              </Col>
-              <Col md={4}>
-                <div className={styles.item}>
-                   <Image alt="logo" src="/assets/learning.png" width="48" height="48" />
-                   <h3>مناهج تعليمية قوية</h3>
-                </div>
-              </Col>
-              <Col md={4}>
-                <div className={styles.item}>
-                   <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
-                   <h3> التعليم بطريقة تفاعلية </h3>
-                </div>
-              </Col>
-              <Col md={4}>
-                <div className={styles.item}>
-                   <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
-                   <h3> الدمج بين التعلم واللعب </h3>
-                </div>
-              </Col>
-
-            </Row>
-          </Container>
-        </div>
 
 
 
@@ -318,9 +304,7 @@ export default function Programs({ data}) {
                 <Link href="/">
                   <a
                     className={`${styles.more_btn_link}  d-flex align-items-center justify-content-end `}
-                    style={{ maxWidth: "700px" }}
-                  >
-                    {" "}
+                    style={{ maxWidth: "700px", width:'100%', margin: 'auto' }} >
                     لديك المزيد من الاستفسارات ! تواصل معنا{" "}
                     <FontAwesomeIcon
                       icon={faArrowLeft}
