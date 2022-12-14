@@ -1,7 +1,7 @@
 // const path = require("path");
 module.exports = {
+
   i18n: {
-    // providing the locales supported by your application
    locales: ["ar", "en"],
    //  default locale used when the non-locale paths are visited
    defaultLocale: "ar",
@@ -14,6 +14,6 @@ module.exports = {
 
 
   images: {
-    domains: ['mgamal.azq1.com', 'via.placeholder.com'],
+    domains: ['a-ibrahem.azq1.com', 'via.placeholder.com'],
   },
 }

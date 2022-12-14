@@ -394,3 +394,15 @@ input:focus-visible , select:focus-visible , textarea:focus-visible {
 @media (max-width:400.9px) {
   .profile{padding: 60px 15px 90px;}
 }
+
+
+
+/* STYLING AFTER Connecting API */
+.back_data_package li {font: normal normal normal 16px/26px "bahij_Helvetica_roman" !important;}
+.back_data_package li::before {content: none !important;}
+.back_data_package li p img{width: 20px !important;height: 20px !important;margin-left: 6px}
+.back_data_package li p{
+  margin-bottom: 12px;
+  display: flex;align-items: center;
+}
+.back_data_package li p:first-child{font: normal normal bold 16px/27px "bahij_Helvetica_bold";}

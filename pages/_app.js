@@ -4,6 +4,7 @@ import { AuthProvider } from "../src/context/AuthContext";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'bootstrap/dist/css/bootstrap-grid.min.css';
 
+import { motion, AnimatePresence  } from "framer-motion";
 
 //styles
 import '../styles/global.css'
@@ -22,10 +23,11 @@ function MyApp({ Component, pageProps, router  }) {
   if (router.pathname.startsWith('/login') || router.pathname.startsWith('/signup') || router.pathname.startsWith('/forget-password')) {
 
     return (
-      <div className="wrap_app memb">
-      <Header2 />
-      <Component {...pageProps} />
-      </div>
+        <div className="wrap_app memb">
+        <Header2 />
+        <Component {...pageProps} />
+        </div>
+
     )
 
 }
@@ -43,6 +45,32 @@ else if (router.pathname.startsWith('/profile')) {
 
   return (
     <>
+       <AnimatePresence exitBeforeEnter>
+        <motion.div
+        key={router.route}
+        initial={{ y: 10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 0, opacity: 0 }}
+        transition={{ duration: 0.2 }}
+
+      // pass the router.locale as the key, so every time it change it will trigger the animation
+      // key={router.locale}
+      // initial={{ y: 10, opacity: 0 }}
+      // animate={{ y: 0, opacity: 1 }}
+      // transition={{ duration: 0.8 }}
+
+
+        // initial="initial"
+        // animate="animate"
+        // variants={{
+        //   initial: {
+        //     opacity: 0,
+        //   },
+        //   animate: {
+        //     opacity: 1,
+        //   },
+        // }}
+       >
     <div className="wrap_app1">
       <AuthProvider>
             <Header />
@@ -51,6 +79,8 @@ else if (router.pathname.startsWith('/profile')) {
       </AuthProvider>
       </div>
 
+        </motion.div>
+       </AnimatePresence>
     </>
   );
 }

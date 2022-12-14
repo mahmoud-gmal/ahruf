@@ -94,7 +94,7 @@ useEffect(() => {
                   <a>
                     <Image
                       alt="logo"
-                      src="/assets/Logo.png"
+                      src={locale == "ar" ? '/assets/Logo.png': '/assets/logo-en.svg'}
                       width="200"
                       height="66"
                       // layout="responsive"
@@ -109,13 +109,11 @@ useEffect(() => {
               <div className={styles.main_navbar}>
                 <ul className={`d-flex justify-content-center`}>
                   <li>
-                    <Link href="/about">من نحن</Link>
+                    <Link href="/about">{locale == "en" ? "About" : "من نحن "}</Link>
                   </li>
                   <li className={styles.drop}>
                     <Link href="/programs">
-                      <a className={styles.menu}>
-                        البرامج المتاحة <FontAwesomeIcon icon={faCaretDown} />
-                      </a>
+                      <a className={styles.menu}>{locale == "en" ? "available programs" : "البرامج المتاحة "}<FontAwesomeIcon icon={faCaretDown} /></a>
                     </Link>
                     <ul className={styles.menu_dropdown}>
                       <li>
@@ -131,10 +129,10 @@ useEffect(() => {
                   </li>
 
                   <li>
-                    <Link href="/">باقات الاشتراك</Link>
+                    <Link href="/">{locale == "en" ? "Subscriptions" : "باقات الاشتراك"}</Link>
                   </li>
                   <li>
-                    <Link href="/contact">اتصل بنا</Link>
+                    <Link href="/contact">{locale == "en" ? "Contact" : "اتصل بنا "}</Link>
                   </li>
                 </ul>
               </div>
@@ -184,7 +182,7 @@ useEffect(() => {
                   <a>
                     <Image
                       alt="logo"
-                      src="/assets/Logo.png"
+                      src={locale == "ar" ? '/assets/Logo.png': '/assets/logo-en.svg'}
                       width="200"
                       height="66"
                       // layout="responsive"
@@ -205,7 +203,7 @@ useEffect(() => {
                   <a className={styles.mobile_logo}>
                     <Image
                       alt="logo"
-                      src="/assets/Logo.png"
+                      src={locale == "ar" ? '/assets/Logo.png': '/assets/logo-en.svg'}
                       width="200"
                       height="66"
                       objectFit="contain"
@@ -218,14 +216,12 @@ useEffect(() => {
                  <div className={styles.close_icon} onClick={handleClick}><FontAwesomeIcon icon={faTimes} /></div>
               </div>
 
-                  <li>
-                    <Link href="/">من نحن</Link>
+              <li>
+                    <Link href="/about">{locale == "en" ? "About" : "من نحن "}</Link>
                   </li>
                   <li className={styles.drop}>
-                    <Link href="/">
-                      <a className={styles.menu}>
-                        البرامج المتاحة <FontAwesomeIcon icon={faCaretDown} />
-                      </a>
+                    <Link href="/programs">
+                      <a className={styles.menu}>{locale == "en" ? "available programs" : "البرامج المتاحة "}<FontAwesomeIcon icon={faCaretDown} /></a>
                     </Link>
                     <ul className={styles.menu_dropdown}>
                       <li>
@@ -241,10 +237,10 @@ useEffect(() => {
                   </li>
 
                   <li>
-                    <Link href="/">باقات الاشتراك</Link>
+                    <Link href="/">{locale == "en" ? "Subscriptions" : "باقات الاشتراك"}</Link>
                   </li>
                   <li>
-                    <Link href="/">اتصل بنا</Link>
+                    <Link href="/contact">{locale == "en" ? "Contact" : "اتصل بنا "}</Link>
                   </li>
                 </motion.ul>
 

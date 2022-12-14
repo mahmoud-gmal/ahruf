@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/Link";
 
-
 // custom components
 import Meta from "../src/components/Meta";
 import Accordion from "../src/components/Accordion";
@@ -34,41 +33,67 @@ import { animate, motion, useAnimation, useAnimationControls } from "framer-moti
 import { useInView } from 'react-intersection-observer';
 
 
+// site url
+const URL = process.env.NEXT_SITE_URL;
+
+// FETCHING DATA FROM API
+export const getStaticProps = async ({locale }) => {
+
+  // Main landing
+  const mainRes = await fetch(`${URL}main_page/main`, {headers: {'Accept-Language': locale }});
+  const mainData = await mainRes.json();
+
+  // ourPrograms
+  const ourProgramsRes = await fetch(`${URL}main_page/ourPrograms`, {headers: {'Accept-Language': locale }});
+  const ourProgramsData = await ourProgramsRes.json();
+
+  // achievements/numbers
+  const numbersRes = await fetch(`${URL}main_page/numbers`, {headers: {'Accept-Language': locale }});
+  const numbersData = await numbersRes.json();
+
+  // packages
+  const packagesRes = await fetch(`${URL}main_page/packages`, {headers: {'Accept-Language': locale }});
+  const packagesData = await packagesRes.json();
+
+  // quotes
+  const quotesRes = await fetch(`${URL}main_page/quotes`, {headers: {'Accept-Language': locale }});
+  const quotesData = await quotesRes.json();
+
+  // common questions
+  const questionsRes = await fetch(`${URL}main_page/questions`, {headers: {'Accept-Language': locale }});
+  const questionsData = await questionsRes.json();
+
+  // Student activities
+  const activitiesRes = await fetch(`${URL}main_page/shares`, {headers: {'Accept-Language': locale }});
+  const activitiesData = await activitiesRes.json();
 
 
 
+  if ((!mainData, !ourProgramsData, !numbersData, !packagesData, !quotesData, !questionsData, !activitiesData)) {
+    return {
+      notFound: true,
+    };
+  }
+  return {
+    props: { banner: mainData, programs: ourProgramsData, achiv: numbersData,
+      packages: packagesData, quotes: quotesData, questions: questionsData, activities: activitiesData }, // will be passed to the page component as props
+    revalidate: 10, //In seconds
+  };
+};
 
-export default function Home({ data}) {
+
+
+export default function Home({ banner, programs, achiv, packages, quotes, questions, activities }) {
+
+
 // lang
   const { locale, locales, asPath } = useRouter();
 
-
-  // const [expanded, setExpanded] = useState(false);
 
   const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold:0,
   });
-
-  const animationPrograms = useAnimation();
-
-  // useEffect(() => {
-    console.log("use effect hook, inView = ", inView);
-    // if (inView) {
-      animationPrograms.start({
-        opacity: 1,
-        transition:{
-           duration:2, 
-           type: 'spring',
-          // bounce: 0.3
-        }
-      });
-    // } 
-    // else {
-    //   animationPrograms.start({opacity: 0});
-    // }
-  // }, [inView]);
-
 
 
 
@@ -94,24 +119,26 @@ export default function Home({ data}) {
   }
 
 
-  // animation in view test
-  // const control = useAnimationControls();
-  // const boxVariant = {
-  //   visible: { opacity: 1, transition: { duration: 3 } },
-  //   hidden: { opacity: 0 }
-  // };
+// banner
+const bannerData = banner.data;
 
-  // useEffect(() => {
-  //   if (inView) {
-  //     control.start("visible");
-  //     console.log("visible")
-  //   } 
-  //   // else {
-  //   //   control.start("hidden");
-  //   // }
-  // }, [control, inView]);
+// programs
+const programsData = programs.data;
 
+// achievements
+const achivData = achiv.data;
 
+// packages
+const packagesData = packages.data;
+
+// quotes
+const quotesData = quotes.data;
+
+// common questions
+const questionsData = questions.data; 
+
+// Student activities
+const activitiess = activities.data;     
 
 
   return (
@@ -133,25 +160,17 @@ export default function Home({ data}) {
                     <Row className="align-items-center">
                         <Col md={6}>
                             <div className={styles.banner_txt}>
-                            <h2>
-                                مرحبا بكم في
-                                <br />
-                                أكاديمية مٌنصةٌ أحرف التعليمٌيةٌ
-                            </h2>
-                            <p>
-                                وصلت إلى وجهتك لبناء طفل متميزٌ في اللغة العربيةٌ منصة
-                                تعليمٌيةٌ لتخر يجٌ جيلٌ متمكن للغة القرآن كتابة وتحدثا
-                            </p>
-                            <Link href="/">
-                    
-                                <a className="special_btn"><span>  {locale == "en" ? "Join us" : "انضم الينا"}</span> </a>
+                            <h2>{bannerData?.content?.title} </h2>
+                            <p>{bannerData?.content?.description} </p>
+                            <Link href="/contact">
+                                <a className="special_btn"><span>  {locale == "en" ? "Join us" : "انضم الينا"} </span> </a>
                             </Link>
                             </div>
                         </Col>
                         <Col md={6}>
                             <div className={styles.banner_im}>
                             <Image
-                                src="/assets/Learning girl.png"
+                                src={bannerData?.images?.image}
                                 alt="logo"
                                 width="650"
                                 height="450"
@@ -179,94 +198,39 @@ export default function Home({ data}) {
             <Row className="justify-content-center">
               <Col md={4}>
                 <div className={styles.info}>
-                  <h2> مختارات من برامجنا </h2>
-                  <p>
-                    {" "}
-                    برامجنا موجهة للأطفال، الإناث من سن 4 سنوت الى 13 سنه و
-                    الذكور من سن 4 سنوت إلى 10 سنوات{" "}
-                  </p>
-                  <Link href="/">
-                    <a className="special_btn"> <span> تعرف على برامجنا المتاحة </span></a>
+                  <h2>{programsData?.content?.title}</h2>
+                  <p>{programsData?.content?.description}</p>
+                  <Link href="/programs">
+                    <a className="special_btn"> <span> {locale == "en" ? "Learn about our available programs" : "تعرف على برامجنا المتاحة "}</span></a>
                   </Link>
                 </div>
               </Col>
 
               <Col md={7}>
+
                 <div className={`d-grid ${styles.items}`}>
-                  <motion.div className={`d-flex align-items-center ${styles.item}`}
-                    whileHover={{ 
-                      left: 10
-                     }}
+
+                {programsData.courses &&
+                programsData.courses.map((course) => (
+                  <motion.div key={course.id} className={`d-flex align-items-center ${styles.item}`}
+                    whileHover={{   left: 10  }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     // transition={{type: "spring", ease: "easeIn", duration: .4 }}
                   >
                     <div className={styles.icon}>
                       <Image
-                        src="/assets/image-1.png"
+                        src={course?.image}
                         alt=""
                         width="50"
                         height="50"
                       />
                     </div>
-                    <h4>برنامج الروضة</h4>
+                    <h4>{course?.title}</h4>
                   </motion.div>
-                  <motion.div className={`d-flex align-items-center ${styles.item}`}
-                      whileHover={{ 
-                        left: 10
-                        }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                      // transition={{type: "spring", ease: "easeIn", duration: .4 }}
-                                    
-                  >
-                    <div className={styles.icon}>
-                      <Image
-                        src="/assets/image-2.png"
-                        alt=""
-                        width="50"
-                        height="50"
-                      />
-                    </div>
-                    <h4>برنامج الروضة</h4>
-                  </motion.div>
-                  <motion.div className={`d-flex align-items-center ${styles.item}`}
-                        whileHover={{ 
-                          left: 10
-                          }}
-                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                        // transition={{type: "spring", ease: "easeIn", duration: .4 }}
-                                    
-                  >
-                    <div className={styles.icon}>
-                      <Image
-                        src="/assets/Image-3.png"
-                        alt=""
-                        width="50"
-                        height="50"
-                      />
-                    </div>
-                    <h4>برنامج الروضة</h4>
-                  </motion.div>
-                  <motion.div className={`d-flex align-items-center ${styles.item}`}
-                      whileHover={{ 
-                        left: 10
-                        }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                      // transition={{type: "spring", ease: "easeIn", duration: .4 }}
-                                    
-                  >
-                    <div className={styles.icon}>
-                      <Image
-                        src="/assets/image-4.png"
-                        alt=""
-                        width="50"
-                        height="50"
-                      />
-                    </div>
-                    <h4>برنامج الروضة</h4>
-                  </motion.div>
+                ))}
+
                 </div>
               </Col>
-              {/* <Col md={1}></Col> */}
             </Row>
           </Container>
         </motion.div>
@@ -276,35 +240,28 @@ export default function Home({ data}) {
         <div className={`${styles.achivements} `}>
           <Container>
             <div className={`${styles.items} d-grid`}>
+
+              <div className={styles.item}> 
+              <span ref={ref}> {inView && <Counter from={0} to={achivData?.students} />}+ </span>
+                <h4> {locale == "en" ? "Graduated student" : "طالب متخرج "} </h4>
+              </div>
+
               <div className={styles.item}>
-              <span ref={ref}> {inView && <Counter from={0} to={14500} />}+</span>
-                <h4>طالب متخرج</h4>
+                <span><Counter from={0} to={achivData?.hours} />+</span>
+                <h4> {locale == "en" ? "educational hour" : "ساعة تعليمية "}</h4>
               </div>
               <div className={styles.item}>
-                <span><Counter from={0} to={150000} />+</span>
-                <h4> ساعة تعليمية </h4>
+                <span><Counter from={0} to={achivData?.percentage} /> %</span>
+                <h4> {locale == "en" ? "Completion rate" : "نسبة الإنجاز "}</h4>
               </div>
               <div className={styles.item}>
-                <span><Counter from={0} to={99} /> %</span>
-                <h4> نسبة الإنجاز </h4>
+                <span><Counter from={0} to={achivData?.teachers} />+</span>
+                <h4> {locale == "en" ? "Teacher and teacher" : "معلم ومعلمة "}</h4>
               </div>
-              <div className={styles.item}>
-                <span><Counter from={0} to={100} />+</span>
-                <h4> معلم ومعلمة </h4>
-              </div>
+              
             </div>
           </Container>
         </div>
-
-        {/* <motion.div animate={controls}><h2>ggggggggggggggggggggg</h2></motion.div> */}
-
-      {/* <div ref={ref}>
-      <h2>{`Header inside viewport ${inView}.`}</h2>
-    </div>
-
-        <Counter from={0} to={100} /> */}
-
-
 
 
         {/*============= Subscription  =========*/}
@@ -313,61 +270,37 @@ export default function Home({ data}) {
             <Row className="align-items-center m-0">
               <Col md={4}>
                 <div className={styles.info}>
-                  <h2>باقات الاشتراك</h2>
-                  <p>
-                    تمتد كل دورة تدريبية على مدار شهرين ، و لاختبار نظام التدريس
-                    اكثر يمكنك الاطلاع على اراء المستخدمين او الاطلاع على تجارب
-                    الملتحقين بالبرامج ، او التعرف اكثر على طريقة التدريس عبر
-                    حساب الاكاديمية على انستغرام
-                  </p>
+                  <h2>{packagesData?.content?.title}</h2>
+                  <p>{packagesData?.content?.description}</p>
                 </div>
               </Col>
               <Col md={8}>
                 <div className={`${styles.items} d-grid`}>
-                  <motion.div className={styles.item}
+
+
+                {packagesData.packages &&
+                packagesData.packages.map((item, index) => (
+                  <motion.div key={index} className={styles.item}
                         whileHover={{ translateZ: 15, translateX: 15 }}
                         // transition={{ type: "spring", stiffness: 400, damping: 10 }}
                         transition={{type: "spring", ease: "easeIn", duration: .4 }}
                   >
                     <div className={styles.price_wrap}>
-                      <span className={styles.price}>150</span>
-                      <span className={styles.currency}>ريال / شهريا</span>
+                      <span className={styles.price}>{item?.price}</span>
+                      <span className={styles.currency}> {locale == "en" ? "SR / per month" : "ريال / شهريا "}</span>
                     </div>
-                    <h4>الباقة الاساسية</h4>
+                    <h4> {item?.title} </h4>
                     <div className={styles.details}>
-                      <ul>
-                        <li>10 طلاب لكل مجموعة</li>
-                        <li>10 طلاب لكل مجموعة</li>
-                        <li>10 طلاب لكل مجموعة</li>
-                        <li>10 طلاب لكل مجموعة</li>
-                      </ul>
-                      <Link href="/">
-                        <a className="special_btn"><span> الاشتراك في هذه الباقة</span></a>
+                      <ul className="back_data_package"><li dangerouslySetInnerHTML={{__html: item?.description}}/></ul>
+                      <Link href="/login">
+                        <a className="special_btn"><span> {locale == "en" ? "Subscribe to this package" : "الاشتراك في هذه الباقة "}</span></a>
                       </Link>
                     </div>
                   </motion.div>
-                  <motion.div className={styles.item}
-                        whileHover={{ translateZ: -15, translateX: -15 }}
-                        // transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                        transition={{type: "spring", ease: "easeIn", duration: .4 }}
-                  >
-                    <div className={styles.price_wrap}>
-                      <span className={styles.price}>150</span>
-                      <span className={styles.currency}>ريال / شهريا</span>
-                    </div>
-                    <h4>الباقة الاساسية</h4>
-                    <div className={styles.details}>
-                      <ul>
-                        <li>طالب واحد فقط داخل المجموعة</li>
-                        <li>10 طلاب لكل مجموعة</li>
-                        <li>10 طلاب لكل مجموعة</li>
-                        <li>10 طلاب لكل مجموعة</li>
-                      </ul>
-                      <Link href="/">
-                      <a className="special_btn"><span> الاشتراك في هذه الباقة</span></a>
-                      </Link>
-                    </div>
-                  </motion.div>
+                  ))}
+
+
+
                 </div>
               </Col>
             </Row>
@@ -382,7 +315,7 @@ export default function Home({ data}) {
                   // animate={control}
         >
             <div className={styles.heading}>
-              <h2>ماذا قالو عنا</h2>
+            <h2>{quotesData?.content?.title} </h2>
             </div>
 
             <Swiper
@@ -410,30 +343,17 @@ export default function Home({ data}) {
                 },
               }}
             >
-              <SwiperSlide className={styles.item}>
-                <div className="test-block">
-                  <p>
-                  اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ، والافضل انه كل الدورات اونلاين .
-                  </p>
-                  <h3> سمية الشهري </h3>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className={styles.item}>
-                <div className="test-block">
-                <p>
-                  اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ، والافضل انه كل الدورات اونلاين .
-                  </p>
-                  <h3> سمية الشهري </h3>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className={styles.item}>
-                <div className="test-block">
-                <p>
-                  اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ، والافضل انه كل الدورات اونلاين .
-                  </p>
-                  <h3> سمية الشهري </h3>
-                </div>
-              </SwiperSlide>
+
+              {quotesData.quotes &&
+              quotesData.quotes.map((quote, index) => (
+                <SwiperSlide key={index} className={styles.item} >
+                  <div className="test-block">
+                    <p>{quote.content}</p>
+                    <h3> {quote.author}</h3>
+                  </div>
+                </SwiperSlide>
+              ))}
+
             </Swiper>
         </div>
 
@@ -443,52 +363,29 @@ export default function Home({ data}) {
         <div className={`${styles.common_ques} `}>
           <Container>
             <div className={styles.heading}>
-              <h2> الاسئلة الشائعة </h2>
+            <h2>{questionsData?.content?.title} </h2>
             </div>
             <div className="ques_wrapper">
 
 
               <div className={styles.ques}>
+              {questionsData.questions &&
+              questionsData.questions.map((question, index) => (
 
               <Accordion
-                title="كم مدة البرنامج التدريبي"
+                key={index}
+                title={question.question}
                 className={styles.que}
-                content='<p>
-                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                والافضل انه كل الدورات اونلاين . </p>'
-                />               
-              <Accordion
-                title="كم مدة البرنامج التدريبي"
-                className={styles.que}
-                content='<p>
-                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                والافضل انه كل الدورات اونلاين . </p>'
-                />               
-              <Accordion
-                title="كم مدة البرنامج التدريبي"
-                className={styles.que}
-                content='<p>
-                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                والافضل انه كل الدورات اونلاين . </p>'
-                />               
-              <Accordion
-                title="كم مدة البرنامج التدريبي"
-                className={styles.que}
-                content='<p>
-                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                والافضل انه كل الدورات اونلاين . </p>'
-                />               
-
+                content={`<p>${question.answer}</p>`}
+                />   
+                
+              ))}      
 
                 <Link href="/">
                 <a
                     className={`${styles.more_btn_link}  d-flex align-items-center justify-content-end `}
                     style={{ maxWidth: "700px", width:'100%', margin: 'auto' }} >
-                    لديك المزيد من الاستفسارات ! تواصل معنا{" "}
+                   {locale == "en" ? "Have more inquiries! Connect with us" : " لديك المزيد من الاستفسارات ! تواصل معنا"} 
                     <FontAwesomeIcon
                       icon={faArrowLeft}
                       style={{ width: 20, marginRight: "12px" }}
@@ -497,9 +394,9 @@ export default function Home({ data}) {
                 </Link>
               </div>
               <div className={styles.start}>
-                <h3>انت الان جاهر للبدء ؟</h3>
+                <h3> {locale == "en" ? "Are you now ready to start ?" : "انت الان جاهر للبدء ؟ "}</h3>
                 <Link href="/">
-                  <a className="special_btn"><span> انضم الينا </span></a>
+                  <a className="special_btn"><span>  {locale == "en" ? "Join us" : "انضم الينا"} </span></a>
                 </Link>
               </div>
             </div>
@@ -511,9 +408,9 @@ export default function Home({ data}) {
         {/*=========== Student activities ================*/}
         <div className={`${styles.student_activites} student_activites `}>
           <div className={styles.heading}>
-            <h2> مشاركات الطلاب </h2>
+          <h2>{activitiess?.content?.title} </h2>
             <Link href="/">
-              <a className="twitter_btn_follow"> Follow us @ahruf_edu </a>
+              <a className="twitter_btn_follow"> {activitiess?.content?.description}  </a>
             </Link>
           </div>
           <Swiper
@@ -545,57 +442,22 @@ export default function Home({ data}) {
               },
             }}            
           >
-            <SwiperSlide className="item">
-              <Image
-                src="/assets/s_1.png"
-                alt=""
-                width="272"
-                height="260"
-                layout="responsive"
-                objectFit="contain"
-              />
-            </SwiperSlide>
-            <SwiperSlide className="item">
-              <Image
-                src="/assets/s_2.png"
-                alt=""
-                width="272"
-                height="260"
-                layout="responsive"
-                objectFit="contain"
-                priority
-              />
-            </SwiperSlide>
-            <SwiperSlide className="item">
-              <Image
-                src="/assets/s_3.png"
-                alt=""
-                width="272"
-                height="260"
-                layout="responsive"
-                objectFit="contain"
-              />
-            </SwiperSlide>
-            <SwiperSlide className="item">
-              <Image
-                src="/assets/s_4.png"
-                alt=""
-                width="272"
-                height="260"
-                layout="responsive"
-                objectFit="contain"
-              />
-            </SwiperSlide>
-            <SwiperSlide className="item">
-              <Image
-                src="/assets/s_5.png"
-                alt=""
-                width="272"
-                height="260"
-                layout="responsive"
-                objectFit="contain"
-              />
-            </SwiperSlide>
+
+              {activitiess.shares &&
+            activitiess.shares.map((share, index) => (
+
+              <SwiperSlide key={index} className="item">
+                <Image
+                  src={share.image}
+                  alt=""
+                  width="272"
+                  height="260"
+                  layout="responsive"
+                  objectFit="contain"
+                />
+              </SwiperSlide>
+            ))}
+
           </Swiper>
         </div>
       </main>

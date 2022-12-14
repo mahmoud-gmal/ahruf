@@ -3,6 +3,11 @@ import React, { useEffect, useRef, useState } from "react";
 
 
 function Accordion(props) {
+
+  const convertHtmlToString = (htmlString) =>  {
+    return htmlString.replace(/<\/?[^>]+(>|$)/g, "")
+  }
+
   const [active, setActive] = useState(false);
   const content = useRef(null);
   const [height, setHeight] = useState("0px");
@@ -25,7 +30,7 @@ function Accordion(props) {
    onClick={toggleAccordion}
    style={{ cursor: "pointer",   display: 'flex', justifyContent: 'space-between' }}
 >
-  <h2> {props.title} </h2>
+  <h2 dangerouslySetInnerHTML={{ __html: convertHtmlToString(props.title) }}></h2>
   <span style={{fontSize: '26px', color: 'var(--main-color)'}}>{active ? "-" : "+"}</span>
 </a>
 

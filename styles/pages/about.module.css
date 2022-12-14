@@ -27,7 +27,7 @@
   color: #2E386B;
 }
 .about .text_wrapp h2{
-  font: normal normal bold 42px/67px "bahij_Helvetica_bold";
+  font: normal normal bold 38px/67px "bahij_Helvetica_bold";
   color: var(--main-color);
   line-height: 1.5em;
   margin-bottom: 30px;
@@ -361,12 +361,12 @@
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 8px 21px #3038680F;
     border-radius: 12px;
-    padding:30px ;
+    padding:21px ;
     display: flex;
     /* justify-content: center; */
     align-items: center;
     margin-bottom: 35px;
-    max-width: 337px;;
+    /* max-width: 337px;; */
   }
   .features .item h3{
     font: normal normal bold 18px/67px "bahij_Helvetica_bold";
@@ -420,68 +420,67 @@
   
 
  
-
 /* =====================  Common Questions  ======================== */
 
 .common_ques {
-    background: #f8fbff 0% 0% no-repeat padding-box;
-    padding: 80px 0 50px
-  }
-  .common_ques .heading {
-    text-align: center;
-    margin-bottom: 50px;
-  }
-  .common_ques .heading h2{
-    font: normal normal bold 42px/67px 'bahij_Helvetica_bold';
-    color: var(--main-color);;
-  }
-  .common_ques .ques {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .common_ques .ques .que {
-    margin-bottom: 20px;
-    background: #ffffff 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 0px #d3d5e2;
-    border: 1px solid #d3d5e2;
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 700px;
-  }
-  
-  .common_ques .ques .que h2 {
-    font: normal normal bold 16px/27px "bahij_Helvetica_bold";
-    color: var(--main-color);;
-  }
-  .common_ques .ques .que p {
-    font: normal normal normal 16px/30px "bahij_Helvetica_roman";
-    color: #2E386BBF;
-    margin-top: 14px;
-  }
-  
-  .common_ques .start {
-    text-align: center;
-    margin-top: 50px;
-  }
-  .common_ques .start h3 {
-    font: normal normal normal 36px/58px "bahij_Helvetica_roman";
-    color: var(--main-color);;
-  }
-  
-  .more_btn_link{
-    font: normal normal bold 16px/27px "bahij_Helvetica_bold";
-    color: #80AEFF;
-  }
-  .common_ques .start a {
-    font: normal normal bold 16px/27px "bahij_Helvetica_bold";
-    padding: 16px 58px;
-    margin-top: 14px;
-    display: inline-block;
-  }
-  
-  /* mobile */
-  @media (max-width: 1399.9px) {
-  
-  } 
+  background: #f8fbff 0% 0% no-repeat padding-box;
+  padding: 80px 0 50px
+}
+.common_ques .heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.common_ques .heading h2{
+  font: normal normal bold 42px/67px 'bahij_Helvetica_bold';
+  color: var(--main-color);;
+}
+.common_ques .ques {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.common_ques .ques .que {
+  margin-bottom: 20px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 0px #d3d5e2;
+  border: 1px solid #d3d5e2;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 700px;
+  width: 100%;
+}
 
+.common_ques .ques .que h2 {
+  font: normal normal bold 16px/27px "bahij_Helvetica_bold";
+  color: var(--main-color);;
+}
+.common_ques .ques .que p {
+  font: normal normal normal 16px/30px "bahij_Helvetica_roman";
+  color: #2E386BBF;
+  margin-top: 14px;
+}
+
+.common_ques .start {
+  text-align: center;
+  margin-top: 50px;
+}
+.common_ques .start h3 {
+  font: normal normal normal 36px/58px "bahij_Helvetica_roman";
+  color: var(--main-color);;
+}
+
+.more_btn_link{
+  font: normal normal bold 16px/27px "bahij_Helvetica_bold";
+  color: #80AEFF;
+}
+.common_ques .start a {
+  font: normal normal bold 16px/27px "bahij_Helvetica_bold";
+  padding: 16px 58px;
+  margin-top: 14px;
+  display: inline-block;
+}
+
+/* mobile */
+@media (max-width: 575.9px) {
+
+}

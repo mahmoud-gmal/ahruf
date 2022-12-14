@@ -30,7 +30,61 @@ import { animate, motion, useAnimation, useAnimationControls } from "framer-moti
 import { useInView } from 'react-intersection-observer';
 
 
-const About = () => {
+
+// site url
+const URL = process.env.NEXT_SITE_URL;
+
+// FETCHING DATA FROM API
+export const getStaticProps = async ({locale }) => {
+
+  // About us
+  const aboutRes = await fetch(`${URL}about_us/`, {headers: {'Accept-Language': locale }});
+  const aboutData = await aboutRes.json();
+
+  // Features
+  const featuresRes = await fetch(`${URL}about_us/features`, {headers: {'Accept-Language': locale }});
+  const featuresData = await featuresRes.json();
+
+  // goals
+  const goalsRes = await fetch(`${URL}about_us/goals`, {headers: {'Accept-Language': locale }});
+  const goalsData = await goalsRes.json();
+
+  // programs features
+  const progFeatRes = await fetch(`${URL}about_us/programs_features`, {headers: {'Accept-Language': locale }});
+  const progFeatData = await progFeatRes.json();
+
+  // vision
+  // const visionRes = await fetch(`${URL}about_us/vision`, {headers: {'Accept-Language': locale }});
+  // const visionData = await visionRes.json();
+
+  // achievements/numbers
+  const numbersRes = await fetch(`${URL}main_page/numbers`, {headers: {'Accept-Language': locale }});
+  const numbersData = await numbersRes.json();
+
+  // Student activities
+  const activitiesRes = await fetch(`${URL}main_page/shares`, {headers: {'Accept-Language': locale }});
+  const activitiesData = await activitiesRes.json();
+
+  // common questions
+  const questionsRes = await fetch(`${URL}main_page/questions`, {headers: {'Accept-Language': locale }});
+  const questionsData = await questionsRes.json();
+
+  if ((!aboutData)) {
+    return {
+      notFound: true,
+    };
+  }
+  return {
+    props: { about: aboutData, features: featuresData, goals: goalsData, progFeat: progFeatData,
+        numbers: numbersData, activities: activitiesData, questions: questionsData }, // will be passed to the page component as props
+    revalidate: 10, //In seconds
+  };
+};
+
+
+
+
+const About = ({about, features, goals, progFeat,  numbers, activities, questions}) => {
 // lang
 const { locale, locales, asPath } = useRouter();
 
@@ -76,30 +130,25 @@ function Counter({ from, to }) {
         {/*============== About ==========*/}
         <div className={styles.about}>
           <Container>
-            <Row>
-              <Col lg={6}>
+            <Row> 
+              <Col lg={6}> 
                 <div className={styles.text_wrapp}>
-                  <span>من نحن</span>
-                  <h2>مؤسسة تعليمية إفتراضية تستهدف <br /> بناء طفل يجيد القرائة والكتابة</h2>
+                  <span> {about.data?.title}</span>
+                  <h2 dangerouslySetInnerHTML={{ __html: about.data?.description }}/>
                   <div className={styles.items}>
+
+                  {features.data &&
+                  features.data.map((item, index) => (
                     <div className={styles.item}>
                     <div className={styles.icon_head}>
-                        <Image alt="logo" src="/assets/knowledge-1.png" width="34" height="34"  />
-                        <h3>وسيلة التعليم عن بعد</h3>
+                        <Image alt="logo" src={item.icon} width="34" height="34"  />
+                        <h3>{item.heading}</h3>
                       </div>
                       <div className="icon_foot">
-                        <p>نستخدم برنامج zoom للتعليم عن بعد حتى يتسنىللجميع سهولة التعلم والوصول الى محاضراتنا</p>
+                        <p>{item.paragraph}</p>
                       </div>
                     </div>
-                    <div className={styles.item}>
-                      <div className={styles.icon_head}>
-                        <Image alt="logo" src="/assets/read.png" width="34" height="34"  />
-                        <h3>وسيلة التعليم عن بعد</h3>
-                      </div>
-                      <div className="icon_foot">
-                        <p>نستخدم برنامج zoom للتعليم عن بعد حتى يتسنىللجميع سهولة التعلم والوصول الى محاضراتنا</p>
-                      </div>
-                    </div>
+                  ))}
                   </div>
 
                 </div>
@@ -107,8 +156,12 @@ function Counter({ from, to }) {
               </Col>
               <Col lg={6}>
                 <div className={styles.img_wrapper}>
-                   <div className={styles.img_1}></div>
-                   <div className={styles.img_2}></div>
+                {about.data.images &&
+                  about.data.images.map((item, index) => (
+
+                   <div key={index} style={{backgroundImage: `${item.image}`}} className={`${index + 1 == 1 ? styles.img_1 : styles.img_2}`}></div>
+                   
+                   ))}
                    <div className={styles.img_3}></div>
                 </div>
               </Col>
@@ -123,15 +176,15 @@ function Counter({ from, to }) {
           <Container>
             <div className={styles.vision}>
               <div className={styles.shape_hold}>
-                <h2>الرؤية</h2>
-                <p>تخريج جيل متقن للغة العربية (لغة القرآن) قراءة وكتابة</p>
+                <h2>{goals.data.vision?.title}</h2>
+                <p> {goals.data.vision?.description} </p>
               </div>
             </div>
 
             <Row>
               <Col md={5}>
                <div className={styles.image_wrapper}>
-                  <Image alt=".." src="/assets/actity_2.png" width="392" height="392" 
+                  <Image alt=".." src={goals.data.images?.image} width="392" height="392" 
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   objectFit="contain" objectPosition=""
                   
@@ -140,11 +193,15 @@ function Counter({ from, to }) {
               </Col>
               <Col md={7}>
               <div className={styles.text_wrapper}>
-                <h2>أهدافنا</h2>
+                <h2> {locale == "en" ? "Goals" : "أهدافنا"}</h2>
                 <ul className={styles.goals_list}>
-                  <li>إنشاء جيل متقن للغة العربية قراءة وكتابة</li>
-                  <li>السهولة واليسر في التعلم</li>
-                  <li>الوصول لأكبر عدد من الطلاب في المملكة</li>
+
+                {goals.data.goals &&
+                goals.data.goals.map((item, index) => (
+                  <li key={index}>{item.goal}</li>
+                  ))}
+
+                  
                 </ul>
 
               </div>
@@ -161,22 +218,25 @@ function Counter({ from, to }) {
         <div className={`${styles.achivements} `}>
           <Container>
             <div className={`${styles.items} d-grid`}>
+
+              <div className={styles.item}> 
+              <span ref={ref}> {inView && <Counter from={0} to={numbers.data?.students} />}+ </span>
+                <h4> {locale == "en" ? "Graduated student" : "طالب متخرج "} </h4>
+              </div>
+
               <div className={styles.item}>
-              <span ref={ref}> {inView && <Counter from={0} to={14500} />}+</span>
-                <h4>طالب متخرج</h4>
+                <span><Counter from={0} to={numbers.data?.hours} />+</span>
+                <h4> {locale == "en" ? "educational hour" : "ساعة تعليمية "}</h4>
               </div>
               <div className={styles.item}>
-                <span><Counter from={0} to={150000} />+</span>
-                <h4> ساعة تعليمية </h4>
+                <span><Counter from={0} to={numbers.data?.percentage} /> %</span>
+                <h4> {locale == "en" ? "Completion rate" : "نسبة الإنجاز "}</h4>
               </div>
               <div className={styles.item}>
-                <span><Counter from={0} to={99} /> %</span>
-                <h4> نسبة الإنجاز </h4>
+                <span><Counter from={0} to={numbers.data?.teachers} />+</span>
+                <h4> {locale == "en" ? "Teacher and teacher" : "معلم ومعلمة "}</h4>
               </div>
-              <div className={styles.item}>
-                <span><Counter from={0} to={100} />+</span>
-                <h4> معلم ومعلمة </h4>
-              </div>
+              
             </div>
           </Container>
         </div>
@@ -185,44 +245,20 @@ function Counter({ from, to }) {
         {/*============== Features of our programs ==========*/}
         <div className={styles.features}>
           <Container>
-            <h2> مميزات برامجنا </h2>
+            <h2> {locale == "en" ? "Features of our programs" : "مميزات برامجنا "}</h2>
             <Row style={{ maxWidth: '1115px',margin:' 0 auto'}}>
-              <Col lg={4} md={6}>
-                <div className={styles.item}>
-                   <Image alt="logo" src="/assets/learning.png" width="48" height="48" />
-                   <h3>مناهج تعليمية قوية</h3>
-                </div>
-              </Col>
-              <Col lg={4} md={6}>
-                <div className={styles.item}>
-                   <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
-                   <h3> التعليم بطريقة تفاعلية </h3>
-                </div>
-              </Col>
-              <Col lg={4} md={6}>
-                <div className={styles.item}>
-                   <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
-                   <h3> الدمج بين التعلم واللعب </h3>
-                </div>
-              </Col>
-              <Col lg={4} md={6}>
-                <div className={styles.item}>
-                   <Image alt="logo" src="/assets/learning.png" width="48" height="48" />
-                   <h3>مناهج تعليمية قوية</h3>
-                </div>
-              </Col>
-              <Col lg={4} md={6}>
-                <div className={styles.item}>
-                   <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
-                   <h3> التعليم بطريقة تفاعلية </h3>
-                </div>
-              </Col>
-              <Col lg={4} md={6}>
-                <div className={styles.item}>
-                   <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
-                   <h3> الدمج بين التعلم واللعب </h3>
-                </div>
-              </Col>
+
+            {progFeat.data &&
+                progFeat.data.map((item, index) => (
+                  
+                <Col lg={4} md={6} key={index}>
+                  <div className={styles.item}>
+                    <Image alt="logo" src={item.icon} width="48" height="48" />
+                    <h3> {item.heading}</h3>
+                  </div>
+                </Col>
+
+              ))}
 
             </Row>
           </Container>
@@ -232,56 +268,32 @@ function Counter({ from, to }) {
 
         {/*============ Common Questions ===========*/}
 
-
         <div className={`${styles.common_ques} `}>
           <Container>
             <div className={styles.heading}>
-              <h2> الاسئلة الشائعة </h2>
+            <h2>{questions.data?.content?.title} </h2>
             </div>
             <div className="ques_wrapper">
 
 
               <div className={styles.ques}>
+              {questions.data.questions &&
+              questions.data.questions.map((question, index) => (
 
               <Accordion
-                title="كم مدة البرنامج التدريبي"
+                key={index}
+                title={question.question}
                 className={styles.que}
-                content='<p>
-                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                والافضل انه كل الدورات اونلاين . </p>'
-                />               
-              <Accordion
-                title="كم مدة البرنامج التدريبي"
-                className={styles.que}
-                content='<p>
-                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                والافضل انه كل الدورات اونلاين . </p>'
-                />               
-              <Accordion
-                title="كم مدة البرنامج التدريبي"
-                className={styles.que}
-                content='<p>
-                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                والافضل انه كل الدورات اونلاين . </p>'
-                />               
-              <Accordion
-                title="كم مدة البرنامج التدريبي"
-                className={styles.que}
-                content='<p>
-                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                والافضل انه كل الدورات اونلاين . </p>'
-                />               
-
+                content={`<p>${question.answer}</p>`}
+                />   
+                
+              ))}      
 
                 <Link href="/">
                 <a
                     className={`${styles.more_btn_link}  d-flex align-items-center justify-content-end `}
                     style={{ maxWidth: "700px", width:'100%', margin: 'auto' }} >
-                    لديك المزيد من الاستفسارات ! تواصل معنا{" "}
+                   {locale == "en" ? "Have more inquiries! Connect with us" : " لديك المزيد من الاستفسارات ! تواصل معنا"} 
                     <FontAwesomeIcon
                       icon={faArrowLeft}
                       style={{ width: 20, marginRight: "12px" }}
@@ -290,9 +302,9 @@ function Counter({ from, to }) {
                 </Link>
               </div>
               <div className={styles.start}>
-                <h3>انت الان جاهر للبدء ؟</h3>
+                <h3> {locale == "en" ? "Are you now ready to start ?" : "انت الان جاهر للبدء ؟ "}</h3>
                 <Link href="/">
-                  <a className="special_btn"><span> انضم الينا </span></a>
+                  <a className="special_btn"><span>  {locale == "en" ? "Join us" : "انضم الينا"} </span></a>
                 </Link>
               </div>
             </div>
@@ -302,11 +314,11 @@ function Counter({ from, to }) {
         {/*=========== Student activities ================*/}
         <div className={`${styles.student_activites} student_activites `}>
           <div className={styles.heading}>
-            <h2> مشاركات الطلاب </h2>
-            <Link href="/">
-              <a className="twitter_btn_follow"> Follow us @ahruf_edu </a>
-            </Link>
-          </div>
+            <h2>{activities.data?.content?.title} </h2>
+              <Link href="/">
+                <a className="twitter_btn_follow"> { activities.data?.content?.description}  </a>
+              </Link>
+            </div>
           <Swiper
             className={styles.student_activites_slider}
             pagination={{
@@ -336,57 +348,22 @@ function Counter({ from, to }) {
               },
             }}            
           >
-            <SwiperSlide className="item">
-              <Image
-                src="/assets/s_1.png"
-                alt=""
-                width="272"
-                height="260"
-                layout="responsive"
-                objectFit="contain"
-              />
-            </SwiperSlide>
-            <SwiperSlide className="item">
-              <Image
-                src="/assets/s_2.png"
-                alt=""
-                width="272"
-                height="260"
-                layout="responsive"
-                objectFit="contain"
-                priority
-              />
-            </SwiperSlide>
-            <SwiperSlide className="item">
-              <Image
-                src="/assets/s_3.png"
-                alt=""
-                width="272"
-                height="260"
-                layout="responsive"
-                objectFit="contain"
-              />
-            </SwiperSlide>
-            <SwiperSlide className="item">
-              <Image
-                src="/assets/s_4.png"
-                alt=""
-                width="272"
-                height="260"
-                layout="responsive"
-                objectFit="contain"
-              />
-            </SwiperSlide>
-            <SwiperSlide className="item">
-              <Image
-                src="/assets/s_5.png"
-                alt=""
-                width="272"
-                height="260"
-                layout="responsive"
-                objectFit="contain"
-              />
-            </SwiperSlide>
+
+          {activities.data.shares &&
+            activities.data.shares.map((share, index) => (
+
+              <SwiperSlide key={index} className="item">
+                <Image
+                  src={share.image}
+                  alt=""
+                  width="272"
+                  height="260"
+                  layout="responsive"
+                  objectFit="contain"
+                />
+              </SwiperSlide>
+            ))}
+
           </Swiper>
         </div>
       </main>
