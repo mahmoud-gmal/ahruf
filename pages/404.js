@@ -1,10 +1,15 @@
 import Image from 'next/image';
-import Link from 'next/link'
+import Link from 'next/Link'
+import { useRouter } from "next/router";
+
 import { Col, Container, Row } from 'react-bootstrap';
 // styles
 import styles from "./../styles/pages/404.module.css";
 
 export default function FourOhFour() {
+// lang
+const { locale, locales, asPath } = useRouter();
+
   return <>
 
     <div className={styles.error_page}>
@@ -12,9 +17,9 @@ export default function FourOhFour() {
             <Row>
                 <Col md={6}>
                     <div className={styles.text_wrapper}>
-                        <h2>لم يتم إيجاد الصفحة</h2>
-                        <p>عزرا الصفحة التي تبحث عنها غير متاحة الان بسبب بعض المشاكل التقنية</p>
-                        <Link href="/"><a className="special_btn"><span> الرجوع للصفحة الرئيسية </span> </a></Link>
+                        <h2> {locale == "en" ? "Page not found" : "لم يتم إيجاد الصفحة"}</h2>
+                        <p>{locale == "en" ? "Sorry, the page you are looking for is not available now due to some technical problems" : " عذراً الصفحة التي تبحث عنها غير متاحة الان بسبب بعض المشاكل التقنية"}</p>
+                        <Link href="/"><a className="special_btn"><span> {locale == "en" ? "Back to the home page" : "الرجوع للصفحة الرئيسية "}</span> </a></Link>
                     </div>
                     
                 </Col>

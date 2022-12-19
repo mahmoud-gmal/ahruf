@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 // nextjs components
 import Image from "next/image";
 import Link from "next/Link";
-
+import { useAuth } from "./../src/context/AuthContext";
 
 // custom components
 import Meta from "../src/components/Meta";
-import Accordion from "../src/components/Accordion";
+
 
 // styles
 import styles from "./../styles/pages/profile.module.css";
@@ -73,6 +73,7 @@ const validationSchema = Yup.object().shape({
 
 // package 2
 import dynamic from 'next/dynamic';
+import axios from "axios";
 
 export const Picker = dynamic(
   () => {
@@ -83,13 +84,103 @@ export const Picker = dynamic(
 
 
 
+
+// fetch next
+// site url
+// const URL = process.env.NEXT_PUBLIC_API_URI;
+// // FETCHING DATA FROM API
+// export const getStaticProps = async ({locale }) => {
+//   // test
+//   const testRes = await fetch(`${URL}student/lessons`, {headers: {"Content-type": "Application/json", 'Accept-Language': locale, "Authorization": `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FocnVmZWR1LmNvbS9EYXNoYm9hcmRzL2FwaS9zdHVkZW50L2xvZ2luIiwiaWF0IjoxNjcxNDU5MjU3LCJleHAiOjE2NzE1NDU2NTcsIm5iZiI6MTY3MTQ1OTI1NywianRpIjoiakJIWE5talJxU25ZeWE1ZyIsInN1YiI6IjEwOCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.ymBRIWH4MXN9KlxZ9n-t1uUtKR7lQKRV8DZRsiQuGqc`, }});
+//   const testData = await testRes.json();
+//   if ((!testData)) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+//   return {
+//     props: { test: testData }, // will be passed to the page component as props
+//     revalidate: 10, //In seconds
+//   };
+// };
+
 // import { Picker } from "emoji-mart";
 // // import "emoji-mart/css/emoji-mart.css";
 
 
-export default function Profile({ data}) {
+export default function Profile() {
+
+
+
 // lang
   const { locale, locales, asPath } = useRouter();
+ 
+  const [lessonsTable, setLessonsTable] = useState([]);
+  const [lessonsHistory, setLessonsHistory] = useState([]);
+
+  const [studentName, setStudentName] = useState("");
+
+  const { token } = useAuth();
+
+  useEffect(() => {
+
+// student
+  axios.get(
+    `${process.env.NEXT_PUBLIC_API_URI}student`,
+    {headers: {
+            "Content-type": "Application/json",
+            "Authorization": `Bearer ${token ? token : localStorage.getItem('token')}`,
+            'Accept-Language': locale
+            }   
+        }
+  )
+  .then((response) => {
+      // console.log(response.data.data);
+      setStudentName(response.data.data.student_name);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+// student/lessons
+  axios.get(
+    `${process.env.NEXT_PUBLIC_API_URI}student/lessons`,
+    {headers: {
+            "Content-type": "Application/json",
+            "Authorization": `Bearer ${token ? token : localStorage.getItem('token')}`,
+            'Accept-Language': locale
+            }   
+        }
+  )
+  .then((response) => {
+      // console.log(response.data.data);
+      setLessonsTable(response.data.data);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+
+// student/lessons
+axios.get(
+  `${process.env.NEXT_PUBLIC_API_URI}student/history`,
+  {headers: {
+          "Content-type": "Application/json",
+          "Authorization": `Bearer ${token ? token : localStorage.getItem('token')}`,
+          'Accept-Language': locale
+          }   
+      }
+)
+.then((response) => {
+    setLessonsHistory(response.data.data);
+  },
+  (error) => {
+    console.log(error);
+  }
+);
+
+
+}, [])
 
 // time in am/pm format 12h
 const formatAMPM = (date) => {
@@ -127,7 +218,7 @@ const onEmojiClick = (event, emojiObject) => {
 const { register,handleSubmit, formState: { errors }} = useForm({
   resolver: yupResolver(validationSchema)
 });
-
+console.log(lessonsHistory);
 
 const onSubmit = (data) =>{
   console.log(data);
@@ -166,9 +257,8 @@ const onSubmit = (data) =>{
                         objectFit="contain"
                     />
                 </div>
-                    <h4 className={styles.avatar_text}>مرحبا أحمد !</h4>
+                    <h4 className={styles.avatar_text}>مرحبا {studentName} !</h4>
                 </div>   
-
                   <ul className={styles.profile_nav_list}>
                     <Tab><div className={styles.icon_wrapper}><FontAwesomeIcon icon={faTable} color={"#4269EF"} width={14} height={14}/></div><h3 className={styles.text}>جدول الحصص</h3></Tab>
                     <Tab><div className={styles.icon_wrapper}><FontAwesomeIcon icon={faBookBookmark}  color={"#4269EF"} width={14} height={14} /></div><h3 className={styles.text}>المناهج</h3></Tab>
@@ -205,56 +295,23 @@ const onSubmit = (data) =>{
         </Row>
 
         <div className={styles.days}>
-            <div className={styles.day}>
-                <div className={styles.day_head}> الأحد</div>
+
+        {lessonsTable &&
+                  lessonsTable.map((item, index) => (
+            <div key={index} className={styles.day}>
+                <div className={styles.day_head}>{item.day}</div>
                 <div className={styles.day_body}>
-                    <h4>لغة عربية</h4>
+                  <h4>لا يوجد</h4>
+                    {/* <h4>لغة عربية</h4>
                     <div className={styles.time}> 
                         <Image src="/assets/profile/stopwatch.png" alt=".." width="22" height="22" objectFit="contain"/>
                         <span>3:00</span>
-                    </div>
+                    </div> */}
                 </div>
             </div>
-            <div className={styles.day}>
-                <div className={styles.day_head}> الأثنين</div>
-                <div className={styles.day_body}>
-                    <h4>لغة عربية</h4>
-                    <div className={styles.time}> 
-                        <Image src="/assets/profile/stopwatch.png" alt=".." width="22" height="22" objectFit="contain"/>
-                        <span>3:00</span>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.day}>
-                <div className={styles.day_head}> الثلاثاء</div>
-                <div className={styles.day_body}>
-                    <h4>لغة عربية</h4>
-                    <div className={styles.time}> 
-                        <Image src="/assets/profile/stopwatch.png" alt=".." width="22" height="22" objectFit="contain"/>
-                        <span>3:00</span>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.day}>
-                <div className={styles.day_head}> الأربعاء</div>
-                <div className={styles.day_body}>
-                    <h4>لغة عربية</h4>
-                    <div className={styles.time}> 
-                        <Image src="/assets/profile/stopwatch.png" alt=".." width="22" height="22" objectFit="contain"/>
-                        <span>3:00</span>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.day}>
-                <div className={styles.day_head}> الخميس</div>
-                <div className={styles.day_body}>
-                    <h4>لغة عربية</h4>
-                    <div className={styles.time}> 
-                        <Image src="/assets/profile/stopwatch.png" alt=".." width="22" height="22" objectFit="contain"/>
-                        <span>3:00</span>
-                    </div>
-                </div>
-            </div>
+                  ))}
+
+
         </div>
         </div>
       </Panel>
@@ -282,11 +339,12 @@ const onSubmit = (data) =>{
 
         <div className={styles.items}>
 
-            <div className={styles.item}>
+        {lessonsHistory &&
+                  lessonsHistory.map((item) => (
+            <div key={item.id} className={styles.item}>
                <div className={styles.image_wrapper}>
-                <Fancybox>
-                  <Link href="/assets/ccrt.png" data-fancybox="item">
-                    <a className="img" data-fancybox="item">
+                  <Link href={item.zoom_link}>
+                    <a className="img">
                       <Image
                         alt=""
                         src="/assets/ccrt.png"
@@ -297,155 +355,18 @@ const onSubmit = (data) =>{
                       <i className="fa fa-play"></i>
                     </a>
                     </Link>
-                </Fancybox> 
                </div>
                 <div className={styles.item_des}>
-                    <p>اسم الدرس يكتب هنا ليقوم الطالب بالإطلاع عليه فيما بعد</p>
+                    <p>{item.title}</p>
                     <div className={styles.day_wrapper}>
                     <Image src="/assets/profile/stopwatch-1.png" alt=".." width="22" height="22" objectFit="contain"/>
                     <span className="day">يوم :</span>
-                    <div className="date">9 سيبتمبر</div>
+                    <div className="date">{item.date.day} {item.date.month}</div>
                     </div>
 
                 </div>
             </div>
-            <div className={styles.item}>
-               <div className={styles.image_wrapper}>
-                <Fancybox>
-                  <Link href="/assets/ccrt2.png" data-fancybox="item">
-                    <a className="img" data-fancybox="item">
-                      <Image
-                        alt=""
-                        src="/assets/ccrt2.png"
-                        width="239"
-                        height="149"
-                        objectFit="contain"
-                      />
-                      <i className="fa fa-play"></i>
-                    </a>
-                    </Link>
-                </Fancybox> 
-               </div>
-                <div className={styles.item_des}>
-                    <p>اسم الدرس يكتب هنا ليقوم الطالب بالإطلاع عليه فيما بعد</p>
-                    <div className={styles.day_wrapper}>
-                    <Image src="/assets/profile/stopwatch-1.png" alt=".." width="22" height="22" objectFit="contain"/>
-                    <span className="day">يوم :</span>
-                    <div className="date">9 سيبتمبر</div>
-                    </div>
-
-                </div>
-            </div>
-            <div className={styles.item}>
-               <div className={styles.image_wrapper}>
-                <Fancybox>
-                  <Link href="/assets/ccrt3.png" data-fancybox="item">
-                    <a className="img" data-fancybox="item">
-                      <Image
-                        alt=""
-                        src="/assets/ccrt3.png"
-                        width="239"
-                        height="149"
-                        objectFit="contain"
-                      />
-                      <i className="fa fa-play"></i>
-                    </a>
-                    </Link>
-                </Fancybox> 
-               </div>
-                <div className={styles.item_des}>
-                    <p>اسم الدرس يكتب هنا ليقوم الطالب بالإطلاع عليه فيما بعد</p>
-                    <div className={styles.day_wrapper}>
-                    <Image src="/assets/profile/stopwatch-1.png" alt=".." width="22" height="22" objectFit="contain"/>
-                    <span className="day">يوم :</span>
-                    <div className="date">9 سيبتمبر</div>
-                    </div>
-
-                </div>
-            </div>
-            <div className={styles.item}>
-               <div className={styles.image_wrapper}>
-                <Fancybox>
-                  <Link href="/assets/ccrt.png" data-fancybox="item">
-                    <a className="img" data-fancybox="item">
-                      <Image
-                        alt=""
-                        src="/assets/ccrt.png"
-                        width="239"
-                        height="149"
-                        objectFit="contain"
-                      />
-                      <i className="fa fa-play"></i>
-                    </a>
-                    </Link>
-                </Fancybox> 
-               </div>
-                <div className={styles.item_des}>
-                    <p>اسم الدرس يكتب هنا ليقوم الطالب بالإطلاع عليه فيما بعد</p>
-                    <div className={styles.day_wrapper}>
-                    <Image src="/assets/profile/stopwatch-1.png" alt=".." width="22" height="22" objectFit="contain"/>
-                    <span className="day">يوم :</span>
-                    <div className="date">9 سيبتمبر</div>
-                    </div>
-
-                </div>
-            </div>
-            <div className={styles.item}>
-               <div className={styles.image_wrapper}>
-                <Fancybox>
-                  <Link href="/assets/ccrt2.png" data-fancybox="item">
-                    <a className="img" data-fancybox="item">
-                      <Image
-                        alt=""
-                        src="/assets/ccrt2.png"
-                        width="239"
-                        height="149"
-                        objectFit="contain"
-                      />
-                      <i className="fa fa-play"></i>
-                    </a>
-                    </Link>
-                </Fancybox> 
-               </div>
-                <div className={styles.item_des}>
-                    <p>اسم الدرس يكتب هنا ليقوم الطالب بالإطلاع عليه فيما بعد</p>
-                    <div className={styles.day_wrapper}>
-                    <Image src="/assets/profile/stopwatch-1.png" alt=".." width="22" height="22" objectFit="contain"/>
-                    <span className="day">يوم :</span>
-                    <div className="date">9 سيبتمبر</div>
-                    </div>
-
-                </div>
-            </div>
-            <div className={styles.item}>
-               <div className={styles.image_wrapper}>
-                <Fancybox>
-                  <Link href="/assets/ccrt3.png" data-fancybox="item">
-                    <a className="img" data-fancybox="item">
-                      <Image
-                        alt=""
-                        src="/assets/ccrt3.png"
-                        width="239"
-                        height="149"
-                        objectFit="contain"
-                      />
-                      <i className="fa fa-play"></i>
-                    </a>
-                    </Link>
-                </Fancybox> 
-               </div>
-                <div className={styles.item_des}>
-                    <p>اسم الدرس يكتب هنا ليقوم الطالب بالإطلاع عليه فيما بعد</p>
-                    <div className={styles.day_wrapper}>
-                    <Image src="/assets/profile/stopwatch-1.png" alt=".." width="22" height="22" objectFit="contain"/>
-                    <span className="day">يوم :</span>
-                    <div className="date">9 سيبتمبر</div>
-                    </div>
-
-                </div>
-            </div>
-
-
+            ))}
 
         </div>
 
@@ -509,7 +430,7 @@ const onSubmit = (data) =>{
         </div>
 
 
-        <div className="emoij-btn">
+        <div className="emoij-btn d-none">
           <span onClick={() => setEmojiVisible(() => !emojiVisible)}>
             &#128512;
           </span>

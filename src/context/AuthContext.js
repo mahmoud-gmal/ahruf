@@ -1,4 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import Router , {useRouter}  from 'next/router';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const AuthContext = createContext();
 import axios from 'axios';
 
@@ -9,77 +12,46 @@ export const useAuth = () => {
 
 // We provide our context with value
 export const AuthProvider = ({ children }) => {
+  const router = useRouter()
+
   const [displayName, setDisplayName] = useState("");
+  const [token, setToken] = useState();
   const [loading, setLoading] = useState(true);
 //   const history = useHistory();
 
 
-  // credentials
-//   const signup = (name, email, password) => {
-//     return auth
-//       .createUserWithEmailAndPassword(email, password)
-//       .then((cred) => {
-//         cred.user
-//           .updateProfile({
-//             displayName: name,
-//           })
-//           .then(
-//             () => {
-//               // displayName has been updated successfully .
-//               setDisplayName(name);
-//             },
-//             (error) => {
-//               //displayName hasn't been updated successfully. An error happened.
-//               console.log(error);
-//             }
-//           );
-//       })
-//       .then(() => {
-//         toast.success(
-//           `Welcome ${name}, You successfully created an account.`,
-//           {}
-//         );
-//         // redirect after 3 second
-//         window.setTimeout(() => {
-//           history.push("/");
-//         }, 4000);
-//       })
-//       .catch((error) => toast.error(error.message, {}));
-//   };
+const login = (formData) => {
 
-  const login = (username, password) => {
-        return axios.post( `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/jwt-auth/v1/token`, {username, password} )
-            .then( res => {
-                const { token, displayName, email } = res.data.data;
-                localStorage.setItem( 'token', token );
-                localStorage.setItem( 'userName', displayName );
-                localStorage.setItem( 'email', email );
-                // setLoading(false);
-                setDisplayName(displayName);
-            } )
+    let url = `${process.env.NEXT_PUBLIC_API_URI}student/login`;
+    return axios(url, {
+              method: "post",
+              headers: { "Content-Type": "application/json", },
+              data: JSON.stringify(formData)
+          })
+          .then((response) => {
+            const {student, token} = response.data;
+            // console.log(response.data);
+            // store values in localStorage
+            localStorage.setItem( 'token', token );
+            localStorage.setItem( 'student', JSON.stringify(student) );
 
+            setDisplayName(student.name); 
+            setToken(token); 
+            toast.success( `تم تسجيل الدخول بنجاح مرحباً يا  ${student.name}!`,{})
+            router.push('/profile')
+          })
+          .catch((error) => toast.error(`البيانات الذى ادخلتها غير صحيحة`, {}));
+      
   };
 
   const logout = () => {
     setDisplayName('');
     localStorage.removeItem( 'token' );
-    localStorage.removeItem( 'userName' );
-    localStorage.removeItem( 'email' );
+    localStorage.removeItem( 'student' );
   };
 
 
-//   const resetPassword = (email) => {
-//     return auth
-//       .sendPasswordResetEmail(email)
-//       .then(() => {
-//         history.push("/login");
-//         toast.success(
-//           `Password Reseting link has been sent to your email ${email}!`,
-//           {}
-//         );
-//       })
-//       .catch((error) => toast.error(error.message, {}));
-//   };
+
 
   // Cleanup subscription on unmount
 //   useEffect(() => {
@@ -93,19 +65,27 @@ export const AuthProvider = ({ children }) => {
 //   }, []);
 
   const value = {
-    // signup,
     login,
     logout,
-    // resetPassword,
     displayName,
-    // updateEmail,
-    // updatePassword,
+    token
   };
 
   return (
     <AuthContext.Provider value={value}>
       {children}
       {/* {!loading && children} */}
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
     </AuthContext.Provider>
   );
 };

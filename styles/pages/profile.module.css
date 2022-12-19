@@ -190,7 +190,7 @@ color: #303868;
     grid-template-columns: repeat(var(--colNum), auto);
     grid-gap: 1rem;
     text-align: center;
-    padding-top: 93px;
+    padding: 93px 0;
 }
 
 .class_schedule .day_head {

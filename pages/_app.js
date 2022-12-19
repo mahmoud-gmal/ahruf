@@ -23,11 +23,12 @@ function MyApp({ Component, pageProps, router  }) {
   if (router.pathname.startsWith('/login') || router.pathname.startsWith('/signup') || router.pathname.startsWith('/forget-password')) {
 
     return (
+      <AuthProvider>
         <div className="wrap_app memb">
         <Header2 />
         <Component {...pageProps} />
         </div>
-
+      </AuthProvider>
     )
 
 }
@@ -35,9 +36,11 @@ function MyApp({ Component, pageProps, router  }) {
 else if (router.pathname.startsWith('/profile')) {
 
   return (
-    <div className="profile" style={{background: '#F8FBFF'}}>
-    <Component {...pageProps} />
-    </div>
+    <AuthProvider>
+      <div className="profile" style={{background: '#F8FBFF'}}>
+      <Component {...pageProps} />
+      </div>
+    </AuthProvider>
   )
 
 }
@@ -45,42 +48,43 @@ else if (router.pathname.startsWith('/profile')) {
 
   return (
     <>
-       <AnimatePresence exitBeforeEnter>
-        <motion.div
-        key={router.route}
-        initial={{ y: 10, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 0, opacity: 0 }}
-        transition={{ duration: 0.2 }}
+    <AuthProvider>
+        <AnimatePresence exitBeforeEnter>
+          <motion.div
+          key={router.route}
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 0, opacity: 0 }}
+          transition={{ duration: 0.2 }}
 
-      // pass the router.locale as the key, so every time it change it will trigger the animation
-      // key={router.locale}
-      // initial={{ y: 10, opacity: 0 }}
-      // animate={{ y: 0, opacity: 1 }}
-      // transition={{ duration: 0.8 }}
+        // pass the router.locale as the key, so every time it change it will trigger the animation
+        // key={router.locale}
+        // initial={{ y: 10, opacity: 0 }}
+        // animate={{ y: 0, opacity: 1 }}
+        // transition={{ duration: 0.8 }}
 
 
-        // initial="initial"
-        // animate="animate"
-        // variants={{
-        //   initial: {
-        //     opacity: 0,
-        //   },
-        //   animate: {
-        //     opacity: 1,
-        //   },
-        // }}
-       >
-    <div className="wrap_app1">
-      <AuthProvider>
-            <Header />
-              <Component {...pageProps} />
-            <Footer />
-      </AuthProvider>
-      </div>
+          // initial="initial"
+          // animate="animate"
+          // variants={{
+          //   initial: {
+          //     opacity: 0,
+          //   },
+          //   animate: {
+          //     opacity: 1,
+          //   },
+          // }}
+        >
 
-        </motion.div>
-       </AnimatePresence>
+            <div className="wrap_app1">
+                    <Header />
+                      <Component {...pageProps} />
+                    <Footer />
+              </div>
+              
+            </motion.div>
+          </AnimatePresence>
+       </AuthProvider>
     </>
   );
 }

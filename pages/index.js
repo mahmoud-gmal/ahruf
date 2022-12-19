@@ -34,7 +34,7 @@ import { useInView } from 'react-intersection-observer';
 
 
 // site url
-const URL = process.env.NEXT_SITE_URL;
+const URL = process.env.NEXT_PUBLIC_API_URI;
 
 // FETCHING DATA FROM API
 export const getStaticProps = async ({locale }) => {

@@ -1,7 +1,5 @@
 import Link from "next/Link";
 import Image from "next/image";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
 import { Col, Container, Row } from "react-bootstrap";
 
 // fontawesome
@@ -124,17 +122,7 @@ const Footer = () => {
         </Container>
       </div>
 
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={true}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover={false}
-      />
+
     </>
   );
 };

@@ -14,6 +14,6 @@ module.exports = {
 
 
   images: {
-    domains: ['a-ibrahem.azq1.com', 'via.placeholder.com'],
+    domains: ['ahrufedu.com', 'via.placeholder.com'],
   },
 }

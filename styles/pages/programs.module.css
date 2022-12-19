@@ -52,14 +52,14 @@
   transform: translateY(-50%);
   background-size: contain;
 }
-.programs .programs_details ul li{
+.programs .programs_details .list_glob p{
   font: normal normal normal 16px/normal "bahij_Helvetica_roman";
   color: #2E386B;
   margin-bottom: 15px;
   position: relative;
   padding-right: 35px;
 }
-.programs .tab_content ul li::before{
+.programs .tab_content .list_glob p::before{
   content: "";
   position: absolute;
   width: 30px;
@@ -75,10 +75,10 @@
 .programs .programs_details .programs_details_list{
 margin-bottom: 40px;
 }
-.programs .programs_details .programs_details_list_2 li{
+.programs .programs_details .programs_details_list_2 p{
   padding-right: 31px;
 }
-.programs .tab_content .programs_details_list_2 li::before{
+.programs .tab_content .programs_details_list_2 p::before{
   content: "";
   position: absolute;
   width: 10px;
@@ -185,69 +185,147 @@ margin-bottom: 40px;
 }
 
 
+
+/* =====================  What They Say  ======================== */
+.what_say {
+  background: #f8fbff 0% 0% no-repeat padding-box;
+  padding: 80px 0 50px;
+}
+.what_say .heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.what_say .heading h2 {
+  font: normal normal bold 42px/67px "bahij_Helvetica_bold";
+  color: var(--main-color);
+  position: relative;
+}
+.what_say .heading h2::after{
+  position: absolute;
+  content: "“";
+  left: 50%;
+  width: 299px;
+  height: 0;
+  font-size: 400px;
+  opacity: 0.08;
+  transform: translate(-50%, -50%);
+  top: 127%;
+}
+
+
+
+.what_say .what_say_slider .item {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 8px 32px #30386814;
+  border-radius: 10px;
+  padding: 40px 25px;
+}
+.what_say .what_say_slider p {
+  font: normal normal normal 16px/30px "bahij_Helvetica_roman";
+  color: #2E386BBF;
+  margin-bottom: 15px;
+}
+.what_say .what_say_slider h3 {
+  font: normal normal normal 18px/29px "bahij_Helvetica_roman";
+  color: var(--main-color);
+}
+
+
+
+
 /* =====================  Common Questions  ======================== */
 
 .common_ques {
-    background: #f8fbff 0% 0% no-repeat padding-box;
-    padding: 80px 0 50px
-  }
-  .common_ques .heading {
-    text-align: center;
-    margin-bottom: 50px;
-  }
-  .common_ques .heading h2{
-    font: normal normal bold 42px/67px 'bahij_Helvetica_bold';
-    color: var(--main-color);;
-  }
-  .common_ques .ques {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .common_ques .ques .que {
-    margin-bottom: 20px;
-    background: #ffffff 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 0px #d3d5e2;
-    border: 1px solid #d3d5e2;
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 700px;
-  }
-  
-  .common_ques .ques .que h2 {
-    font: normal normal bold 16px/27px "bahij_Helvetica_bold";
-    color: var(--main-color);;
-  }
-  .common_ques .ques .que p {
-    font: normal normal normal 16px/30px "bahij_Helvetica_roman";
-    color: #2E386BBF;
-    margin-top: 14px;
-  }
-  
-  .common_ques .start {
-    text-align: center;
-    margin-top: 50px;
-  }
-  .common_ques .start h3 {
-    font: normal normal normal 36px/58px "bahij_Helvetica_roman";
-    color: var(--main-color);;
-  }
-  
-  .more_btn_link{
-    font: normal normal bold 16px/27px "bahij_Helvetica_bold";
-    color: #80AEFF;
-  }
-  .common_ques .start a {
-    font: normal normal bold 16px/27px "bahij_Helvetica_bold";
-    padding: 16px 58px;
-    margin-top: 14px;
-    display: inline-block;
-  }
-  
-  /* mobile */
-  @media (max-width: 575.9px) {
-  
-  }
+  background: #f8fbff 0% 0% no-repeat padding-box;
+  padding: 80px 0 50px
+}
+.common_ques .heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.common_ques .heading h2{
+  font: normal normal bold 42px/67px 'bahij_Helvetica_bold';
+  color: var(--main-color);;
+}
+.common_ques .ques {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.common_ques .ques .que {
+  margin-bottom: 20px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 0px #d3d5e2;
+  border: 1px solid #d3d5e2;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.common_ques .ques .que h2 {
+  font: normal normal bold 16px/27px "bahij_Helvetica_bold";
+  color: var(--main-color);;
+}
+.common_ques .ques .que p {
+  font: normal normal normal 16px/30px "bahij_Helvetica_roman";
+  color: #2E386BBF;
+  margin-top: 14px;
+}
+
+.common_ques .start {
+  text-align: center;
+  margin-top: 50px;
+}
+.common_ques .start h3 {
+  font: normal normal normal 36px/58px "bahij_Helvetica_roman";
+  color: var(--main-color);;
+}
+
+.more_btn_link{
+  font: normal normal bold 16px/27px "bahij_Helvetica_bold";
+  color: #80AEFF;
+}
+.common_ques .start a {
+  font: normal normal bold 16px/27px "bahij_Helvetica_bold";
+  padding: 16px 58px;
+  margin-top: 14px;
+  display: inline-block;
+}
+
+/* mobile */
+@media (max-width: 575.9px) {
+
+}
+
+
+
+
+/* =====================  Student activities  ======================== */
+
+.student_activites {
+  padding: 60px 0;
+}
+.student_activites .heading {
+  text-align: center;
+}
+.student_activites .heading h2 {
+  font: normal normal bold 42px/67px "bahij_Helvetica_bold";
+  color: var(--main-color);;
+}
+.student_activites .heading a {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 0px #d3d5e2;
+  border: 1px solid #d3d5e2;
+  border-radius: 10px;
+  font: normal normal normal 16px/67px "bahij_Helvetica_roman";
+  color: var(--main-color);;
+  margin-bottom: 40px;
+  padding: 8px 8px;
+}
+.student_activites .student_activites_slider {
+  margin-top: 30px;
+}
 
 
 
@@ -268,15 +346,15 @@ margin-bottom: 40px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 8px 21px #3038680F;
     border-radius: 12px;
-    padding:30px ;
+    padding:25px ;
     display: flex;
     /* justify-content: center; */
     align-items: center;
     margin-bottom: 35px;
-    max-width: 337px;;
+    /* max-width: 337px;; */
   }
   .features .item h3{
-    font: normal normal bold 18px/67px "bahij_Helvetica_bold";
+    font: normal normal bold 17px/67px "bahij_Helvetica_bold";
     color: #2E386B;
     padding-right: 22px;
   }

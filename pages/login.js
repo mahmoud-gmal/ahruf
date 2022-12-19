@@ -1,34 +1,39 @@
 import React, { useState } from "react";
+import { useAuth } from "./../src/context/AuthContext";
 import Router from 'next/router'
-import Image from "next/image";
-import Link from "next/Link";
+import axios from 'axios';
 import Meta from "../src/components/Meta";
 import { toast } from "react-toastify";
-import { Button, Col, Container, Form, FormGroup } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
 // styles
 import styles from "./../styles/forms/login.module.css";
+
+
 //hook-form & yup
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .required(".البريد الالكتروني مطلوب")
-    .email(".البريد إلكتروني غير صالح"),
+  name: Yup.string()
+    .required("اسم المستخدم مطلوب."),
   password: Yup.string()
     .required(".كلمة المرور مطلوبة")
-    .min(8, 'كلمة المرور قصيرة جدًا - يجب ألا تقل عن 8 أحرف.')
-    .matches(/[a-zA-Z]/, 'يمكن أن تحتوي كلمة المرور على أحرف لاتينية فقط.'),
+    // .min(8, 'كلمة المرور قصيرة جدًا - يجب ألا تقل عن 8 أحرف.')
+    // .matches(/[a-zA-Z]/, 'يمكن أن تحتوي كلمة المرور على أحرف لاتينية فقط.'),
 });
 
+// FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />
 
 
-const Login = () => {
+const LoginPage = () => {
+
+  const { login } = useAuth();
+  const [token, setToken] = useState();
 
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
@@ -41,17 +46,38 @@ const Login = () => {
   });
 
 
-  const onSubmit = (data) =>{
-    console.log(data);
-  //   let url = "http://localhost:4000/things/register";
-  //   fetch(url, {
-  //     method: "POST",
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: JSON.stringify(formData)
-  //   })
-  //     .then((response) => response.json())
-  //     .then((result) => console.log(result));
-  //  };
+  const onSubmit =  async (values) =>{
+
+    const formData = {
+      login_username: values.name,
+      password: values.password,
+      remember_me: values.rememberme
+    }
+    try {
+      await login(formData);
+      // history.push("/");
+    } catch (error) {
+      console.log('page error');
+      console.log(error);
+    }
+
+    // let url = `${process.env.NEXT_PUBLIC_API_URI}student/login`;
+    // axios(url, {
+    //   method: "post",
+    //   headers: { "Content-Type": "application/json", },
+    //   data: JSON.stringify(formData)
+    // })
+    //   .then((response) => {
+    //     const {student, token} = response.data;
+    //     setToken(token);
+    //   })
+    //   .catch((error) => {
+    //     //handle error
+    //     console.log(error);
+    //   });
+
+
+
 
   }
 
@@ -72,13 +98,13 @@ const Login = () => {
       <Form noValidate onSubmit={handleSubmit(onSubmit)}>
 
         <Form.Group controlId="emailID">
-          <Form.Label> البريد الإلكترونى </Form.Label>
+          <Form.Label> الإسم </Form.Label>
           <Form.Control
-            type="email"
-            placeholder="example@test.com" 
-            {...register("email")} isInvalid={!!errors.email}/>
+            type="text"
+            placeholder="الإسم" 
+            {...register("name")} isInvalid={!!errors.name}/>
 
-{errors.email?.message && (<Form.Control.Feedback type="invalid">{errors.email?.message}</Form.Control.Feedback>)}
+        {errors.name?.message && (<Form.Control.Feedback type="invalid">{errors.name?.message}</Form.Control.Feedback>)}
         </Form.Group>
 
 
@@ -107,11 +133,11 @@ const Login = () => {
           // feedback="You must agree before submitting."
           // feedbackType="invalid"
         />
-                <Link 
+                {/* <Link 
                 href="/forget-password"><a className={styles.forget} style={{
                   display: 'inlineBlock',
                   marginRight: 'calc(100% - 174px)'
-                }}>هل نسيت كلمة المرور؟</a></Link>
+                }}>هل نسيت كلمة المرور؟</a></Link> */}
       </Form.Group>
       <div className='' >
 
@@ -122,7 +148,7 @@ const Login = () => {
       </div>
 
             </Form>
-             <div className={styles.form_under_text}>
+             {/* <div className={styles.form_under_text}>
               <span className={styles.or_dashed}>او</span>
               <div className={styles.google_signin}>
               <Link href="/">
@@ -140,12 +166,12 @@ const Login = () => {
                 </Link>
               </div>
 
-             </div>
+             </div> */}
             </div>
-            <div className={styles.form_info}>
+            {/* <div className={styles.form_info}>
             <span>ليس لديك عضوية؟</span>
             <Link href="/signup"><a>سجل حساب جديد</a></Link>
-            </div>
+            </div> */}
           </Container>
      
       </main>
@@ -154,51 +180,4 @@ const Login = () => {
   );
 };
 
-export default Login;
-
-
-{/* <div className="row justify-content-center">
-<div className="col-md-7">
-  <div className="contact-inner">
-    <div className="contact-form">
-      <h3>Login </h3>
-      <form onSubmit={submitHandler}>
-        <FormGroup controlId='emailID'>
-          <label>Username</label>
-          <input type="text" name="username" className="form-control" ref={usernameRef} required/>
-        </FormGroup>
-        <div className="form-group">
-          <label>Password</label>
-          <input type="password" name="password" className="form-control" ref={passwordRef} autoComplete="on" required/>
-        </div>
-        <div className="form-group">
-          <div className="row">
-              <div className="col-6">
-                  <label className="aiz-checkbox">
-                      <input type="checkbox" name="remember" />
-                      <span className="text-muted ml-2">Remember Me</span>
-                      <span className="aiz-square-check"></span>
-                  </label>
-              </div>
-              <div className="col-6 text-right">
-                  <Link href="/forget-password" className="text-muted">Forgot password?</Link>
-              </div>
-          </div>
-         </div>
-        <div className="form-group wrap-btn">
-          <button type="submit" className="btn btn-form" style={{minWidth: '100%',marginBottom: '18px'}}>
-            <span>Login</span>
-          </button>
-        </div>
-
-        <div className="form-group text-center">
-          <p className="text-muted" style={{fontSize:'16px'}}>Dont have an account?</p>
-          <Link href="/signup">Register Now</Link>
-        </div>
-
-      </form>
-    </div>
-  </div>
-</div>
-
-</div> */}
+export default LoginPage;

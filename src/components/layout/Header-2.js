@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/Link";
 import React, {useEffect, useState} from "react";
 import { useRouter } from "next/router";
+import { useAuth } from "./../../context/AuthContext";
 // import { useState, useEffect } from "react";
 // fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,7 +34,7 @@ export const variants = {
 
 
 const Header2 = () => {
-
+  const { displayName } = useAuth();
 //   const [width, setWidth] = useState(typeof window !== "undefined" ? window.innerWidth : '');
 //   const handleWindowSizeChange = () => {
 //           setWidth(window.innerWidth);

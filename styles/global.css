@@ -8,6 +8,29 @@ body {
 }
 
 
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius:1rem;
+  box-shadow:inset 0 0 2.5px 2px rgba(0,0,0,.5)
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #28305b;; 
+}
+
+
 
 /* Colors */
 

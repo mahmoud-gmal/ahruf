@@ -23,6 +23,14 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 // import { faArrowleft } from "@fortawesome/free-regular-svg-icons";
 
 
+// SWIPER
+// import "swiper/components/navigation/navigation.min.css";
+import "swiper/components/pagination/pagination.min.css";
+import "swiper/swiper.min.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Pagination, Navigation } from "swiper/core";
+SwiperCore.use([Navigation, Pagination]);
+
 // tabs
 import { Tabs, useTabState, usePanelState } from "@bumaga/tabs";
 
@@ -49,7 +57,49 @@ import { motion, AnimatePresence } from "framer-motion";
 // https://codesandbox.io/s/flamboyant-lucy-sgs1ys?file=/src/App.tsx
 
 
-export default function Programs({ data}) {
+// site url
+const URL = process.env.NEXT_PUBLIC_API_URI;
+
+// FETCHING DATA FROM API
+export const getStaticProps = async ({locale }) => {
+
+  // nav programs
+  const navRes = await fetch(`${URL}nav-programs`, {headers: {'Accept-Language': locale }});
+  const navData = await navRes.json();
+
+
+  // all programs
+  const programsRes = await fetch(`${URL}programs/`, {headers: {'Accept-Language': locale }});
+  const programsData = await programsRes.json();
+
+
+  // Programs Features
+  const featsRes = await fetch(`${URL}about_us/programs_features`, {headers: {'Accept-Language': locale }});
+  const featsData = await featsRes.json();
+
+  // common questions
+  const questionsRes = await fetch(`${URL}main_page/questions`, {headers: {'Accept-Language': locale }});
+  const questionsData = await questionsRes.json();
+
+
+  // Student activities
+  const activitiesRes = await fetch(`${URL}main_page/shares`, {headers: {'Accept-Language': locale }});
+  const activitiesData = await activitiesRes.json();
+
+  if ((!navData, !programsData, !featsData, !questionsData, !activitiesData)) {
+    return {
+      notFound: true,
+    };
+  }
+  return {
+    props: { nav: navData, programs: programsData, feats: featsData, questions: questionsData, activities: activitiesData }, // will be passed to the page component as props
+    revalidate: 10, //In seconds
+  };
+};
+
+
+
+export default function Programs({ nav, programs, feats, questions, activities}) {
 // lang
   const { locale, locales, asPath } = useRouter();
 
@@ -71,133 +121,71 @@ export default function Programs({ data}) {
   <Container>
   <Tabs>
     <Row className={styles.row_tabs}>
+
+
       <Col md={8}>
-      <Panel>
-      <AnimatePresence exitBeforeEnter>
-      <motion.div 
-          className={styles.tab_content}
-          initial={{ y: 10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -10, opacity: 0 }}
-          transition={{ duration: 0.2 }}
-      >
-
-         <h2>برنامج الروضة</h2>
-      
-         <ul className={styles.breadcrumb}>
-          <li><Link href="/"><a>الرئيسية</a></Link></li>
-          <span>/</span>
-          <li>البرامج المتاحة</li>
-          <span>/</span>
-          <li>برنامج الروضة</li>
-         </ul>
 
 
-        <div className={styles.programs_details}>
-
-        <h2 className={styles.title_details}>تفاصيل البرنامج</h2>
-
-          <ul className={styles.programs_details_list}>
-            <li>يناسب الأطفال من عمر 4 سنوات حتى 5 سنوات ونصف</li>
-            <li>مدة البرنامج: 3 أشهر</li>
-            <li>بإمكانك التعلم عبر الجوال أو الأيباد أو اللابتوب</li>
-            <li>حصص مباشرة تفاعلية مع المعلمة عبر الزوم</li>
-            <li>يناسب الأطفال من عمر 4 سنوات حتى 5 سنوات ونصف</li>
-            <li>مدة البرنامج: 3 أشهر</li>
-            <li>بإمكانك التعلم عبر الجوال أو الأيباد أو اللابتوب</li>
-            <li>حصص مباشرة تفاعلية مع المعلمة عبر الزوم</li>
-          </ul>
 
 
-        <h2 className={styles.title_output}>المخرجات المتوقعة</h2>
+      {programs.data &&
+                programs.data.map((item) => (
 
-          <ul className={styles.programs_details_list_2}>
-            <li>يناسب الأطفال من عمر 4 سنوات حتى 5 سنوات ونصف</li>
-            <li>مدة البرنامج: 3 أشهر</li>
-            <li>بإمكانك التعلم عبر الجوال أو الأيباد أو اللابتوب</li>
-            <li>حصص مباشرة تفاعلية مع المعلمة عبر الزوم</li>
-            <li>يناسب الأطفال من عمر 4 سنوات حتى 5 سنوات ونصف</li>
-            <li>مدة البرنامج: 3 أشهر</li>
-            <li>بإمكانك التعلم عبر الجوال أو الأيباد أو اللابتوب</li>
-            <li>حصص مباشرة تفاعلية مع المعلمة عبر الزوم</li>
-          </ul>
+            <Panel key={item.id}>
+            <AnimatePresence exitBeforeEnter>
+            <motion.div 
+                className={styles.tab_content}
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                transition={{ duration: 0.2 }}>
 
-          <Link href="/"><a className="special_btn"><span>  {locale == "en" ? "Join us" : "انضم الينا"}</span></a></Link>
-
-        </div>
-
-        </motion.div>
-
-      </AnimatePresence>
-      </Panel>
-
-      <Panel>
-      <AnimatePresence exitBeforeEnter>
-      <motion.div 
-          className={styles.tab_content}
-          initial={{ y: 10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -10, opacity: 0 }}
-          transition={{ duration: 0.2 }}
-      >
-
-         <h2>برنامج تمهيدى</h2>
-      
-         <ul className={styles.breadcrumb}>
-          <li><Link href="/"><a>الرئيسية</a></Link></li>
-          <span>/</span>
-          <li>البرامج المتاحة</li>
-          <span>/</span>
-          <li>تمهيدى</li>
-         </ul>
-
-        <div className={styles.programs_details}>
-
-        <h2 className={styles.title_details}>تفاصيل البرنامج</h2>
-
-          <ul className={styles.programs_details_list}>
-            <li>يناسب الأطفال من عمر 4 سنوات حتى 5 سنوات ونصف</li>
-            <li>مدة البرنامج: 3 أشهر</li>
-            <li>بإمكانك التعلم عبر الجوال أو الأيباد أو اللابتوب</li>
-            <li>حصص مباشرة تفاعلية مع المعلمة عبر الزوم</li>
-            <li>يناسب الأطفال من عمر 4 سنوات حتى 5 سنوات ونصف</li>
-            <li>مدة البرنامج: 3 أشهر</li>
-            <li>بإمكانك التعلم عبر الجوال أو الأيباد أو اللابتوب</li>
-            <li>حصص مباشرة تفاعلية مع المعلمة عبر الزوم</li>
-          </ul>
+              <h2>{item.title}</h2>
+            
+              <ul className={styles.breadcrumb}>
+                <li><Link href="/"><a> {locale == "en" ? "Home" : "الرئيسية"}</a></Link></li>
+                <span>/</span>
+                <li> {locale == "en" ? "available programs" : "البرامج المتاحة "}</li>
+                <span>/</span>
+                <li>{item.title}</li>
+              </ul>
 
 
-        <h2 className={styles.title_output}>المخرجات المتوقعة</h2>
+              <div className={styles.programs_details}>
 
-          <ul className={styles.programs_details_list_2}>
-            <li>يناسب الأطفال من عمر 4 سنوات حتى 5 سنوات ونصف</li>
-            <li>مدة البرنامج: 3 أشهر</li>
-            <li>بإمكانك التعلم عبر الجوال أو الأيباد أو اللابتوب</li>
-            <li>حصص مباشرة تفاعلية مع المعلمة عبر الزوم</li>
-            <li>يناسب الأطفال من عمر 4 سنوات حتى 5 سنوات ونصف</li>
-            <li>مدة البرنامج: 3 أشهر</li>
-            <li>بإمكانك التعلم عبر الجوال أو الأيباد أو اللابتوب</li>
-            <li>حصص مباشرة تفاعلية مع المعلمة عبر الزوم</li>
-          </ul>
+                <h2 className={styles.title_details}>{locale == "en" ? "Program details" : " تفاصيل البرنامج "}</h2>
 
-          <Link href="/"><a className="special_btn"><span>  {locale == "en" ? "Join us" : "انضم الينا"}</span></a></Link>
+                <div className={`${styles.programs_details_list} ${styles.list_glob}`} dangerouslySetInnerHTML={{ __html: item?.description }}/>
 
-        </div>
+                <h2 className={styles.title_output}> {locale == "en" ? "expected outcomes" : "المخرجات المتوقعة "}</h2>
 
-        </motion.div>
+                <div className={`${styles.programs_details_list_2} ${styles.list_glob}`} dangerouslySetInnerHTML={{ __html: item?.course_outcomes }}/>
 
-      </AnimatePresence>
-      </Panel>
+                <Link href="/login"><a className="special_btn"><span>  {locale == "en" ? "Join us" : "انضم الينا"}</span></a></Link>
+
+              </div>
+
+              </motion.div>
+
+            </AnimatePresence>
+            </Panel>
+
+       ))}
+
+
 
       </Col>
 
 
       <Col md={4}>
         <div className={styles.nav_pill}>
-          <h2>ترتيب البرامج</h2>
+          <h2> {locale == "en" ? "Software arrangement" : "ترتيب البرامج "}</h2>
             <ul className={styles.programs_nav_list_num}>
-            <Tab>الروضة</Tab>
-            <Tab>تمهيدى</Tab>
+              {nav.data.programs &&
+                nav.data.programs.map((item) => (
+                 <Tab key={item.id}>{item.title}</Tab>
+                ))}
+
             </ul>
       </div>
       </Col>
@@ -211,44 +199,19 @@ export default function Programs({ data}) {
       {/*============== Features of our programs ==========*/}
       <div className={styles.features}>
         <Container>
-          <h2> مميزات برامجنا </h2>
+          <h2> {locale == "en" ? "Features of our programs" : "مميزات برامجنا "}</h2>
           <Row style={{ maxWidth: '1115px',margin:' 0 auto'}}>
-            <Col lg={4} md={6}>
+
+          {feats.data &&
+                feats.data.map((item, index) => (
+            <Col key={index} lg={4} md={6}>
               <div className={styles.item}>
-                  <Image alt="logo" src="/assets/learning.png" width="48" height="48" />
-                  <h3>مناهج تعليمية قوية</h3>
+                  <Image alt="" src={item.icon} width="48" height="48" />
+                  <h3>{item.heading}</h3>
               </div>
             </Col>
-            <Col lg={4} md={6}>
-              <div className={styles.item}>
-                  <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
-                  <h3> التعليم بطريقة تفاعلية </h3>
-              </div>
-            </Col>
-            <Col lg={4} md={6}>
-              <div className={styles.item}>
-                  <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
-                  <h3> الدمج بين التعلم واللعب </h3>
-              </div>
-            </Col>
-            <Col lg={4} md={6}>
-              <div className={styles.item}>
-                  <Image alt="logo" src="/assets/learning.png" width="48" height="48" />
-                  <h3>مناهج تعليمية قوية</h3>
-              </div>
-            </Col>
-            <Col lg={4} md={6}>
-              <div className={styles.item}>
-                  <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
-                  <h3> التعليم بطريقة تفاعلية </h3>
-              </div>
-            </Col>
-            <Col lg={4} md={6}>
-              <div className={styles.item}>
-                  <Image alt="logo" src="/assets/knowledge-1.png" width="48" height="48" />
-                  <h3> الدمج بين التعلم واللعب </h3>
-              </div>
-            </Col>
+          ))}
+
           </Row>
         </Container>
       </div>
@@ -260,52 +223,29 @@ export default function Programs({ data}) {
         <div className={`${styles.common_ques} `}>
           <Container>
             <div className={styles.heading}>
-              <h2> الاسئلة الشائعة </h2>
+            <h2>{questions.data?.content?.title} </h2>
             </div>
             <div className="ques_wrapper">
 
 
               <div className={styles.ques}>
+              {questions.data.questions &&
+              questions.data.questions.map((question, index) => (
 
               <Accordion
-                title="كم مدة البرنامج التدريبي"
+                key={index}
+                title={question.question}
                 className={styles.que}
-                content='<p>
-                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                والافضل انه كل الدورات اونلاين . </p>'
-                />               
-              <Accordion
-                title="كم مدة البرنامج التدريبي"
-                className={styles.que}
-                content='<p>
-                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                والافضل انه كل الدورات اونلاين . </p>'
-                />               
-              <Accordion
-                title="كم مدة البرنامج التدريبي"
-                className={styles.que}
-                content='<p>
-                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                والافضل انه كل الدورات اونلاين . </p>'
-                />               
-              <Accordion
-                title="كم مدة البرنامج التدريبي"
-                className={styles.que}
-                content='<p>
-                اعتقد ان احرف كنز علم اولادي مبادئ اللغة العربية في وقت
-                قياسي ، بعد محاولات سابقة غير ناجحة مع منصات اخرى ،
-                والافضل انه كل الدورات اونلاين . </p>'
-                />               
-
+                content={`<p>${question.answer}</p>`}
+                />   
+                
+              ))}      
 
                 <Link href="/">
-                  <a
+                <a
                     className={`${styles.more_btn_link}  d-flex align-items-center justify-content-end `}
                     style={{ maxWidth: "700px", width:'100%', margin: 'auto' }} >
-                    لديك المزيد من الاستفسارات ! تواصل معنا{" "}
+                   {locale == "en" ? "Have more inquiries! Connect with us" : " لديك المزيد من الاستفسارات ! تواصل معنا"} 
                     <FontAwesomeIcon
                       icon={faArrowLeft}
                       style={{ width: 20, marginRight: "12px" }}
@@ -314,9 +254,9 @@ export default function Programs({ data}) {
                 </Link>
               </div>
               <div className={styles.start}>
-                <h3>انت الان جاهر للبدء ؟</h3>
+                <h3> {locale == "en" ? "Are you now ready to start ?" : "انت الان جاهر للبدء ؟ "}</h3>
                 <Link href="/">
-                  <a className="special_btn"><span> انضم الينا </span></a>
+                  <a className="special_btn"><span>  {locale == "en" ? "Join us" : "انضم الينا"} </span></a>
                 </Link>
               </div>
             </div>
@@ -325,6 +265,61 @@ export default function Programs({ data}) {
 
 
 
+        {/*=========== Student activities ================*/}
+        <div className={`${styles.student_activites} student_activites `}>
+          <div className={styles.heading}>
+          <h2>{activities.data?.content?.title} </h2>
+            <Link href="/">
+              <a className="twitter_btn_follow"> {activities.data?.content?.description}  </a>
+            </Link>
+          </div>
+          <Swiper
+            className={styles.student_activites_slider}
+            pagination={{
+              dynamicBullets: true,
+              clickable: true
+            }}
+            // spaceBetween={15}
+            slidesPerView={4.2}
+            centeredSlides
+            centeredSlidesBounds
+            navigation={true}
+            speed={1200}
+            freeMode
+            loop
+            breakpoints={{
+              0: {
+                // width: 0,
+                slidesPerView: 1,
+              },
+              500: {
+                // width: 600,
+                slidesPerView: 2.2,
+              },
+              900: {
+                // width: 1000,
+                slidesPerView: 4.2,
+              },
+            }}            
+          >
+
+              {activities.data.shares &&
+            activities.data.shares.map((share, index) => (
+
+              <SwiperSlide key={index} className="item">
+                <Image
+                  src={share.image}
+                  alt=""
+                  width="272"
+                  height="260"
+                  layout="responsive"
+                  objectFit="contain"
+                />
+              </SwiperSlide>
+            ))}
+
+          </Swiper>
+        </div>
 
       </main>
     </>
