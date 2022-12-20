@@ -139,7 +139,7 @@ function Counter({ from, to }) {
 
                   {features.data &&
                   features.data.map((item, index) => (
-                    <div className={styles.item}>
+                    <div key={index} className={styles.item}>
                     <div className={styles.icon_head}>
                         <Image alt="logo" src={item.icon} width="34" height="34"  />
                         <h3>{item.heading}</h3>
