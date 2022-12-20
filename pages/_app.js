@@ -48,14 +48,14 @@ else if (router.pathname.startsWith('/profile')) {
 
   return (
     <>
-    <AuthProvider>
+    {/* <AuthProvider>
         <AnimatePresence exitBeforeEnter>
           <motion.div
           key={router.route}
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 0, opacity: 0 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.2 }} 
 
         // pass the router.locale as the key, so every time it change it will trigger the animation
         // key={router.locale}
@@ -75,16 +75,16 @@ else if (router.pathname.startsWith('/profile')) {
           //   },
           // }}
         >
-
+*/}
             <div className="wrap_app1">
                     <Header />
                       <Component {...pageProps} />
                     <Footer />
               </div>
               
-            </motion.div>
+            {/* </motion.div>
           </AnimatePresence>
-       </AuthProvider>
+       </AuthProvider> */}
     </>
   );
 }
