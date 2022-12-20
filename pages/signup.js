@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Router from 'next/router'
 import Image from "next/image";
-import Link from "next/Link";
+import Link from "next/link";
 import Meta from "../src/components/Meta";
 import { toast } from "react-toastify";
 import { Button, Container, Form } from 'react-bootstrap';

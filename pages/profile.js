@@ -3,7 +3,7 @@ import React, { useState , useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 // nextjs components
 import Image from "next/image";
-import Link from "next/Link";
+import Link from "next/link";
 import { useAuth } from "./../src/context/AuthContext";
 
 // custom components
