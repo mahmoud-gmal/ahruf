@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from "next/router";
 
 import { Col, Container, Row } from 'react-bootstrap';
+import Meta from '../src/components/Meta';
 // styles
 import styles from "./../styles/pages/404.module.css";
 
@@ -11,7 +12,7 @@ export default function FourOhFour() {
 const { locale, locales, asPath } = useRouter();
 
   return <>
-
+      <Meta title="ahruf | 404" />
     <div className={styles.error_page}>
         <Container>
             <Row>

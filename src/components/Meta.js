@@ -7,7 +7,7 @@ const Meta = ({ title, keywords, description }) => {
       <meta name='keywords' content={keywords} />
       <meta name='description' content={description} />
       <meta charSet='utf-8' />
-      <link rel='icon' href='/assets/Logo.png' />
+      <link rel='icon' href='/assets/Favicon.png' />
       <title>{title}</title>
       {/* Add hreflang links */}
       <link rel="alternate" href="http://localhost:3000" hrefLang="x-default" />
