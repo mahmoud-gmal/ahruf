@@ -13,7 +13,7 @@
   padding: 35px 0;
 }
 
-.main_navbar ul li {
+.main_navbar > ul li {
   margin-inline-end: 25px;
 }
 
@@ -84,7 +84,7 @@
 
 .menu_dropdown{
   position: absolute;
-  top: 22px;
+  top: 25px;
   left: -28px;
   width: 229px;
   perspective: 1000px;
@@ -96,7 +96,6 @@
 }
 .menu_dropdown li{
   display: none;
-  padding: 10px 20px;
   opacity: 0;
   padding: 12px;
   background: #fff 0 0 no-repeat padding-box;
@@ -106,6 +105,8 @@
 }
 .menu_dropdown li a{
   transition: all .4 ease-in-out;
+  display: block;
+  padding: 10px 20px;
 }
 .menu_dropdown li:hover{
   background-color:#2f3769;
@@ -252,7 +253,7 @@
 
 /*------------ mobile ---------------*/
 @media (max-width: 1199.9px) {
-  .main_navbar ul li {
+  .main_navbar > ul li {
     margin-inline-end: 16px;
   }
   .btn_log {
