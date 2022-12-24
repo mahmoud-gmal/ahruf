@@ -1,0 +1,25 @@
+.account{
+    margin: 80px auto;
+    max-width: 600px;
+    background: #fff 0 0 no-repeat padding-box;
+    box-shadow: 0 8px 32px rgb(48 56 104 / 8%);
+    border-radius: 10px;
+    padding: 50px 30px;
+    /* color: #2e386b; */
+    color: var(--main-color);
+}
+.account h3{
+    font: normal normal normal 30px/30px "bahij_Helvetica_roman";
+    margin-bottom: 20px;
+}
+.account p{
+    font: normal normal bold 18px/18px "bahij_Helvetica_bold";
+    margin: 20px 0 25px;
+}
+.account .item{
+    display: flex;gap: 18px;
+    margin: 18px 0;
+    font-family: "bahij_Helvetica_roman";;
+}
+/* .account .item .item_txt{}
+.account .item .item_num{} */

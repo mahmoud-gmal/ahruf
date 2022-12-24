@@ -184,9 +184,9 @@ const Contact = ({ contactInfo }) => {
                     ? "Make sure that you did not get the answer to your questions before contacting us from Hilal Ziyarah"
                     : " تأكد من أنك لم تحصل على إجابة أسئلتك قبل التواصل معنا من هلال زيارة "}
                 </p>
-                <Link href="/">
+                <a>
                   {locale == "en" ? "common questions" : "الأسئلة الشائعة "}
-                </Link>
+                </a>
               </div>
 
               <div className={styles.info_contact}>

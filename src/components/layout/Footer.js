@@ -35,7 +35,7 @@ const Footer = () => {
                 </Link>
               </div>
             </Col>
-            <Col className={styles.item} md={6} lg={3}>
+            <Col className={styles.item} md={6} lg={4}>
               <ul className={styles.contact_info}>
                 <li>
                   <a href="tel:9660548762583">
@@ -73,35 +73,26 @@ const Footer = () => {
                 </li>
               </ul>
             </Col>
-            <Col className={styles.item} md={6} lg={3}>
+            <Col className={styles.item} md={6} lg={4}>
               <ul className={styles.links}>
                 <li>
-                  <Link href="/">من نحن</Link>
+                  <Link href="/about">من نحن</Link>
                 </li>
                 <li>
-                  <Link href="/">برامجنا التدريبية</Link>
+                  <Link href="/contact">اتصل بنا</Link>
                 </li>
                 <li>
-                  <Link href="/">باقات الاشتراك</Link>
+                  <Link href="/terms">الشروط والأحكام</Link>
                 </li>
                 <li>
-                  <Link href="/">الاسئلة الشائعة</Link>
+                  <Link href="/programs">برامجنا التدريبية</Link>
                 </li>
                 <li>
-                  <Link href="/">اتصل بنا</Link>
+                  <Link href="/accounts"> الحسابات</Link>
                 </li>
               </ul>
             </Col>
-            <Col className={styles.item} md={6} lg={2}>
-              <ul className={styles.links}>
-                <li>
-                  <Link href="/">الشروط والاحكام</Link>
-                </li>
-                <li>
-                  <Link href="/">برامجنا التدريبية</Link>
-                </li>
-              </ul>
-            </Col>
+
             {/* copyrights */}
             <hr className="mt-4" style={{  border: '0.8px solid #F3f3f3'}}/>
 

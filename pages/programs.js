@@ -1,5 +1,5 @@
 // react core
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 // nextjs components
 import Image from "next/image";
@@ -31,24 +31,33 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Navigation } from "swiper/core";
 SwiperCore.use([Navigation, Pagination]);
 
-// tabs
-import { Tabs, useTabState, usePanelState } from "@bumaga/tabs";
+//=== @bumagatabs ===//
+// import { Tabs, useTabState, usePanelState } from "@bumaga/tabs";
+// // custom nav tabs
+// const Tab = ({ children }) => {
+//   const { onClick, isActive,} = useTabState();
+//   return (
+//     <li onClick={onClick} className={`${isActive ? styles.active : `inactive`} tab`}>
+//       {children}
+//     </li>
+//   );
+// };
 
-// custom nav tabs
-const Tab = ({ children }) => {
-  const { onClick, isActive } = useTabState();
-  return (
-    <li onClick={onClick} className={`${isActive ? styles.active : "inactive"} tab`}>
-      {children}
-    </li>
-  );
-};
+// // custom tab content
+// const Panel = ({ children }) => {
+//   const isActive = usePanelState();
+//   return isActive ? <>{children}</> : null;
+// };
 
-// custom tab content
-const Panel = ({ children }) => {
-  const isActive = usePanelState();
-  return isActive ? <>{children}</> : null;
-};
+
+
+//=== react-tabs ===//
+import Tabs from "react-tabs/lib/components/Tabs";
+import TabList from "react-tabs/lib/components/TabList";
+import Tab from "react-tabs/lib/components/Tab";
+import TabPanel from "react-tabs/lib/components/TabPanel";
+
+
 
 
 // framer notion
@@ -103,8 +112,20 @@ export default function Programs({ nav, programs, feats, questions, activities})
 // lang
   const { locale, locales, asPath } = useRouter();
 
+ // get param id
+  const router = useRouter()
+  const {id} = router.query
+
+  // tab state
+  const [tabIndex, setTabIndex] = useState(0);
 
 
+useEffect(() => {
+if(id){
+  setTabIndex(id -1 )
+}
+  
+},[id])
 
 
   return (
@@ -119,7 +140,7 @@ export default function Programs({ nav, programs, feats, questions, activities})
 
 <div className={styles.programs}>
   <Container>
-  <Tabs>
+  <Tabs data-id={id} selectedIndex={tabIndex}  onSelect={(index) => setTabIndex(index)}>
     <Row className={styles.row_tabs}>
 
 
@@ -131,7 +152,7 @@ export default function Programs({ nav, programs, feats, questions, activities})
       {programs.data &&
                 programs.data.map((item) => (
 
-            <Panel key={item.id}>
+            <TabPanel key={item.id}>
             <AnimatePresence exitBeforeEnter>
             <motion.div 
                 className={styles.tab_content}
@@ -161,14 +182,14 @@ export default function Programs({ nav, programs, feats, questions, activities})
 
                 <div className={`${styles.programs_details_list_2} ${styles.list_glob}`} dangerouslySetInnerHTML={{ __html: item?.course_outcomes }}/>
 
-                <Link href="/login"><a className="special_btn"><span>  {locale == "en" ? "Join us" : "انضم الينا"}</span></a></Link>
+                <Link href="https://ahrufedu.com/Dashboards/parent/login"><a className="special_btn"><span>  {locale == "en" ? "Join us" : "انضم الينا"}</span></a></Link>
 
               </div>
 
               </motion.div>
 
             </AnimatePresence>
-            </Panel>
+            </TabPanel>
 
        ))}
 
@@ -180,13 +201,13 @@ export default function Programs({ nav, programs, feats, questions, activities})
       <Col md={4}>
         <div className={styles.nav_pill}>
           <h2> {locale == "en" ? "Software arrangement" : "ترتيب البرامج "}</h2>
-            <ul className={styles.programs_nav_list_num}>
+            <TabList className={styles.programs_nav_list_num}>
               {nav.data.programs &&
-                nav.data.programs.map((item) => (
-                 <Tab key={item.id}>{item.title}</Tab>
+                nav.data.programs.map((item, i) => (
+                 <Tab className={tabIndex == i ? `${styles.active}` : 'inactive-tab'} key={item.id}>{item.title}</Tab>
                 ))}
 
-            </ul>
+            </TabList>
       </div>
       </Col>
 
@@ -255,7 +276,7 @@ export default function Programs({ nav, programs, feats, questions, activities})
               </div>
               <div className={styles.start}>
                 <h3> {locale == "en" ? "Are you now ready to start ?" : "انت الان جاهر للبدء ؟ "}</h3>
-                <Link href="/">
+                <Link href="https://ahrufedu.com/Dashboards/parent/login">
                   <a className="special_btn"><span>  {locale == "en" ? "Join us" : "انضم الينا"} </span></a>
                 </Link>
               </div>

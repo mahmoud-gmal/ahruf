@@ -162,7 +162,7 @@ const activitiess = activities.data;
                             <div className={styles.banner_txt}>
                             <h2>{bannerData?.content?.title} </h2>
                             <p>{bannerData?.content?.description} </p>
-                            <Link href="/contact">
+                            <Link href="https://ahrufedu.com/Dashboards/parent/register">
                                 <a className="special_btn"><span>  {locale == "en" ? "Join us" : "انضم الينا"} </span> </a>
                             </Link>
                             </div>
@@ -265,7 +265,7 @@ const activitiess = activities.data;
 
 
         {/*============= Subscription  =========*/}
-        <div ref={ref} className={`${styles.subscription } `}>
+        <div ref={ref} className={`${styles.subscription } `} id="packages">
 
             <Row className="align-items-center m-0">
               <Col md={4}>
@@ -292,7 +292,7 @@ const activitiess = activities.data;
                     <h4> {item?.title} </h4>
                     <div className={styles.details}>
                       <ul className="back_data_package"><li dangerouslySetInnerHTML={{__html: item?.description}}/></ul>
-                      <Link href="/login">
+                      <Link href="https://ahrufedu.com/Dashboards/parent/register">
                         <a className="special_btn"><span> {locale == "en" ? "Subscribe to this package" : "الاشتراك في هذه الباقة "}</span></a>
                       </Link>
                     </div>
@@ -381,7 +381,7 @@ const activitiess = activities.data;
                 
               ))}      
 
-                <Link href="/">
+                <Link href="/contact">
                 <a
                     className={`${styles.more_btn_link}  d-flex align-items-center justify-content-end `}
                     style={{ maxWidth: "700px", width:'100%', margin: 'auto' }} >
@@ -395,7 +395,7 @@ const activitiess = activities.data;
               </div>
               <div className={styles.start}>
                 <h3> {locale == "en" ? "Are you now ready to start ?" : "انت الان جاهر للبدء ؟ "}</h3>
-                <Link href="/">
+                <Link href="https://ahrufedu.com/Dashboards/parent/register">
                   <a className="special_btn"><span>  {locale == "en" ? "Join us" : "انضم الينا"} </span></a>
                 </Link>
               </div>

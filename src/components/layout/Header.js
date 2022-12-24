@@ -11,6 +11,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import styles from "./../../../styles/layout/Header.module.css";
 
 import { motion } from 'framer-motion';
+import axios from "axios";
 
 export const variants = {
   show: {
@@ -33,6 +34,8 @@ export const variants = {
 
 
 const Header = () => {
+
+  const [programsList, setProgramsList] = useState([]);
 
 //   const [width, setWidth] = useState(typeof window !== "undefined" ? window.innerWidth : '');
 //   const handleWindowSizeChange = () => {
@@ -59,12 +62,13 @@ const Header = () => {
 
 const { locale, locales, asPath } = useRouter();
 
-// import './../../../styles/mobile.css'
+
 
 
 
 const [status, setStatus] = useState(false);
 
+// mobile menu 
 const handleClick = () =>{
   setStatus(!status)
 }
@@ -75,10 +79,31 @@ useEffect(() => {
   let lang = locale == "ar" ? "ar" : "en";
   document.querySelector("html").setAttribute("dir", dir);
   document.querySelector("html").setAttribute("lang", lang);
-  // if(locale == "en"){
-  //   import './../../../styles/style-en.css'
-  // }
 }, [locale]);
+
+
+useEffect(() => {
+
+// nav programs
+axios.get(
+  `${process.env.NEXT_PUBLIC_API_URI}nav-programs`,
+  {headers: {
+          "Content-type": "Application/json",
+          'Accept-Language': locale
+          }   
+      }
+)
+.then((response) => {
+  setProgramsList(response.data.data);
+  // console.log(response.data.data)
+  },
+  (error) => {
+    console.log(error);
+  }
+);
+
+}, [])
+
 
   return (
 
@@ -116,20 +141,18 @@ useEffect(() => {
                       <a className={styles.menu}>{locale == "en" ? "available programs" : "البرامج المتاحة "}<FontAwesomeIcon icon={faCaretDown} /></a>
                     </Link>
                     <ul className={styles.menu_dropdown}>
-                      <li>
-                        <Link href="/">من نحن</Link>
+                    {programsList.programs &&
+                  programsList.programs.map((item, i) => (
+                      <li key={item.id}>
+                        <Link href={`/programs?id=${i +1}`}>{item.title}</Link>
                       </li>
-                      <li>
-                        <Link href="/">من نحن</Link>
-                      </li>
-                      <li>
-                        <Link href="/">من نحن</Link>
-                      </li>
+                  ))}
+
                     </ul>
                   </li>
 
                   <li>
-                    <Link href="/">{locale == "en" ? "Subscriptions" : "باقات الاشتراك"}</Link>
+                    <Link href="/#packages">{locale == "en" ? "Subscription prices" : "اسعار الاشتراك"}</Link>
                   </li>
                   <li>
                     <Link href="/contact">{locale == "en" ? "Contact" : "اتصل بنا "}</Link>
@@ -153,13 +176,13 @@ useEffect(() => {
                  
                 </div>
                 <div className={styles.btns}>
-                  <Link href="/">
+                  <Link href="/login">
                     <a className={`special_btn ${styles.btn_log}`}>
-                     <span>  {locale == "en" ? "Parent entry" : "دخول ولي الامر "}</span>
+                     <span>{locale == "en" ? "Student entry" : "دخول الطالب"}</span>
                     </a>
                   </Link>
-                  <Link href="/">
-                    <a className="special_btn"><span> {locale == "en" ? "Join us" : "انضم الينا"}</span></a>
+                  <Link href="https://ahrufedu.com/Dashboards/parent/login">
+                    <a className="special_btn"><span>{locale == "en" ? "Parent entry" : "دخول ولي الامر "}</span></a>
                   </Link>
                 </div>
               </div>
@@ -224,20 +247,18 @@ useEffect(() => {
                       <a className={styles.menu}>{locale == "en" ? "available programs" : "البرامج المتاحة "}<FontAwesomeIcon icon={faCaretDown} /></a>
                     </Link>
                     <ul className={styles.menu_dropdown}>
-                      <li>
-                        <Link href="/">من نحن</Link>
+                    {programsList.programs &&
+                  programsList.programs.map((item, i) => (
+                      <li key={item.id}>
+                        <Link href={`/programs?id=${i +1}`}>{item.title}</Link>
                       </li>
-                      <li>
-                        <Link href="/">من نحن</Link>
-                      </li>
-                      <li>
-                        <Link href="/">من نحن</Link>
-                      </li>
+                  ))}
+
                     </ul>
                   </li>
 
                   <li>
-                    <Link href="/">{locale == "en" ? "Subscriptions" : "باقات الاشتراك"}</Link>
+                    <Link href="/#packages">{locale == "en" ? "Subscription prices" : "اسعار الاشتراك"}</Link>
                   </li>
                   <li>
                     <Link href="/contact">{locale == "en" ? "Contact" : "اتصل بنا "}</Link>

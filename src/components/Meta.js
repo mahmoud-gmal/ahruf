@@ -1,6 +1,7 @@
 import Head from 'next/head'
-
+import { server } from '../../config';
 const Meta = ({ title, keywords, description }) => {
+
   return (
     <Head>
       <meta name='viewport' content='width=device-width, initial-scale=1' />
@@ -10,17 +11,19 @@ const Meta = ({ title, keywords, description }) => {
       <link rel='icon' href='/assets/Favicon.png' />
       <title>{title}</title>
       {/* Add hreflang links */}
-      <link rel="alternate" href="http://localhost:3000" hrefLang="x-default" />
-      <link rel="alternate" href="http://localhost:3000" hrefLang="ar" />
-      <link rel="alternate" href="http://example.com/en" hrefLang="en" />
+      <link rel="alternate" href={server} hrefLang="x-default" />
+      <link rel="alternate" href={server} hrefLang="ar" />
+      <link rel="alternate" href={`${server}/en`} hrefLang="en" />
     </Head>
   )
 }
 
-Meta.defaultProps = {
-  title: 'ahrufedu',
-  keywords: ` مواقع وتطبيقات, تصميم متاجر الاكترونية`,
-  description: 'أفضل شركة تصميم المواقع الإلكترونية و تطبيقات الجوال',
-}
+  Meta.defaultProps = {
+    title: 'ahrufedu',
+    keywords: `فصول تعليمية اونلاين, خدمات تعليمية متنوعة`,
+    description: 'يقدم الخدمات التعليمية المتنوعة بنظام الكورسات والفصول',
+  }
+
+
 
 export default Meta;

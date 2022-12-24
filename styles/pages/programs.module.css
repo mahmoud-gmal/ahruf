@@ -122,6 +122,7 @@ margin-bottom: 40px;
   counter-increment: my-awesome-counter;
   position: relative;
 }
+.programs .nav_pill ul li:focus-visible{outline: none;}
 .programs .nav_pill ul li::before{
   content: counter(my-awesome-counter);
   position: absolute;

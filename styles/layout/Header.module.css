@@ -37,7 +37,10 @@
   color: #2f3769;
 }
 
-/* Menu dropdown */
+
+
+
+/* ---------- Menu dropdown --------------
 .main_navbar .menu_dropdown {
   background: var(--main-color);
   height: 0;
@@ -58,14 +61,105 @@
   height: 100px;
   opacity: 1;
   transform: translateY(0);
-}
+} */
 
 .menu svg {
   color: #303868;
   width: 8px;
   margin-inline-start: 4px;
 }
+/* Start menu dropdown */
 
+.drop{
+  animation: rotateMenu 400ms ease-in-out forwards;
+  transform-origin: top center;
+  position: relative;
+  perspective: 1000px;
+  z-index: 100;
+  display: block;
+}
+.drop:hover{
+  cursor: pointer;
+}
+
+.menu_dropdown{
+  position: absolute;
+  top: 22px;
+  left: -28px;
+  width: 229px;
+  perspective: 1000px;
+  z-index: -1;
+  /* animatin */
+  animation: rotateMenu 400ms ease-in-out forwards;
+  /* animation: rotateY 300ms ease-in-out forwards; */
+  transform-origin: top center;
+}
+.menu_dropdown li{
+  display: none;
+  padding: 10px 20px;
+  opacity: 0;
+  padding: 12px;
+  background: #fff 0 0 no-repeat padding-box;
+  box-shadow: 0 5px 15px rgb(48 56 104 / 5%);
+  border: 1px solid #f0f0f0;  
+  transition: all .4 ease-in-out;
+}
+.menu_dropdown li a{
+  transition: all .4 ease-in-out;
+}
+.menu_dropdown li:hover{
+  background-color:#2f3769;
+  color:#FFF;
+}
+.menu_dropdown li:hover a{color: #FFF;}
+
+
+/*  Menu as a whole animated */
+
+.drop:hover .menu_dropdown {
+  display: block;
+}
+.menu_dropdown{
+  display: none;
+}
+.menu_dropdown li {
+  display: block;
+  opacity: 1;
+}
+
+
+/* animation */
+@keyframes rotateY {
+  0% {
+    transform: rotateY(90deg);
+  }
+  80% {
+    transform: rotateY(-10deg);
+  }
+  100% {
+    transform: rotateY(0);
+  }
+}
+
+
+@keyframes rotateMenu {
+  0% {
+    transform: rotateX(-90deg)
+  }
+  70% {
+    transform: rotateX(20deg) 
+  }
+  100% {
+    transform: rotateX(0deg) 
+  }
+}
+
+/* End menu dropdown */
+
+
+
+
+/* lang */
 .lang span {
   font: normal normal normal 14px/0px "roboto_regular";
 }
@@ -150,6 +244,9 @@
   cursor: pointer;
   display: none;
 }
+
+
+
 
 
 
