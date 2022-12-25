@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import Router , {useRouter}  from 'next/router';
+import  {useRouter}  from 'next/router';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const AuthContext = createContext();
@@ -32,9 +32,10 @@ const login = (formData) => {
             const {student, token} = response.data;
             // console.log(response.data);
             // store values in localStorage
+            if (typeof window !== "undefined") {
             localStorage.setItem( 'token', token );
             localStorage.setItem( 'student', JSON.stringify(student) );
-
+            }
             setDisplayName(student.name); 
             setToken(token); 
             toast.success( `تم تسجيل الدخول بنجاح مرحباً يا  ${student.name}!`,{})
@@ -46,8 +47,10 @@ const login = (formData) => {
 
   const logout = () => {
     setDisplayName('');
+    if (typeof window !== "undefined") {
     localStorage.removeItem( 'token' );
     localStorage.removeItem( 'student' );
+    }
   };
 
 

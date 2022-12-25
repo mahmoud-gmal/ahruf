@@ -1,6 +1,6 @@
 // react core
 import React, { useState , useEffect, useRef } from "react";
-import { useRouter } from "next/router";
+import  { useRouter } from "next/router";
 // nextjs components
 import Image from "next/image";
 import Link from "next/link";
@@ -74,6 +74,7 @@ const validationSchema = Yup.object().shape({
 // package 2
 import dynamic from 'next/dynamic';
 import axios from "axios";
+import withAuth from "../src/components/auth/withAuth";
 
 export const Picker = dynamic(
   () => {
@@ -108,9 +109,9 @@ export const Picker = dynamic(
 // // import "emoji-mart/css/emoji-mart.css";
 
 
-export default function Profile() {
+ const Profile = () =>{
 
-
+  const router = useRouter()
 
 // lang
   const { locale, locales, asPath } = useRouter();
@@ -139,7 +140,10 @@ export default function Profile() {
       setStudentName(response.data.data.student_name);
     },
     (error) => {
-      console.log(error);
+      // if(error.response.status == 401){
+      //   router.push('/login')
+      // }
+      console.log(error.response);
     }
   );
 // student/lessons
@@ -218,10 +222,10 @@ const onEmojiClick = (event, emojiObject) => {
 const { register,handleSubmit, formState: { errors }} = useForm({
   resolver: yupResolver(validationSchema)
 });
-console.log(lessonsHistory);
+// console.log(lessonsHistory);
 
 const onSubmit = (data) =>{
-  console.log(data);
+  // console.log(data);
 
 }
 
@@ -572,3 +576,4 @@ const onSubmit = (data) =>{
   );
 }
 
+export default withAuth(Profile);

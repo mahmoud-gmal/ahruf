@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useAuth } from "./../src/context/AuthContext";
-import Router from 'next/router'
-import axios from 'axios';
 import Meta from "../src/components/Meta";
 import { toast } from "react-toastify";
 import { Button, Container, Form } from 'react-bootstrap';

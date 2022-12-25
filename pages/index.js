@@ -20,7 +20,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import "swiper/components/pagination/pagination.min.css";
 import "swiper/swiper.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Pagination, Navigation } from "swiper/core";
+import SwiperCore, { Pagination, Navigation, Virtual } from "swiper/core";
 SwiperCore.use([Navigation, Pagination]);
 
 // fontawesome
@@ -321,10 +321,12 @@ const activitiess = activities.data;
             <Swiper
               className={`cus_what_say ${styles.what_say_slider}`}
               spaceBetween={15}
-              slidesPerView={4.2}
+              slidesPerView={10}
               loop
               centeredSlides
               centeredSlidesBounds
+              centerInsufficientSlides
+              slidesPerGroup={10}
               speed={1200}
               navigation
               freeMode
@@ -338,7 +340,7 @@ const activitiess = activities.data;
                   slidesPerView: 2.2,
                 },
                 900: {
-                  // width: 1000,
+                  // width: 100,
                   slidesPerView: 4.2,
                 },
               }}
@@ -346,14 +348,19 @@ const activitiess = activities.data;
 
               {quotesData.quotes &&
               quotesData.quotes.map((quote, index) => (
+       
                 <SwiperSlide key={index} className={styles.item} >
                   <div className="test-block">
                     <p>{quote.content}</p>
                     <h3> {quote.author}</h3>
                   </div>
                 </SwiperSlide>
+                
               ))}
-
+            {/* <span slot="container-start">Container Start</span>
+            <span slot="container-end">Container End</span>
+            <span slot="wrapper-start">Wrapper Start</span>
+            <span slot="wrapper-end">Wrapper End</span> */}
             </Swiper>
         </div>
 

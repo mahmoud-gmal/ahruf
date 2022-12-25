@@ -5,7 +5,6 @@ import { AuthProvider } from "../src/context/AuthContext";
 // import 'bootstrap/dist/css/bootstrap-grid.min.css';
 
 import { motion, AnimatePresence  } from "framer-motion";
-
 //styles
 import '../styles/global.css'
 import '../styles/style-en.css'
@@ -19,7 +18,13 @@ import { Suspense } from "react";
 
 // const { locale, locales, asPath } = useRouter();
 
+
+
 function MyApp({ Component, pageProps, router  }) {
+
+
+
+
   if (router.pathname.startsWith('/login') || router.pathname.startsWith('/signup') || router.pathname.startsWith('/forget-password')) {
 
     return (
@@ -47,6 +52,7 @@ else if (router.pathname.startsWith('/profile')) {
 
 
   return (
+  
     <>
     {/* <AuthProvider>
         <AnimatePresence exitBeforeEnter>
@@ -76,12 +82,15 @@ else if (router.pathname.startsWith('/profile')) {
           // }}
         >
 */}
-            <div className="wrap_app1">
+            <AuthProvider>
+              <div className="wrap_app1">
                     <Header />
                       <Component {...pageProps} />
                     <Footer />
-              </div>
-              
+               </div>
+            </AuthProvider>
+
+
             {/* </motion.div>
           </AnimatePresence>
        </AuthProvider> */}

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, {useEffect, useState} from "react";
+import { useAuth } from "./../../context/AuthContext";
 import { useRouter } from "next/router";
 // import { useState, useEffect } from "react";
 // fontawesome
@@ -12,6 +13,10 @@ import styles from "./../../../styles/layout/Header.module.css";
 
 import { motion } from 'framer-motion';
 import axios from "axios";
+import getFromStorage from "../localstorage";
+
+
+
 
 export const variants = {
   show: {
@@ -35,8 +40,12 @@ export const variants = {
 
 const Header = () => {
 
+  const { token } = useAuth();
   const [programsList, setProgramsList] = useState([]);
 
+  // useEffect(() => {
+  // console.log(getLocalStore('token'));
+  // },[])
 //   const [width, setWidth] = useState(typeof window !== "undefined" ? window.innerWidth : '');
 //   const handleWindowSizeChange = () => {
 //           setWidth(window.innerWidth);
@@ -80,6 +89,13 @@ useEffect(() => {
   document.querySelector("html").setAttribute("dir", dir);
   document.querySelector("html").setAttribute("lang", lang);
 }, [locale]);
+
+
+const [localToken, setLocalToken] = useState(null);
+useEffect(() => {
+  // const localToken = typeof window !== "undefined" ? localStorage.getItem('token') : null;
+  setLocalToken(localStorage.getItem('token'))
+}, [localToken])
 
 
 useEffect(() => {
@@ -176,14 +192,26 @@ axios.get(
                  
                 </div>
                 <div className={styles.btns}>
-                  <Link href="/login">
+                {token || localToken ? 
+                (<><Link href="/profile">
+              <a className={`special_btn ${styles.btn_log}`}>
+                <span>{locale == "en" ? "Student profile" : "بروفايل الطالب"}</span>
+              </a>
+              </Link>
+            <Link href="/">
+              <a className="special_btn"><span>{locale == "en" ? "logout" : "تسجيل خروج "}</span></a>
+            </Link></>) 
+              : (
+                  <><Link href="/login">
                     <a className={`special_btn ${styles.btn_log}`}>
                      <span>{locale == "en" ? "Student entry" : "دخول الطالب"}</span>
                     </a>
                   </Link>
                   <Link href="https://ahrufedu.com/Dashboards/parent/login">
                     <a className="special_btn"><span>{locale == "en" ? "Parent entry" : "دخول ولي الامر "}</span></a>
-                  </Link>
+                  </Link></>
+                )}
+
                 </div>
               </div>
             </Col>
