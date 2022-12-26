@@ -105,7 +105,7 @@ axios.get(
   }
 );
 
-}, [])
+}, [locale])
 
 
   return (
