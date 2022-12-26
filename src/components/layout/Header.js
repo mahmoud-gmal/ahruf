@@ -40,39 +40,26 @@ export const variants = {
 
 const Header = () => {
 
-  const { token } = useAuth();
+  const { token, logout, displayName } = useAuth();
   const [programsList, setProgramsList] = useState([]);
-
-  // useEffect(() => {
-  // console.log(getLocalStore('token'));
-  // },[])
-//   const [width, setWidth] = useState(typeof window !== "undefined" ? window.innerWidth : '');
-//   const handleWindowSizeChange = () => {
-//           setWidth(window.innerWidth);
-//   }
-
-//   useEffect(() => {
-//     window.addEventListener('resize', handleWindowSizeChange);
-//     return () => {
-//         window.removeEventListener('resize', handleWindowSizeChange);
-//     }
-// }, []);
-
-// if(width <= 992){
-// console.log("width <= 768");
-// }
-
-
-// {blogPosts.posts
-//   .filter(p => p.locale === locale)
-//   .map((blogPost, i) => {
-//     return <BlogCard key={i} blogPost={blogPost} />;
-//   })}
-
-const { locale, locales, asPath } = useRouter();
+const { locale, locales, asPath, router } = useRouter();
 
 
 
+const handleLogout =  async () =>{
+
+  
+  try {
+    await logout();
+    // router.push('/')
+  } catch (error) {
+    if(error){
+      console.log(error.response);
+    }
+  }
+
+
+}
 
 
 const [status, setStatus] = useState(false);
@@ -95,7 +82,7 @@ const [localToken, setLocalToken] = useState(null);
 useEffect(() => {
   // const localToken = typeof window !== "undefined" ? localStorage.getItem('token') : null;
   setLocalToken(localStorage.getItem('token'))
-}, [localToken])
+}, [localToken, token])
 
 
 useEffect(() => {
@@ -130,7 +117,7 @@ axios.get(
           <Row className="align-items-center">
             {/* LOGO */}
             <Col md={2}>
-              <div className={styles.logo}>
+              <div className={styles.logo}>                  
                 <Link href="/">
                   <a>
                     <Image
@@ -198,8 +185,8 @@ axios.get(
                 <span>{locale == "en" ? "Student profile" : "بروفايل الطالب"}</span>
               </a>
               </Link>
-            <Link href="/">
-              <a className="special_btn"><span>{locale == "en" ? "logout" : "تسجيل خروج "}</span></a>
+            <Link href="/" >
+              <a className="special_btn" onClick={handleLogout}><span>{locale == "en" ? "logout" : "تسجيل خروج "}</span></a>
             </Link></>) 
               : (
                   <><Link href="/login">

@@ -75,6 +75,7 @@ const validationSchema = Yup.object().shape({
 import dynamic from 'next/dynamic';
 import axios from "axios";
 import withAuth from "../src/components/auth/withAuth";
+import { LoopCircleLoading  } from "react-loadingg";
 
 export const Picker = dynamic(
   () => {
@@ -121,6 +122,9 @@ export const Picker = dynamic(
 
   const [studentName, setStudentName] = useState("");
 
+  const [loading, setLoading] = useState(true);
+
+
   const { token } = useAuth();
 
   useEffect(() => {
@@ -158,6 +162,7 @@ export const Picker = dynamic(
   )
   .then((response) => {
       // console.log(response.data.data);
+      setLoading(false);
       setLessonsTable(response.data.data);
     },
     (error) => {
@@ -299,6 +304,8 @@ const onSubmit = (data) =>{
         </Row>
 
         <div className={styles.days}>
+
+        {loading && (<LoopCircleLoading  color="#4269EF" size="large" />)}
 
         {lessonsTable &&
                   lessonsTable.map((item, index) => (

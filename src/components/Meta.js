@@ -13,7 +13,7 @@ const Meta = ({ title, keywords, description }) => {
       {/* Add hreflang links */}
       <link rel="alternate" href={server} hrefLang="x-default" />
       <link rel="alternate" href={server} hrefLang="ar" />
-      <link rel="alternate" href={`${server}/en`} hrefLang="en" />
+      <link rel="alternate" href={`${server}en`} hrefLang="en" />
     </Head>
   )
 }

@@ -4,7 +4,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const AuthContext = createContext();
 import axios from 'axios';
-
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css"; 
 
 export const useAuth = () => {
   return useContext(AuthContext);
@@ -15,7 +16,8 @@ export const AuthProvider = ({ children }) => {
   const router = useRouter()
 
   const [displayName, setDisplayName] = useState("");
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(null);
+  const [localToken, setLocalToken] = useState(null);
   const [loading, setLoading] = useState(true);
 //   const history = useHistory();
 
@@ -32,10 +34,14 @@ const login = (formData) => {
             const {student, token} = response.data;
             // console.log(response.data);
             // store values in localStorage
-            if (typeof window !== "undefined") {
+            // if (typeof window !== "undefined") {
+            // setLocalToken(token); 
+
+
+
             localStorage.setItem( 'token', token );
             localStorage.setItem( 'student', JSON.stringify(student) );
-            }
+            // }
             setDisplayName(student.name); 
             setToken(token); 
             toast.success( `تم تسجيل الدخول بنجاح مرحباً يا  ${student.name}!`,{})
@@ -46,11 +52,32 @@ const login = (formData) => {
   };
 
   const logout = () => {
-    setDisplayName('');
-    if (typeof window !== "undefined") {
-    localStorage.removeItem( 'token' );
-    localStorage.removeItem( 'student' );
-    }
+    
+    confirmAlert({
+      title: "تسجيل الخروج",
+      message: "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+      buttons: [
+        {
+          label: "نعم",
+          onClick: () => {
+            // logout!
+            setDisplayName('');
+            localStorage.removeItem( 'token' );
+            localStorage.removeItem( 'student' );
+            setToken(null);
+            toast.success(`تم تسجيل خروج بنجاح`, {});        
+
+          },
+        },
+        {
+          label: "لا",
+          onClick: () => {
+            console.log("")
+          },
+        },
+      ],
+    });
+
   };
 
 

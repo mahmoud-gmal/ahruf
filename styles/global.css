@@ -432,3 +432,8 @@ input:focus-visible , select:focus-visible , textarea:focus-visible {
   display: flex;align-items: center;
 }
 .back_data_package li p:first-child{font: normal normal bold 16px/27px "bahij_Helvetica_bold";}
+
+
+
+/* alert confirm */
+.react-confirm-alert-body{text-align: right;}

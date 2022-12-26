@@ -75,7 +75,7 @@
   transform-origin: top center;
   position: relative;
   perspective: 1000px;
-  z-index: 100;
+  z-index: 99;
   display: block;
 }
 .drop:hover{
