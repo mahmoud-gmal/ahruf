@@ -175,8 +175,8 @@ p {
 }
 
 /* what say */
-.cus_what_say .swiper-slide-duplicate-prev,
-.cus_what_say .swiper-slide-duplicate-next{opacity:0.5}
+/* .cus_what_say .swiper-slide-duplicate-prev,
+.cus_what_say .swiper-slide-duplicate-next{opacity:0.5} */
 
 .cus_what_say .swiper-button-next, .cus_what_say .swiper-button-prev {
   cursor: pointer;
@@ -427,6 +427,7 @@ input:focus-visible , select:focus-visible , textarea:focus-visible {
 .back_data_package li {font: normal normal normal 16px/26px "bahij_Helvetica_roman" !important;}
 .back_data_package li::before {content: none !important;}
 .back_data_package li p img{width: 20px !important;height: 20px !important;margin-left: 6px}
+.back_data_package:lang(en) li p img{margin-right: 6px}
 .back_data_package li p{
   margin-bottom: 12px;
   display: flex;align-items: center;

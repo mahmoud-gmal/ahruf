@@ -4,13 +4,12 @@
 /* span{display: block;} */
 
 
-/*======================= Banner ============================*/
+/*=================== Banner ===========================================*/
 .banner{
   position: relative;
   padding: 70px 0;
   min-height: 665px;
 }
-
 
 .banner::before{
   content: '';
@@ -61,7 +60,6 @@
   text-decoration-skip-ink: none;
   text-decoration-style: solid;
   text-decoration-thickness: 12px;
-
 }
 
 .banner_txt p {
@@ -70,13 +68,34 @@
   margin-bottom: 35px;
 }
 
-
-
 /* .banner_txt .special_btn{
     margin: 0;
 } */
 
-/*================ our programs =================*/
+/*------------ style-en --------------- */
+.banner:lang(en)::before{
+  right: 0;
+  left: auto;
+  transform: scaleX(-1);
+}
+.banner:lang(en)::after{
+  right: 26px;
+  left: auto;
+}
+
+
+.banner:lang(en) .banner_2shape::before{
+  left: -33px;
+  right: auto;
+  transform: scaleX(-1);
+  height: 141px;
+}
+.banner:lang(en) .banner_2shape::after{
+  right: 25%;
+  left: auto
+}
+
+/*========================== our programs ========================================*/
 
 .our_programs {
   position: relative;
@@ -101,7 +120,7 @@
 }
 .our_programs .items {
   position: relative;
-  grid-template-columns: repeat(2, minmax(260px, 352px)); 
+  grid-template-columns: repeat(2, minmax(260px, 367px)); 
   grid-template-rows: repeat(2, 120px);
   grid-row-gap: 1em;
   grid-column-gap: 1em;
@@ -136,6 +155,7 @@ border-radius: 10px;
   margin-top: 20px;
 }
 
+/*------------ mobile --------------- */
 @media (max-width: 991.9px) {
 
   .our_programs::after{
@@ -185,7 +205,7 @@ border-radius: 10px;
 
 }
 
-/* ==================  Achivements ===================== */
+/* ==============================  Achivements ==================================== */
 .achivements {
   background: #80aeff 0% 0% no-repeat padding-box;
   padding: 50px 0;
@@ -205,7 +225,8 @@ border-radius: 10px;
 .achivements .items .item:not(:last-child)::after {
   /* border-left: 1px solid #FFFFFF52; */
   content: '';
-  height: 54px;
+  /* height: 54px; */
+  height: 100px;
   width: 1px;
   position: absolute;
   left: 0;
@@ -220,6 +241,8 @@ border-radius: 10px;
 .achivements .items h4 {
   font: normal normal normal 24px/39px "bahij_Helvetica_roman";
 }
+
+/*------------ mobile --------------- */
 
 @media (max-width: 991.9px) {
   .achivements .items {
@@ -265,7 +288,11 @@ border-radius: 10px;
     content: none !important;
   } 
 }
-/*====================== Subscription =======================*/
+
+/*------------ style-en --------------- */
+.achivements:lang(en){direction: rtl;}
+
+/*========================= Subscription =====================================*/
 .subscription {
   background: #F8FBFF 0% 0% no-repeat padding-box;
   padding: 80px 0 60px;
@@ -377,8 +404,7 @@ border-radius: 10px;
   display: block;
   text-align: center;
 }
-
-/* mobile */
+/*------------ mobile --------------- */
 @media (max-width: 991.9px) {
   .subscription .items {
     grid-template-columns: repeat(1, minmax(200px, 379px));
@@ -432,11 +458,14 @@ border-radius: 10px;
 
 }
 
+/*------------ style-en --------------- */
+.subscription:lang(en):after{
+  right: 0;
+  left: auto;
+}
 
 
-
-
-/* =====================  What They Say  ======================== */
+/* ==========================  What They Say  ====================================== */
 .what_say {
   background: #f8fbff 0% 0% no-repeat padding-box;
   padding: 80px 0 50px;
@@ -462,8 +491,6 @@ border-radius: 10px;
   top: 127%;
 }
 
-
-
 .what_say .what_say_slider .item {
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 8px 32px #30386814;
@@ -483,7 +510,7 @@ border-radius: 10px;
 
 
 
-/* =====================  Common Questions  ======================== */
+/* ===========================  Common Questions  ======================================= */
 
 .common_ques {
   background: #f8fbff 0% 0% no-repeat padding-box;
@@ -543,12 +570,12 @@ border-radius: 10px;
   display: inline-block;
 }
 
-/* mobile */
-@media (max-width: 575.9px) {
-
+/* style-en */
+.more_btn_link:lang(en) svg{
+  margin-left: 12px;
+  transform: scaleX(-1);
 }
-
-/* =====================  Student activities  ======================== */
+/* ==========================  Student activities  =========================================== */
 
 .student_activites {
   padding: 60px 0;

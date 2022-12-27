@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState,useRef} from "react";
+import ReactDOM from "react-dom";
 import { useAuth } from "./../../context/AuthContext";
 import { useRouter } from "next/router";
 // import { useState, useEffect } from "react";
@@ -13,7 +14,40 @@ import styles from "./../../../styles/layout/Header.module.css";
 
 import { motion } from 'framer-motion';
 import axios from "axios";
-import getFromStorage from "../localstorage";
+import { useMediaQuery } from 'react-responsive'
+
+
+
+// React Custom Hook
+function useComponentVisible(initialIsVisible) {
+  const [isComponentVisible, setIsComponentVisible] = useState(
+    initialIsVisible
+  );
+  const ref = useRef(null);
+
+  const handleHideDropdown = (event) => {
+    if (event.key === "Escape") {
+      setIsComponentVisible(false);
+    }
+  };
+
+  const handleClickOutside = event => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setIsComponentVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleHideDropdown, true);
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("keydown", handleHideDropdown, true);
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  });
+
+  return { ref, isComponentVisible, setIsComponentVisible };
+}
 
 
 
@@ -39,16 +73,16 @@ export const variants = {
 
 
 const Header = () => {
-
-  const { token, logout, displayName } = useAuth();
-  const [programsList, setProgramsList] = useState([]);
+const isMobScreen = useMediaQuery({ query: '(max-width: 991.9px)' })
+const { token, logout, displayName } = useAuth();
+const [programsList, setProgramsList] = useState([]);
 const { locale, locales, asPath, router } = useRouter();
 
 
+const {ref,isComponentVisible,setIsComponentVisible} = useComponentVisible(true);
 
-const handleLogout =  async () =>{
 
-  
+const handleLogout =  async () =>{  
   try {
     await logout();
     // router.push('/')
@@ -65,7 +99,11 @@ const handleLogout =  async () =>{
 const [status, setStatus] = useState(false);
 
 // mobile menu 
-const handleClick = () =>{
+const handleClick = (event) =>{
+  // if (ref.current && !ref.current.contains(event.target)) {
+  //   alert("You clicked outside of me!");
+  // }
+
   setStatus(!status)
 }
 
@@ -172,7 +210,6 @@ axios.get(
                   if(l !== locale)
                 return (
                   <Link href={asPath} locale={l} key={i}><a><FontAwesomeIcon icon={faLanguage} /><span>{l == "en" ? "English" : "Arabic"}</span></a></Link>
-                  // <Link href={`${l == "en" ? "/en": "/"}`} locale={l} key={i}><a><FontAwesomeIcon icon={faLanguage} /><span>{l == "en" ? "English" : "Arabic"}</span></a></Link>
                 );
               })}
 
@@ -233,7 +270,14 @@ axios.get(
             {/* Navbar */}
             <Col xs={6}>
               <div className={styles.main_navbar}>
-                <div className={styles.menu_toggle}><FontAwesomeIcon icon={faBars} onClick={handleClick}/></div>
+                <div className={styles.menu_toggle}>
+                  {/* <FontAwesomeIcon icon={faBars} onClick={handleClick}/> */}
+                  {!status ? (<FontAwesomeIcon icon={faBars} onClick={handleClick}/>) : (
+                    <div onClick={handleClick}><FontAwesomeIcon icon={faTimes} /></div>
+                  )}
+                  
+
+                  </div>
                 {status && (
                   <motion.ul className={`d-flex flex-direction-column ${styles.mobile_list_nav}`} key={status} variants={variants} animate={'show'} initial="hide">
                 <div className={styles.logo_wraper}>
@@ -251,7 +295,7 @@ axios.get(
                     />
                   </a>
                 </Link>
-                 <div className={styles.close_icon} onClick={handleClick}><FontAwesomeIcon icon={faTimes} /></div>
+                 {/* <div className={styles.close_icon} onClick={handleClick}><FontAwesomeIcon icon={faTimes} /></div> */}
               </div>
 
               <li>

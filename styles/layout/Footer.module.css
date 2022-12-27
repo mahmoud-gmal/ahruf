@@ -70,3 +70,10 @@ color: #2E386B;
   .copyrights p{text-align: center;}
 
 }
+
+
+/* style-en */
+.company_logo:lang(en) h4{
+  margin-left: 10px;
+  margin-right: 0px;
+}
