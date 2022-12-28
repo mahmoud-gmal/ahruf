@@ -38,7 +38,7 @@
   color: #2E386B;
   margin-bottom: 25px;
   position: relative;
-  padding-right: 50px;
+  padding-inline-start: 50px;
 }
 .programs .programs_details h2::before{
   content: "";
@@ -57,7 +57,7 @@
   color: #2E386B;
   margin-bottom: 15px;
   position: relative;
-  padding-right: 35px;
+  padding-inline-start: 35px;
 }
 .programs .tab_content .list_glob p::before{
   content: "";
@@ -108,7 +108,7 @@ margin-bottom: 40px;
   color: #2E386B;
   margin-bottom: 25px;
   position: relative;
-  padding-right: 30px;
+  padding-inline-start: 30px;
 }
 
 
@@ -117,7 +117,7 @@ margin-bottom: 40px;
   font: normal normal normal 16px/67px "bahij_Helvetica_roman";
   border-bottom: 1px solid #F0F0F0;
   color: #2E386B;
-  padding-right: 70px;
+  padding-inline-start: 70px;
   cursor: pointer;
   counter-increment: my-awesome-counter;
   position: relative;
@@ -185,7 +185,20 @@ margin-bottom: 40px;
   .programs .nav_pill{margin-top: 0;margin-bottom: 50px;}
 }
 
+/* ============ style-en =============== */
+.programs:lang(en) .tab_content .list_glob p::before{
+  left: -2px;
+  right: auto;
+}
+.programs:lang(en) .programs_details h2::before{
+  left: 0;
+  right: auto;
+}
 
+.programs:lang(en) .nav_pill ul li::before{
+  left:29px;
+  right: auto;
+}
 
 /* =====================  What They Say  ======================== */
 .what_say {
@@ -367,3 +380,12 @@ margin-bottom: 40px;
       margin-left: auto;
   }
     }
+
+    /* style-en */
+    .features:lang(en) .item h3{
+      font: normal normal bold 18px/30px "bahij_Helvetica_bold";
+      padding-inline-start: 22px;
+      padding-right: 0;
+    }
+
+    .more_btn_link:lang(en) svg{transform: scaleX(-1);}

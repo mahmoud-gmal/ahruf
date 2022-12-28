@@ -205,6 +205,12 @@ border-radius: 10px;
 
 }
 
+/* style-en */
+.our_programs:lang(en)::after{
+  right:0;
+  left: auto;
+  transform: scaleX(-1);
+}
 /* ==============================  Achivements ==================================== */
 .achivements {
   background: #80aeff 0% 0% no-repeat padding-box;

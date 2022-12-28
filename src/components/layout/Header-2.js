@@ -95,7 +95,7 @@ useEffect(() => {
                   <a>
                     <Image
                       alt="logo"
-                      src="/assets/Logo.png"
+                      src={locale == "ar" ? '/assets/Logo.png': '/assets/logo-en.svg'}
                       width="200"
                       height="66"
                       // layout="responsive"

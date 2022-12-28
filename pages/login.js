@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "./../src/context/AuthContext";
 import Meta from "../src/components/Meta";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 import { Button, Container, Form } from 'react-bootstrap';
 // styles
 import styles from "./../styles/forms/login.module.css";
@@ -12,14 +13,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .required("اسم المستخدم مطلوب."),
-  password: Yup.string()
-    .required(".كلمة المرور مطلوبة")
-    // .min(8, 'كلمة المرور قصيرة جدًا - يجب ألا تقل عن 8 أحرف.')
-    // .matches(/[a-zA-Z]/, 'يمكن أن تحتوي كلمة المرور على أحرف لاتينية فقط.'),
-});
+
+
 
 // FontAwesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,6 +24,19 @@ const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />
 
 
 const LoginPage = () => {
+
+const { locale, locales, asPath } = useRouter();
+
+const validationSchema = Yup.object().shape({
+  name: Yup.string()
+    .required(`${locale == "en" ? "Username is required." : "اسم المستخدم مطلوب."}`),
+  password: Yup.string()
+    .required(`${locale == "en" ? ".Password is required" : ".كلمة المرور مطلوبة"}`),
+    // .min(8, 'كلمة المرور قصيرة جدًا - يجب ألا تقل عن 8 أحرف.')
+    // .matches(/[a-zA-Z]/, 'يمكن أن تحتوي كلمة المرور على أحرف لاتينية فقط.'),
+});
+
+
 
   const { login } = useAuth();
   const [token, setToken] = useState();
@@ -91,15 +99,15 @@ const LoginPage = () => {
           <Container>
           <div className={styles.form_wrapper}>
             <h2>
-            تسجيل الدخول
+            {locale == "en" ? "Login" : "تسجيل دخول "}
             </h2>
       <Form noValidate onSubmit={handleSubmit(onSubmit)}>
 
         <Form.Group controlId="emailID">
-          <Form.Label> الإسم </Form.Label>
+          <Form.Label>  {locale == "en" ? "Name" : "الإسم"}</Form.Label>
           <Form.Control
             type="text"
-            placeholder="الإسم" 
+            placeholder={locale == "en" ? "Name" : "الإسم"}
             {...register("name")} isInvalid={!!errors.name}/>
 
         {errors.name?.message && (<Form.Control.Feedback type="invalid">{errors.name?.message}</Form.Control.Feedback>)}
@@ -107,10 +115,10 @@ const LoginPage = () => {
 
 
         <Form.Group className="password_wrap"  controlId="passID">
-          <Form.Label> كلمة المرور </Form.Label>
+          <Form.Label> {locale == "en" ? "Password" : "كلمة المرور "}</Form.Label>
           <Form.Control
             type={passwordShown ? "text" : "password"}
-            placeholder="كلمة المرور"
+            placeholder={locale == "en" ? "Password" : "كلمة المرور "}
             {...register("password")} isInvalid={!!errors.password}/>
           <i onClick={togglePasswordVisiblity}>{passwordShown ? eye : eye_slash}</i>
           {errors.password?.message && (<Form.Control.Feedback type="invalid">{errors.password?.message}</Form.Control.Feedback>)}
@@ -126,7 +134,7 @@ const LoginPage = () => {
         <Form.Check
           className={styles.form_check}
           style={{ display: 'inline-flex', alignItems: 'center'}}
-          label="تذكرنى"
+          label={locale == "en" ? "Remember me" : "تذكرنى"}
           type="checkbox"  {...register("rememberme")}
           // feedback="You must agree before submitting."
           // feedbackType="invalid"
@@ -142,7 +150,7 @@ const LoginPage = () => {
       </div>
       <div className='d-flex justify-content-center' style={{marginTop: '25px'}}>
 
-      <Button type="submit" className='special_btn' style={{display: 'block',width: '100%'}}> <span>تسجيل دخول</span> </Button>     
+      <Button type="submit" className='special_btn' style={{display: 'block',width: '100%'}}> <span> {locale == "en" ? "Login" : "تسجيل دخول "}</span> </Button>     
       </div>
 
             </Form>

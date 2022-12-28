@@ -193,7 +193,7 @@ axios.get(
                   </li>
 
                   <li>
-                    <Link href="/#packages">{locale == "en" ? "Subscription prices" : "اسعار الاشتراك"}</Link>
+                    <Link href="/#packages">{locale == "en" ? "Subscription " : "اسعار الاشتراك"}</Link>
                   </li>
                   <li>
                     <Link href="/contact">{locale == "en" ? "Contact" : "اتصل بنا "}</Link>
@@ -223,7 +223,7 @@ axios.get(
               </a>
               </Link>
             <Link href="/" >
-              <a className="special_btn" onClick={handleLogout}><span>{locale == "en" ? "logout" : "تسجيل خروج "}</span></a>
+              <a className={`special_btn ${styles.btn_log_2}`} onClick={handleLogout}><span>{locale == "en" ? "logout" : "تسجيل خروج "}</span></a>
             </Link></>) 
               : (
                   <><Link href="/login">
@@ -232,7 +232,7 @@ axios.get(
                     </a>
                   </Link>
                   <Link href="https://ahrufedu.com/Dashboards/parent/login">
-                    <a className="special_btn"><span>{locale == "en" ? "Parent entry" : "دخول ولي الامر "}</span></a>
+                    <a className={`special_btn ${styles.btn_log_2}`}><span>{locale == "en" ? "Parent entry" : "دخول ولي الامر "}</span></a>
                   </Link></>
                 )}
 
@@ -317,7 +317,7 @@ axios.get(
                   </li>
 
                   <li>
-                    <Link href="/#packages">{locale == "en" ? "Subscription prices" : "اسعار الاشتراك"}</Link>
+                    <Link href="/#packages">{locale == "en" ? "Subscription " : "اسعار الاشتراك"}</Link>
                   </li>
                   <li>
                     <Link href="/contact">{locale == "en" ? "Contact" : "اتصل بنا "}</Link>

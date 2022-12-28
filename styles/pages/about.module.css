@@ -52,7 +52,7 @@
 }
 
 .about .text_wrapp .item .icon_head h3{ 
-  margin-right: 18px;
+  margin-inline-start: 18px;
   font: normal normal bold 20px/50px "bahij_Helvetica_bold";
   color: #2E386B;
 }
@@ -481,6 +481,60 @@
 }
 
 /* mobile */
+@media (max-width: 575.9px) {
+
+}
+
+
+
+/*------------- Style-en--------------  */
+
+.about:lang(en) .img_wrapper .img_1{left: 0;right: auto;}
+.about:lang(en) .img_wrapper .img_2{ right: 28%; left: auto;}
+.about:lang(en) .img_wrapper .img_3{  left: 43px;}
+
+.about:lang(en)::before{
+  right: 0;
+  left: auto;
+  transform: scaleX(-1);
+}
+.about:lang(en)::after{
+  left: -33px;
+  right: auto;
+  transform: scaleX(-1);
+}
+
+.about_vision:lang(en) .vision .shape_hold::before{
+  left: -63px;
+  right: auto;
+}
+
+/* .about_vision:lang(en) .vision .shape_hold::after{
+  left: 0;
+  right: auto;
+} */
+
+.about_vision:lang(en) .goals_list li::after{left: 26px; right: auto;}
+
+.about_vision:lang(en) .goals_list li{
+  padding: 10px 10px 10px 70px;
+  font: normal normal normal 20px/36px "bahij_Helvetica_roman";
+}
+
+.features:lang(en) .item h3{
+  font: normal normal bold 18px/30px "bahij_Helvetica_bold";
+  padding-inline-start: 22px;
+  padding-right: 0;
+}
+
+.achivements:lang(en) {
+direction: rtl;
+}
+
+.more_btn_link:lang(en) svg{transform: scaleX(-1);}
+
+
+
 @media (max-width: 575.9px) {
 
 }

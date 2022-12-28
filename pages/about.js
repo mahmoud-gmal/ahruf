@@ -296,7 +296,7 @@ function Counter({ from, to }) {
                    {locale == "en" ? "Have more inquiries! Connect with us" : " لديك المزيد من الاستفسارات ! تواصل معنا"} 
                     <FontAwesomeIcon
                       icon={faArrowLeft}
-                      style={{ width: 20, marginRight: "12px" }}
+                      style={{ width: 20, marginInlineStart: "12px" }}
                     />
                   </a>
                 </Link>

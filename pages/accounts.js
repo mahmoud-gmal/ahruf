@@ -10,7 +10,7 @@ import { Container } from "react-bootstrap";
 const Accounts = () => {
 
   // lang
-const { locale, locales, asPath } = useRouter();
+const { locale } = useRouter();
 
 
   return (
@@ -20,14 +20,14 @@ const { locale, locales, asPath } = useRouter();
       <main className={styles.main_content}>
         <Container>
             <div className={styles.account}>
-                <h3>مركز أحرف لبرامج محو الأمية</h3>
-                <p> مصرف الراجحي</p>
+                <h3> {locale == "en" ? "Letters Center for literacy programs" : "مركز أحرف لبرامج محو الأمية "}</h3>
+                <p> {locale == "en" ? "Al Rajhi Bank" : "مصرف الراجحي"}</p>
                 <div className={styles.item}>
-                    <span className={styles.item_txt}>رقم الايبان</span>
+                    <span className={styles.item_txt}> {locale == "en" ? "IBAN number" : "رقم الايبان"}</span>
                     <span className={styles.item_num}>SA1180000336608016128782</span>
                 </div>
                 <div className={styles.item}>
-                    <span className={styles.item_txt}>رقم الحساب</span>
+                    <span className={styles.item_txt}>{locale == "en" ? "account number" : " رقم الحساب"}</span>
                     <span className={styles.item_num}>336608016128782</span>
                 </div>
             </div>
