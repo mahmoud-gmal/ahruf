@@ -21,7 +21,7 @@ import "swiper/components/pagination/pagination.min.css";
 import "swiper/swiper.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Navigation, Virtual } from "swiper/core";
-SwiperCore.use([Navigation, Pagination]);
+SwiperCore.use([Navigation, Pagination, Virtual]);
 
 // fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -139,6 +139,16 @@ const questionsData = questions.data;
 
 // Student activities
 const activitiess = activities.data;     
+
+
+// fix swiper loop issue by using virual slides
+  // Create array with 1000 slides
+  // Create array with 1000 slides
+  const slides = Array.from({ length: 6 }).map(
+    (el, index) => `Slide ${index + 1}`
+  );
+
+
 
 
   return (
@@ -321,12 +331,14 @@ const activitiess = activities.data;
             <Swiper
               className={`cus_what_say ${styles.what_say_slider}`}
               spaceBetween={15}
-              slidesPerView={10}
+              slidesPerView={4.2}
               loop
               centeredSlides
               centeredSlidesBounds
+              modules={[Virtual]}
+              virtual
               centerInsufficientSlides
-              slidesPerGroup={10}
+              // slidesPerGroup={10}
               speed={1200}
               navigation
               freeMode
@@ -346,16 +358,21 @@ const activitiess = activities.data;
               }}
             >
 
+            {slides.map((t, i) => (
+              <>
+              
               {quotesData.quotes &&
               quotesData.quotes.map((quote, index) => (
        
-                <SwiperSlide key={index} className={styles.item} >
+                <SwiperSlide key={t.slideContent} className={styles.item} virtualIndex={i}>
                   <div className="test-block">
                     <p>{quote.content}</p>
                     <h3> {quote.author}</h3>
                   </div>
                 </SwiperSlide>
                 
+              ))}
+            </>
               ))}
             {/* <span slot="container-start">Container Start</span>
             <span slot="container-end">Container End</span>

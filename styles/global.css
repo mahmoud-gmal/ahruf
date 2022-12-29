@@ -175,8 +175,8 @@ p {
 }
 
 /* what say */
-/* .cus_what_say .swiper-slide-duplicate-prev,
-.cus_what_say .swiper-slide-duplicate-next{opacity:0.5} */
+.cus_what_say .swiper-slide-duplicate-prev,
+.cus_what_say .swiper-slide-duplicate-next{opacity:0.5}
 
 .cus_what_say .swiper-button-next, .cus_what_say .swiper-button-prev {
   cursor: pointer;

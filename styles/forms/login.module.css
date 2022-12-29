@@ -101,3 +101,15 @@ color: #80AEFF;
     }
 
 }
+
+/* style-en */
+.form_wrapper:lang(en) i{
+    right: 14px;
+    left: auto;
+}
+.form_wrapper:lang(en) div{
+    overflow: visible !important;
+}
+
+.form_wrapper:lang(en) .form_check input{width: auto !important;}
+.form_wrapper:lang(en) label{display: block; width: 100%;margin-inline-start: 6px;}
