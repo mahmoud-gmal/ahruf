@@ -18,6 +18,9 @@ function Accordion(props) {
 
   function toggleAccordion(e) {
     // console.log(e.currentTarget.classList);
+    // if(e.currentTarget){
+
+    // }
     setActive(!active);
     setHeight(active ? "0px" : `${content.current.scrollHeight}px`);
   }

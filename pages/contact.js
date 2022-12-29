@@ -156,7 +156,7 @@ const Contact = ({ contactInfo }) => {
       .then((res) => 
       {
         if (res.status == 200) {
-          toast.success(`${locale == "en" ? "It Hasn't sent succesfully" : "تم الارسال بنجاح"}`,{}) ;
+          toast.success(`${locale == "en" ? "sent succesfully" : "تم الارسال بنجاح"}`,{}) ;
           reset();
 
       }else{

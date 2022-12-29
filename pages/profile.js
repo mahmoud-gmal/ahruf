@@ -488,7 +488,7 @@ const onSubmit = (data) =>{
 
         <Row>
             <Col md={5}>
-                <h2 className={styles.table_title}>  {locale == "en" ? "Chat with class" : "شات مع الفصل"} </h2>
+                <h2 className={styles.table_title}>{locale == "en" ? "Chat with class" : "شات مع الفصل"} </h2>
             </Col>
             <Col md={2}></Col>
             <Col md={5}>
