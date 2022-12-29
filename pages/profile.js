@@ -254,7 +254,7 @@ const onSubmit = (data) =>{
       <Col lg={3} className="p-0">
         <div className={styles.nav_content}>
             <ul className={styles.back}>
-                <li><Link href="/"><a><FontAwesomeIcon icon={faArrowRight}  color={"#FFF"} width={20}/>  رجوع للرئيسية</a></Link></li>
+                <li><Link href="/"><a><FontAwesomeIcon icon={faArrowRight}  color={"#FFF"} width={20}/>  {locale == "en" ? "Back to home" : "رجوع للرئيسية"} </a></Link></li>
                 </ul>
                 <div className={styles.avatar}>
                 <div className="avater_logo">
@@ -266,13 +266,13 @@ const onSubmit = (data) =>{
                         objectFit="contain"
                     />
                 </div>
-                    <h4 className={styles.avatar_text}>مرحبا {studentName} !</h4>
+                    <h4 className={styles.avatar_text}>{locale == "en" ? "Hello" : "مرحبا"} {studentName} !</h4>
                 </div>   
                   <ul className={styles.profile_nav_list}>
-                    <Tab><div className={styles.icon_wrapper}><FontAwesomeIcon icon={faTable} color={"#4269EF"} width={14} height={14}/></div><h3 className={styles.text}>جدول الحصص</h3></Tab>
-                    <Tab><div className={styles.icon_wrapper}><FontAwesomeIcon icon={faBookBookmark}  color={"#4269EF"} width={14} height={14} /></div><h3 className={styles.text}>المناهج</h3></Tab>
-                    <Tab><div className={styles.icon_wrapper}><FontAwesomeIcon icon={faBook} color={"#4269EF"} width={14} height={14}/></div><h3 className={styles.text}>حل الواجب</h3></Tab>
-                    <Tab><div className={styles.icon_wrapper}><FontAwesomeIcon icon={faCommentAlt}  color={"#4269EF"} width={14} height={14}/></div><h3 className={styles.text}>شات مع الفصل</h3></Tab>
+                    <Tab><div className={styles.icon_wrapper}><FontAwesomeIcon icon={faTable} color={"#4269EF"} width={14} height={14}/></div><h3 className={styles.text}>{locale == "en" ? "school schedule" : " جدول الحصص"}</h3></Tab>
+                    <Tab><div className={styles.icon_wrapper}><FontAwesomeIcon icon={faBookBookmark}  color={"#4269EF"} width={14} height={14} /></div><h3 className={styles.text}>{locale == "en" ? "curricula" : "المناهج"}</h3></Tab>
+                    <Tab><div className={styles.icon_wrapper}><FontAwesomeIcon icon={faBook} color={"#4269EF"} width={14} height={14}/></div><h3 className={styles.text}>{locale == "en" ? "Homework" : "حل الواجب"} </h3></Tab>
+                    <Tab><div className={styles.icon_wrapper}><FontAwesomeIcon icon={faCommentAlt}  color={"#4269EF"} width={14} height={14}/></div><h3 className={styles.text}>{locale == "en" ? "Chat with class" : "شات مع الفصل"} </h3></Tab>
                   </ul>
 
        </div>
@@ -287,10 +287,10 @@ const onSubmit = (data) =>{
       <div className={`${styles.tab_content} ${styles.class_schedule}`}>
 
         <Row>
-            <Col md={3}>
-                <h2 className={styles.table_title}>جدول الحصص</h2>
+            <Col md={5}>
+                <h2 className={styles.table_title}>{locale == "en" ? "school schedule" : " جدول الحصص"}</h2>
             </Col>
-            <Col md={4}></Col>
+            <Col md={2}></Col>
             <Col md={5}>
             <div className={styles.full_date}>
                 <div className={styles.time}>
@@ -312,7 +312,7 @@ const onSubmit = (data) =>{
             <div key={index} className={styles.day}>
                 <div className={styles.day_head}>{item.day}</div>
                 <div className={styles.day_body}>
-                  <h4>لا يوجد</h4>
+                  <h4> {locale == "en" ? "Not found" : "لا يوجد "}</h4>
                     {/* <h4>لغة عربية</h4>
                     <div className={styles.time}> 
                         <Image src="/assets/profile/stopwatch.png" alt=".." width="22" height="22" objectFit="contain"/>
@@ -332,10 +332,10 @@ const onSubmit = (data) =>{
       <div className={`${styles.tab_content} ${styles.curricula}`}>
 
       <Row>
-            <Col md={3}>
-                <h2 className={styles.table_title}>جدول الحصص</h2>
+            <Col md={5}>
+                <h2 className={styles.table_title}> {locale == "en" ? "curricula" : "المناهج"}</h2>
             </Col>
-            <Col md={4}></Col>
+            <Col md={2}></Col>
             <Col md={5}>
             <div className={styles.full_date}>
                 <div className={styles.time}>
@@ -371,7 +371,7 @@ const onSubmit = (data) =>{
                     <p>{item.title}</p>
                     <div className={styles.day_wrapper}>
                     <Image src="/assets/profile/stopwatch-1.png" alt=".." width="22" height="22" objectFit="contain"/>
-                    <span className="day">يوم :</span>
+                    <span className="day"> {locale == "en" ? "Day" : "يوم"}:</span>
                     <div className="date">{item.date.day} {item.date.month}</div>
                     </div>
 
@@ -389,10 +389,10 @@ const onSubmit = (data) =>{
       <div className={`${styles.tab_content} ${styles.chatform}`}>
 
         <Row>
-            <Col md={3}>
-                <h2 className={styles.table_title}>جدول الحصص</h2>
+            <Col md={5}>
+                <h2 className={styles.table_title}>  {locale == "en" ? "Homework" : "حل الواجب"}</h2>
             </Col>
-            <Col md={4}></Col>
+            <Col md={2}></Col>
             <Col md={5}>
             <div className={styles.full_date}>
                 <div className={styles.time}>
@@ -487,10 +487,10 @@ const onSubmit = (data) =>{
       <div className={`${styles.tab_content} ${styles.chatform}`}>
 
         <Row>
-            <Col md={3}>
-                <h2 className={styles.table_title}>جدول الحصص</h2>
+            <Col md={5}>
+                <h2 className={styles.table_title}>  {locale == "en" ? "Chat with class" : "شات مع الفصل"} </h2>
             </Col>
-            <Col md={4}></Col>
+            <Col md={2}></Col>
             <Col md={5}>
             <div className={styles.full_date}>
                 <div className={styles.time}>

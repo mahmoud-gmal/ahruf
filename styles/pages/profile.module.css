@@ -12,7 +12,7 @@
     font: normal normal normal 18px/29px "bahij_Helvetica_roman";
     color: #FFFFFF;
 }
-.back svg{margin-left: 10px}
+.back svg{margin-inline-end: 10px}
 
 
 
@@ -26,7 +26,7 @@
     padding: 10px;
     margin-bottom: 10px;
     align-items: center;
-    margin-left: 10%;
+    margin-inline-end: 10%;
     background:#FAFAFA  0% 0% no-repeat padding-box;
     border-radius: 34px 0px 0px 34px;
 }
@@ -38,7 +38,7 @@
     background: #DBE8FF  0% 0% no-repeat padding-box;
     border-radius: 50%;--size: 33px;width: var(--size);
     height: var(--size);text-align: center;
-    line-height: var(--size);margin-left: 11px;
+    line-height: var(--size);margin-inline-end: 11px;
 }
 .profile_nav_list li.active .icon_wrapper{background: #FFFFFF 0% 0% no-repeat padding-box;}
 
@@ -96,7 +96,7 @@ color: #303868;
     border-radius: 50%;
     height: 75px;
     width: 75px;
-    margin-left: 35px;
+    margin-inline-end: 35px;
     text-align: center;
     background-image: url(/assets/profile_t.png);
     background-size: cover;
@@ -164,7 +164,7 @@ color: #303868;
             flex-direction: column-reverse;
             align-items: center;
         }
-        .tab_content .full_date .time{margin-left: 0;margin-top: 10px;}
+        .tab_content .full_date .time{margin-inline-end: 0;margin-top: 10px;}
     }
 /* ====== Class Schedule ======== */
 .class_schedule {
@@ -287,7 +287,7 @@ border-radius: 12px;
     align-items: center;
 }
 
-.curricula .day_wrapper > span {margin-left: 5px !important;}
+.curricula .day_wrapper > span {margin-inline-end: 5px !important;}
 
 .curricula .items {
     display: grid;
@@ -297,7 +297,9 @@ border-radius: 12px;
     grid-template-columns: repeat(var(--colNum), auto);
     grid-gap: 1rem;
     text-align: center;
-    padding-top: 93px;
+    margin-top: 93px;
+    max-height: 600px;
+    overflow-y: scroll;
 }
 
 .curricula .items .item {
