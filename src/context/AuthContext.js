@@ -81,6 +81,19 @@ const login = (formData) => {
   };
 
 
+  // token changed
+  const tokenChanged = () => {
+    
+      // logout!
+      setDisplayName('');
+      localStorage.removeItem( 'token' );
+      localStorage.removeItem( 'student' );
+      setToken(null);
+      router.push('/login')  
+
+  };
+
+
 
 
   // Cleanup subscription on unmount
@@ -97,6 +110,7 @@ const login = (formData) => {
   const value = {
     login,
     logout,
+    tokenChanged,
     displayName,
     token
   };

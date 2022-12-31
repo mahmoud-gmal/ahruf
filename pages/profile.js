@@ -125,7 +125,7 @@ export const Picker = dynamic(
   const [loading, setLoading] = useState(true);
 
 
-  const { token } = useAuth();
+  const { token,tokenChanged } = useAuth();
 
   useEffect(() => {
 
@@ -144,9 +144,11 @@ export const Picker = dynamic(
       setStudentName(response.data.data.student_name);
     },
     (error) => {
-      // if(error.response.status == 401){
-      //   router.push('/login')
-      // }
+      // if token changed so become unathoried request
+      if(error.response.status == 401){
+        // router.push('/login')
+        tokenChanged();
+      }
       console.log(error.response);
     }
   );
@@ -191,6 +193,18 @@ axios.get(
 
 }, [])
 
+
+
+
+
+
+
+
+
+
+
+
+
 // time in am/pm format 12h
 const formatAMPM = (date) => {
   var hours = date.getHours();
@@ -229,8 +243,53 @@ const { register,handleSubmit, formState: { errors }} = useForm({
 });
 // console.log(lessonsHistory);
 
-const onSubmit = (data) =>{
+
+  useEffect(() => {
+    axios.get(
+      `https://a-ibrahem.azq1.com/Ahruf/Dashboards/api/student/getMessages`,
+      {headers: {
+              "Content-type": "Application/json",
+              "Authorization": `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2EtaWJyYWhlbS5henExLmNvbS9BaHJ1Zi9EYXNoYm9hcmRzL2FwaS9zdHVkZW50L2xvZ2luIiwiaWF0IjoxNjcyNDg4MTUzLCJleHAiOjE2NzI1NzQ1NTMsIm5iZiI6MTY3MjQ4ODE1MywianRpIjoiTlV4UnhIN0VXNkp0dzB6eCIsInN1YiI6IjQ1IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.vOHk6kHhmgqpaaPSdCCGJEU1dJqBwTX2BtlzT4pdR6E`,
+              'Accept-Language': locale
+              }   
+          }
+    )
+    .then((response) => {
+        // console.log(response.data.data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    
+    
+    }, [])
+
+
+
+
+const onSubmit = (values) =>{
   // console.log(data);
+  const formData = {
+    message: values.message,
+  }
+
+  axios(
+    `https://a-ibrahem.azq1.com/Ahruf/Dashboards/api/student/homeworkMessages`,
+    {
+      method: "post",
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2EtaWJyYWhlbS5henExLmNvbS9BaHJ1Zi9EYXNoYm9hcmRzL2FwaS9zdHVkZW50L2xvZ2luIiwiaWF0IjoxNjcyNDg4MTUzLCJleHAiOjE2NzI1NzQ1NTMsIm5iZiI6MTY3MjQ4ODE1MywianRpIjoiTlV4UnhIN0VXNkp0dzB6eCIsInN1YiI6IjQ1IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.vOHk6kHhmgqpaaPSdCCGJEU1dJqBwTX2BtlzT4pdR6E`,
+    },
+      data: JSON.stringify(formData)
+    }
+  )
+  .then((response) => {
+      // console.log(response.data.message);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
 
 }
 
@@ -539,7 +598,7 @@ const onSubmit = (data) =>{
         </div>
 
 
-        <div className={styles.form_chat}>
+        {/* <div className={styles.form_chat}>
             <Form noValidate onSubmit={handleSubmit(onSubmit)}>
             <Form.Group>
               <Form.Control
@@ -556,7 +615,7 @@ const onSubmit = (data) =>{
             </div>
 
                 </Form>              
-            </div>
+            </div> */}
 
         </div>
 
