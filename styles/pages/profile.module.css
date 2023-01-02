@@ -337,7 +337,10 @@ border-radius: 12px;
 
 
 /* ====== chatform ======== */
-.chatform .items{padding: 70px 0;}
+.chatform .items{padding: 70px 0;
+max-height: 400px; 
+overflow-y: auto;
+}
 
 .chatform .item {
     display: flex;

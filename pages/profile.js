@@ -1,5 +1,9 @@
+
+
+
+
 // react core
-import React, { useState , useEffect, useRef } from "react";
+import React, { useState , useEffect, useRef, useCallback } from "react";
 import  { useRouter } from "next/router";
 // nextjs components
 import Image from "next/image";
@@ -19,7 +23,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
 // fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faTable, faBookBookmark, faBook, faCommentAlt, faPaperPlane} from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faTable, faBookBookmark, faBook, faCommentAlt, faPaperPlane, faFilePdf} from "@fortawesome/free-solid-svg-icons";
 // import { faArrowleft } from "@fortawesome/free-regular-svg-icons";
 
 
@@ -87,42 +91,21 @@ export const Picker = dynamic(
 
 
 
-// fetch next
-// site url
-// const URL = process.env.NEXT_PUBLIC_API_URI;
-// // FETCHING DATA FROM API
-// export const getStaticProps = async ({locale }) => {
-//   // test
-//   const testRes = await fetch(`${URL}student/lessons`, {headers: {"Content-type": "Application/json", 'Accept-Language': locale, "Authorization": `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FocnVmZWR1LmNvbS9EYXNoYm9hcmRzL2FwaS9zdHVkZW50L2xvZ2luIiwiaWF0IjoxNjcxNDU5MjU3LCJleHAiOjE2NzE1NDU2NTcsIm5iZiI6MTY3MTQ1OTI1NywianRpIjoiakJIWE5talJxU25ZeWE1ZyIsInN1YiI6IjEwOCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.ymBRIWH4MXN9KlxZ9n-t1uUtKR7lQKRV8DZRsiQuGqc`, }});
-//   const testData = await testRes.json();
-//   if ((!testData)) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-//   return {
-//     props: { test: testData }, // will be passed to the page component as props
-//     revalidate: 10, //In seconds
-//   };
-// };
-
-// import { Picker } from "emoji-mart";
-// // import "emoji-mart/css/emoji-mart.css";
-
-
  const Profile = () =>{
 
   const router = useRouter()
 
 // lang
   const { locale, locales, asPath } = useRouter();
- 
+  const [messages, setMessages] = useState([]);
+  const { current: myArray } = useRef(["one", "two", "three"]);
   const [lessonsTable, setLessonsTable] = useState([]);
   const [lessonsHistory, setLessonsHistory] = useState([]);
 
   const [studentName, setStudentName] = useState("");
 
   const [loading, setLoading] = useState(true);
+
 
 
   const { token,tokenChanged } = useAuth();
@@ -199,12 +182,6 @@ axios.get(
 
 
 
-
-
-
-
-
-
 // time in am/pm format 12h
 const formatAMPM = (date) => {
   var hours = date.getHours();
@@ -238,24 +215,32 @@ const onEmojiClick = (event, emojiObject) => {
 
 
 // validition
-const { register,handleSubmit, formState: { errors }} = useForm({
+const { register,handleSubmit,reset, formState: { errors }} = useForm({
   resolver: yupResolver(validationSchema)
 });
 // console.log(lessonsHistory);
 
 
+// const logResult = useCallback(() => {
+
+// }, []); //logResult is memoized now.
+
+
   useEffect(() => {
+
     axios.get(
       `https://a-ibrahem.azq1.com/Ahruf/Dashboards/api/student/getMessages`,
       {headers: {
               "Content-type": "Application/json",
-              "Authorization": `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2EtaWJyYWhlbS5henExLmNvbS9BaHJ1Zi9EYXNoYm9hcmRzL2FwaS9zdHVkZW50L2xvZ2luIiwiaWF0IjoxNjcyNDg4MTUzLCJleHAiOjE2NzI1NzQ1NTMsIm5iZiI6MTY3MjQ4ODE1MywianRpIjoiTlV4UnhIN0VXNkp0dzB6eCIsInN1YiI6IjQ1IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.vOHk6kHhmgqpaaPSdCCGJEU1dJqBwTX2BtlzT4pdR6E`,
+              "Authorization": `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2EtaWJyYWhlbS5henExLmNvbS9BaHJ1Zi9EYXNoYm9hcmRzL2FwaS9zdHVkZW50L2xvZ2luIiwiaWF0IjoxNjcyNjU0Nzc1LCJleHAiOjE2NzI3NDExNzUsIm5iZiI6MTY3MjY1NDc3NSwianRpIjoiRDR4R25UMElFbnkyazVYZiIsInN1YiI6IjQ1IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.qbPRZZAEkaxwMMi6keZCUaGPttlrVHHp3V96BmRR4kQ`,
               'Accept-Language': locale
               }   
           }
     )
     .then((response) => {
         // console.log(response.data.data);
+        setMessages(response.data.data)
+        // setLoading(false);
       },
       (error) => {
         console.log(error);
@@ -274,22 +259,63 @@ const onSubmit = (values) =>{
     message: values.message,
   }
 
-  axios(
-    `https://a-ibrahem.azq1.com/Ahruf/Dashboards/api/student/homeworkMessages`,
-    {
-      method: "post",
-      headers: { "Content-Type": "application/json", "Authorization": `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2EtaWJyYWhlbS5henExLmNvbS9BaHJ1Zi9EYXNoYm9hcmRzL2FwaS9zdHVkZW50L2xvZ2luIiwiaWF0IjoxNjcyNDg4MTUzLCJleHAiOjE2NzI1NzQ1NTMsIm5iZiI6MTY3MjQ4ODE1MywianRpIjoiTlV4UnhIN0VXNkp0dzB6eCIsInN1YiI6IjQ1IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.vOHk6kHhmgqpaaPSdCCGJEU1dJqBwTX2BtlzT4pdR6E`,
-    },
-      data: JSON.stringify(formData)
+
+  // .then((response) => {
+  //     // console.log(response.data.message);
+  //   },
+  //   (error) => {
+  //     console.log(error);
+  //   }
+  // );
+
+
+
+  
+  
+
+  axios.all([
+    axios(
+      `https://a-ibrahem.azq1.com/Ahruf/Dashboards/api/student/homeworkMessages`,
+      {
+        method: "post",
+        headers: { "Content-Type": "application/json", 
+        "Authorization": `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2EtaWJyYWhlbS5henExLmNvbS9BaHJ1Zi9EYXNoYm9hcmRzL2FwaS9zdHVkZW50L2xvZ2luIiwiaWF0IjoxNjcyNjU0Nzc1LCJleHAiOjE2NzI3NDExNzUsIm5iZiI6MTY3MjY1NDc3NSwianRpIjoiRDR4R25UMElFbnkyazVYZiIsInN1YiI6IjQ1IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.qbPRZZAEkaxwMMi6keZCUaGPttlrVHHp3V96BmRR4kQ`,
+      },
+        data: JSON.stringify(formData)
+      }
+    ).then( () => {
+
+      axios.get(
+        `https://a-ibrahem.azq1.com/Ahruf/Dashboards/api/student/getMessages`,
+        {headers: {
+                "Content-type": "Application/json",
+                "Authorization": `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2EtaWJyYWhlbS5henExLmNvbS9BaHJ1Zi9EYXNoYm9hcmRzL2FwaS9zdHVkZW50L2xvZ2luIiwiaWF0IjoxNjcyNjU0Nzc1LCJleHAiOjE2NzI3NDExNzUsIm5iZiI6MTY3MjY1NDc3NSwianRpIjoiRDR4R25UMElFbnkyazVYZiIsInN1YiI6IjQ1IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.qbPRZZAEkaxwMMi6keZCUaGPttlrVHHp3V96BmRR4kQ`,
+                'Accept-Language': locale
+                }   
+            }
+      ).then((response) => {
+            // console.log(response.data.data);
+            setMessages(response.data.data)
+            // setLoading(false);
+            reset();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
     }
-  )
-  .then((response) => {
-      // console.log(response.data.message);
-    },
-    (error) => {
-      console.log(error);
-    }
-  );
+
+    )
+
+
+  ])
+
+
+
+
+
+
+
 
 }
 
@@ -467,35 +493,68 @@ const onSubmit = (values) =>{
         <div className={styles.items}>
 
 
-            <div className={`${styles.item} ${styles.receive}`}>
+        {messages?.messages &&
+              messages?.messages.map((message, i) => (
+                
+          
+       
+            <div key={i} className={`${styles.item} ${styles.send}`}>
               <div className={styles.right_side}>
-                <span className={styles.person_name}>عبدالله بدران</span>
-                <div className={styles.message_wrapper}>
-                  <p className={styles.message}>
-                كيف حالك يا أحمد 
-                هل انت جاهز لحل الواجب ؟
-                </p></div>
-                <span className={styles.time}>2:45</span>
+
+{/* {console.log(message != null && message.type === "IMAGE" && "text and image field")} */}
+                {/* text item */}
+                {message.message != null && (
+                <div className={`${styles.message_wrapper} text`}>
+                  <p className={styles.message}>{message.message}</p>
+                </div>
+                )}
+
+              {/* image item */}
+              {message.type === "IMAGE" && message.image &&  (
+                <div className={`${styles.message_wrapper} image`} style={{padding: '14px 0px'}}>
+                   <Image src={message?.image} alt=".." width="280" height="310" objectFit="contain"/>
+                </div>
+              )}
+
+              {/* audio item */} 
+              {message.type === "AUDIO" || message.type === "VIDEO" && (
+              <div className={`${styles.message_wrapper} audio_video`} style={{padding: '14px 0px'}}>
+                <audio controls>
+                  <source src={message?.image} type="audio/mpeg"/>
+                Your browser does not support the audio element.
+                </audio>
+                </div>
+              )}
+
+              {/* PDF item */} 
+              {message.type === "FILE"  && (
+                <div className={`${styles.message_wrapper} file_pdf`} style={{padding: '14px 0px', background: 'none'}}>
+                {/* <iframe src={message.image} width="100%" height="250px"></iframe> */}
+                <Link href={message?.image}>
+                  <a className="special_btn "><span className="d-flex mr-2">  {locale == "en" ? "Donwload pdf" : "تحميل الملف"}  <FontAwesomeIcon icon={faFilePdf} width="20" style={{marginInlineStart: '10px'}}/> </span></a>
+                </Link>
+                </div>
+              )}
+
+
+          {message.message === null  && message.image === null  ? ('') : (
+          <span className={styles.time}>{message.sent}</span>
+           ) }
+
               </div>
+
+              {message.message === null  &&  message.image === null  ? ('') : (
               <div className={styles.left_side}>
                 <Image src="/assets/teacher-2.png" alt=".." width="35" height="35" objectFit="contain"/>
               </div>
+              ) }
+
             </div>
 
-            <div className={`${styles.item} ${styles.send}`}>
-              <div className={styles.right_side}>
-                <div className={styles.message_wrapper}>
-                  <p className={styles.message}>
-                كيف حالك يا أحمد 
-                هل انت جاهز لحل الواجب ؟
-                </p></div>
-                <span className={styles.time}>2:45</span>
-              </div>
-              <div className={styles.left_side}>
-                <Image src="/assets/teacher-2.png" alt=".." width="35" height="35" objectFit="contain"/>
-              </div>
-            </div>
 
+              ))}
+
+  
 
         </div>
 
@@ -565,40 +624,73 @@ const onSubmit = (values) =>{
         <div className={styles.items}>
 
 
-            <div className={`${styles.item} ${styles.receive}`}>
+        {messages?.messages &&
+              messages?.messages.map((message, i) => (
+                
+          
+       
+            <div key={i} className={`${styles.item} ${styles.send}`}>
               <div className={styles.right_side}>
-                <span className={styles.person_name}>عبدالله بدران</span>
-                <div className={styles.message_wrapper}>
-                  <p className={styles.message}>
-                كيف حالك يا أحمد 
-                هل انت جاهز لحل الواجب ؟
-                </p></div>
-                <span className={styles.time}>2:45</span>
+
+{/* {console.log(message != null && message.type === "IMAGE" && "text and image field")} */}
+                {/* text item */}
+                {message.message != null && (
+                <div className={`${styles.message_wrapper} text`}>
+                  <p className={styles.message}>{message.message}</p>
+                </div>
+                )}
+
+              {/* image item */}
+              {message.type === "IMAGE" && message.image &&  (
+                <div className={`${styles.message_wrapper} image`} style={{padding: '14px 0px'}}>
+                   <Image src={message?.image} alt=".." width="280" height="310" objectFit="contain"/>
+                </div>
+              )}
+
+              {/* audio item */} 
+              {message.type === "AUDIO" || message.type === "VIDEO" && (
+              <div className={`${styles.message_wrapper} audio_video`} style={{padding: '14px 0px'}}>
+                <audio controls>
+                  <source src={message?.image} type="audio/mpeg"/>
+                Your browser does not support the audio element.
+                </audio>
+                </div>
+              )}
+
+              {/* PDF item */} 
+              {message.type === "FILE"  && (
+                <div className={`${styles.message_wrapper} file_pdf`} style={{padding: '14px 0px', background: 'none'}}>
+                {/* <iframe src={message.image} width="100%" height="250px"></iframe> */}
+                <Link href={message?.image}>
+                  <a className="special_btn "><span className="d-flex mr-2">  {locale == "en" ? "Donwload pdf" : "تحميل الملف"}  <FontAwesomeIcon icon={faFilePdf} width="20" style={{marginInlineStart: '10px'}}/> </span></a>
+                </Link>
+                </div>
+              )}
+
+
+          {message.message === null  && message.image === null  ? ('') : (
+          <span className={styles.time}>{message.sent}</span>
+           ) }
+
               </div>
+
+              {message.message === null  &&  message.image === null  ? ('') : (
               <div className={styles.left_side}>
                 <Image src="/assets/teacher-2.png" alt=".." width="35" height="35" objectFit="contain"/>
               </div>
+              ) }
+
             </div>
 
-            <div className={`${styles.item} ${styles.send}`}>
-              <div className={styles.right_side}>
-                <div className={styles.message_wrapper}>
-                  <p className={styles.message}>
-                كيف حالك يا أحمد 
-                هل انت جاهز لحل الواجب ؟
-                </p></div>
-                <span className={styles.time}>2:45</span>
-              </div>
-              <div className={styles.left_side}>
-                <Image src="/assets/teacher-2.png" alt=".." width="35" height="35" objectFit="contain"/>
-              </div>
-            </div>
 
+              ))}
+
+  
 
         </div>
 
 
-        {/* <div className={styles.form_chat}>
+        <div className={styles.form_chat}>
             <Form noValidate onSubmit={handleSubmit(onSubmit)}>
             <Form.Group>
               <Form.Control
@@ -615,7 +707,7 @@ const onSubmit = (values) =>{
             </div>
 
                 </Form>              
-            </div> */}
+            </div>
 
         </div>
 
