@@ -277,7 +277,7 @@ const activitiess = activities.data;
         {/*============= Subscription  =========*/}
         <div ref={ref} className={`${styles.subscription } `} id="packages">
 
-            <Row className="align-items-center m-0">
+            <Row className="m-0">
               <Col md={4}>
                 <div className={styles.info}>
                   <h2>{packagesData?.content?.title}</h2>

@@ -338,7 +338,7 @@ border-radius: 10px;
   grid-template-rows: repeat(1, 518px);
   grid-row-gap: 1em;
   grid-column-gap: 1em;
-  align-items: center;
+  /* align-items: center; */
   position: relative;
   padding: 0 1.5rem;
 }
