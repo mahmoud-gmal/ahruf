@@ -40,13 +40,13 @@ const Footer = () => {
             <Col className={styles.item} md={6} lg={4}>
               <ul className={styles.contact_info}>
                 <li>
-                  <a href="tel:9660548762583">
+                  <a href="tel:9660545862672">
                     <FontAwesomeIcon icon={faPhone} />
-                    <span>9660548762583</span>
+                    <span>(+966) 0545862672</span>
                   </a>
                 </li>
                 <li>
-                  <a href="https://api.whatsapp.com/send?phone=966200545862672">
+                  <a href="https://api.whatsapp.com/send?phone=9660545862672">
                     <FontAwesomeIcon icon={faWhatsapp} />
                     <span>(+966) 0545862672</span>
                   </a>

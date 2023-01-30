@@ -5,7 +5,10 @@
 .footer .contact_info li {
   margin-bottom: 18px;
 }
-
+.footer .contact_info span{
+  direction: ltr!important;
+  unicode-bidi: embed;
+}
 .footer .contact_info li a {
   font: normal normal normal 16px/21px Roboto;
   color: #303868;
@@ -46,7 +49,7 @@
 .company_logo h4{margin-right: 10px;}
 .copyrights p{
   font: normal normal normal 14px/22px "bahij_Helvetica_roman";
-color: #2E386B80;
+  color: #2E386B80;
 }
 
 .company_logo h4{
