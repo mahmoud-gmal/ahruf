@@ -20,7 +20,7 @@ const { locale } = useRouter();
       <main className={styles.main_content}>
         <Container>
             <div className={styles.account}>
-                <h3> {locale == "en" ? "Letters Center for literacy programs" : "مركز أحرف لبرامج محو الأمية "}</h3>
+                <h3> {locale == "en" ? "Ahruf Center for literacy programs" : "مركز أحرف لبرامج محو الأمية "}</h3>
                 <p> {locale == "en" ? "Al Rajhi Bank" : "مصرف الراجحي"}</p>
                 <div className={styles.item}>
                     <span className={styles.item_txt}> {locale == "en" ? "IBAN number" : "رقم الايبان"}</span>
