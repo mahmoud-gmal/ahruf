@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
+import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useRouter } from "next/router";
 // fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faPhone,} from "@fortawesome/free-solid-svg-icons";
+import {faPhone, faPlaneUp,} from "@fortawesome/free-solid-svg-icons";
 import {
   faInstagram,
   faTwitter,
@@ -17,9 +18,37 @@ import styles from "./../../../styles/layout/Footer.module.css";
 const Footer = () => {
   const { locale } = useRouter();
 
+
+// back to top
+const [visible, setVisible] = useState(false)
+  
+const toggleVisible = () => {
+  const scrolled = document.documentElement.scrollTop;
+  if (scrolled > 300){
+    setVisible(true)
+  } 
+  else if (scrolled <= 300){
+    setVisible(false)
+  }
+};
+
+const scrollToTop = () =>{
+  window.scrollTo({
+    top: 0, 
+    behavior: 'smooth'
+    /* you can also use 'auto' behaviour
+       in place of 'smooth' */
+  });
+};
+
+window.addEventListener('scroll', toggleVisible);
+
   return (
     <>
       <div className={styles.footer}>
+      <button class="up" onClick={scrollToTop}  style={{display: visible ? 'inline' : 'none'}}>
+        <FontAwesomeIcon icon={faPlaneUp} />
+        </button>
         <Container>
           <Row>
             <Col className={styles.item} md={6} lg={4}>

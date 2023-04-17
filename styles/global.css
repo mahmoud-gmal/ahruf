@@ -174,6 +174,39 @@ p {
   box-shadow: none;
 }
 
+
+.up {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  outline: none;
+  border-radius: 50%;
+  background-color: #2e386b;
+  z-index: 99999;
+  font-size: 15px;
+  text-align: center;
+  transition: .5s;
+  -webkit-animation: fadeInOut 1s linear infinite;
+  animation: fadeInOut 1s linear infinite
+}
+ .up svg{
+    color: #FFF !important;
+    margin: auto !important;
+    width: 18px !important;
+ }
+.up:hover {
+  transform: scale(1.2)
+}
+
 /* what say */
 .cus_what_say .swiper-slide-duplicate-prev,
 .cus_what_say .swiper-slide-duplicate-next{opacity:0.5}
