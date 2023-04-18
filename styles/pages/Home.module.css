@@ -351,7 +351,7 @@ border-radius: 10px;
   position: relative;
   padding: 45px 30px 20px;
 }
-.subscription .items .item:first-child::before, .subscription .items .item:last-child::before{
+.subscription .items .item:nth-child(odd)::before, .subscription .items .item:nth-child(even)::before{
   content: "";
   position: absolute;
   width: 100%;
@@ -360,10 +360,10 @@ border-radius: 10px;
   top: 0;
   right: 0;
 }
-.subscription .items .item:first-child::before{
+.subscription .items .item:nth-child(odd)::before{
   background: #41EFCD 0% 0% no-repeat padding-box;
 }
-.subscription .items .item:last-child::before{
+.subscription .items .item:nth-child(even)::before{
   background: #FFB6BD 0% 0% no-repeat padding-box;
 }
 
