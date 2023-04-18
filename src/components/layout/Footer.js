@@ -40,9 +40,9 @@ const scrollToTop = () =>{
        in place of 'smooth' */
   });
 };
-
+if (window !== undefined) {
 window.addEventListener('scroll', toggleVisible);
-
+}
   return (
     <>
       <div className={styles.footer}>
