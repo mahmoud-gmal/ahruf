@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useRouter } from "next/router";
 // fontawesome
@@ -14,14 +14,23 @@ import {
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
 import styles from "./../../../styles/layout/Footer.module.css";
+import dynamic from 'next/dynamic';
+
+// const MyComponent = dynamic(() => import('./MyComponent'), {
+//   ssr: false
+// });
+
+
 
 const Footer = () => {
   const { locale } = useRouter();
+  const isBrowser = () => typeof window !== 'undefined';
+  // back to top
+  const [visible, setVisible] = useState(false)
 
 
-// back to top
-const [visible, setVisible] = useState(false)
   
+
 const toggleVisible = () => {
   const scrolled = document.documentElement.scrollTop;
   if (scrolled > 300){
@@ -40,9 +49,11 @@ const scrollToTop = () =>{
        in place of 'smooth' */
   });
 };
-if (window !== undefined) {
-window.addEventListener('scroll', toggleVisible);
-}
+isBrowser() ? window.addEventListener('scroll', toggleVisible) : '';
+
+// if (window !== undefined) {
+// }
+
   return (
     <>
       <div className={styles.footer}>
@@ -147,6 +158,8 @@ window.addEventListener('scroll', toggleVisible);
 
     </>
   );
-};
+
+
+  };
 
 export default Footer;
